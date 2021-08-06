@@ -5,7 +5,7 @@ import { HashRouter as Router, Route, Link, NavLink , Switch} from 'react-router
 
 import NameForm from "./pages/singUpPage";
 import LoginPage from "./pages/LoginPage";
-// import PasswordRecoverPage from "./pages/PasswordRecoveryPage";
+import PasswordRecoverPage from "./pages/PasswordRecoveryPage";
 // import AccountSettingPage from "./pages/AccountSetting";
 // import UserProfile from "./pages/UserProfile";
 // import UserList from "./pages/UserList";
@@ -33,6 +33,8 @@ function App() {
             <Route exact path="/" component={NameForm}>
             </Route>
             <Route path="/sign-in" component={LoginPage}>
+            </Route>
+            <Route path="/forgot-password" component={PasswordRecoverPage}>
             </Route>
         </div>
 

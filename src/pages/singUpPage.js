@@ -11,6 +11,10 @@ import {
     Checkbox,
     Button
 } from "@material-ui/core";
+import FingerprintJS from '@fingerprintjs/fingerprintjs'
+import { HashRouter as Router, Route, NavLink , Switch} from 'react-router-dom';
+
+
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import { green } from '@material-ui/core/colors';
@@ -104,9 +108,9 @@ export default function SingUp() {
                     <Typography variant="h4" style={{ color: green[700] }}>Get started with a free account</Typography>
                     <Typography>
                         Already have an account?{" "}
-                        <Link href="#" onClick={preventDefault}>
-                            Login
-                        </Link>
+                        <NavLink exact to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
+
+
                     </Typography>
                     <Box className={classes.InputFields}>
                         <TextField

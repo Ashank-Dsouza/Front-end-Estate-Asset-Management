@@ -1,5 +1,6 @@
 import React from "react";
-
+import { useState } from 'react';
+import axios from "axios";
 import {
   Grid,
   Typography,
@@ -51,6 +52,23 @@ const useStyle = makeStyles((them) => ({
 export default function PasswordRecoverPage(props) {
   const classes = useStyle();
 
+  const [email, setEmailInput] = useState(''); // '' is the initial state value
+
+
+  const submitOnClick = (event) => {
+    console.log("the value of email input is: ", email);
+
+    axios.defaults.baseURL = 'http://localhost:9191';
+
+    axios.post('/users/sendMail', {
+      Email: email
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+  }
+
+
   return (
     <>
       <CssBaseline />
@@ -62,18 +80,20 @@ export default function PasswordRecoverPage(props) {
           className={classes.root}
         >
           <Grid item xs={12} md={8}>
-            <Card style={{backgroundColor:'transparent',boxShadow:'none'}}>
+            <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
               <CardHeader
                 title={
                   <Typography variant="h4" className={classes.MainTitle}>
                     Password Recovery
                   </Typography>
                 }
-                subheader="Enter your email and instructions will sent to you!"
+                subheader="Enter your email and instructions will be sent to you!"
               />
               <CardContent>
                 <TextField
-                  placeholder="Emain"
+                  value={email}
+                  onInput={e => setEmailInput(e.target.value)}
+                  placeholder="Email"
                   margin="normal"
                   type='email'
                   InputProps={{
@@ -89,6 +109,7 @@ export default function PasswordRecoverPage(props) {
               </CardContent>
               <CardActions>
                 <Button
+                  onClick={() => submitOnClick()}
                   variant="contained"
                   className={classes.resetButton}
                   fullWidth
