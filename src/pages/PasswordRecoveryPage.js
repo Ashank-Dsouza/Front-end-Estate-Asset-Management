@@ -53,8 +53,7 @@ export default function PasswordRecoverPage(props) {
   const classes = useStyle();
 
   const [email, setEmailInput] = useState(''); // '' is the initial state value
-
-
+  
   const submitOnClick = (event) => {
     console.log("the value of email input is: ", email);
 
@@ -65,6 +64,9 @@ export default function PasswordRecoverPage(props) {
     })
       .then(function (response) {
         console.log(response);
+      })
+      .catch((error) =>{
+        console.log(error);
       })
   }
 
