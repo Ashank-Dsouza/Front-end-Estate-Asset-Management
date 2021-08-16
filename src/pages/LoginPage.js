@@ -107,7 +107,7 @@ export default function LoginPage(props) {
                             Log In to CORK
                         </Typography>
                         <Typography>
-                            New Here? <Link href="#"> Create an account</Link>
+                            New Here? <Link href="/#sign-up"> Create an account</Link>
                         </Typography>
                         <Box my={4} mb={2}>
                             <TextField

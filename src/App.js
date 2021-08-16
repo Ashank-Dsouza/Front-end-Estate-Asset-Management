@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { HashRouter as Router, Route, Link, NavLink , Switch} from 'react-router-dom';
 
 
-import NameForm from "./pages/singUpPage";
+import SignUpPage from "./pages/singUpPage";
 import LoginPage from "./pages/LoginPage";
 import PasswordRecoverPage from "./pages/PasswordRecoveryPage";
 import PasswordResetPage from "./pages/PasswordReset";
@@ -24,17 +24,13 @@ function App() {
         <div className="App__Aside"></div>
         <div className="App__Form">
           <div className="PageSwitcher">
-              <NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
-              <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
+              <NavLink to="/" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign In</NavLink>
+              <NavLink exact to="/sign-up" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Sign Up</NavLink>
             </div>
 
-            <div className="FormTitle">
-                <NavLink to="/sign-in" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign In</NavLink> or <NavLink exact to="/" activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
-            </div>
-
-            <Route exact path="/" component={NameForm}>
+            <Route exact path="/" component={LoginPage}>
             </Route>
-            <Route path="/sign-in" component={LoginPage}>
+            <Route path="/sign-up" component={SignUpPage}>
             </Route>
             <Route path="/forgot-password" component={PasswordRecoverPage}>
             </Route>

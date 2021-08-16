@@ -70,8 +70,8 @@ export default function SingUp() {
     const [firstname, setFirstNameInput] = useState(''); // '' is the initial state value
     const [lastname, setSecondNameInput] = useState(''); // '' is the initial state value
 
-
-
+    const [checkBoxValue, setCheckBoxInput] =  useState(false);
+    
     const classes = useStyle();
 
     const preventDefault = (event) => {
@@ -80,6 +80,7 @@ export default function SingUp() {
 
     const submitOnClick = (event) => {
         console.log("the submitOnClick");
+        console.log("the value of checkbox input is: ", checkBoxValue);
         console.log("the value of firstname input is: ", firstname);
         console.log("the value of lastname input is: ", lastname);
         console.log("the value of password input is: ", password);
@@ -108,7 +109,7 @@ export default function SingUp() {
                     <Typography variant="h4" style={{ color: green[700] }}>Get started with a free account</Typography>
                     <Typography>
                         Already have an account?{" "}
-                        <NavLink exact to="/sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
+                        <NavLink exact to="/#sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
 
 
                     </Typography>
@@ -193,10 +194,14 @@ export default function SingUp() {
                             fullWidth={true}
                         />
                         <FormControlLabel
+                            value = {checkBoxValue} 
+                            onChange={e =>  {
+                                setCheckBoxInput(e.target.checked)
+                            }}
                             control={<Checkbox color={green['A700']} className={classes.CheckboxControler} />}
                             label="I agree to the terms and conditions"
                         />
-                        <Button onClick={() => submitOnClick()} variant='contained' className={classes.Button}>Get Started</Button>
+                        <Button disabled={!checkBoxValue} onClick={() => submitOnClick()} variant='contained' className={classes.Button}>Get Started</Button>
                     </Box>
                     <Typography>
                         © 2021 All Rights Reserved. CORK is a product of Designreset.
