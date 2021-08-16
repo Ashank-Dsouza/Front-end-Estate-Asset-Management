@@ -19,6 +19,7 @@ import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
 import { HashRouter as Router, Route, NavLink , Switch} from 'react-router-dom';
+import {Post} from "./../apis/api-controller";
 
 
 import { green } from "@material-ui/core/colors";
@@ -81,14 +82,11 @@ export default function LoginPage(props) {
         axios.defaults.baseURL = 'http://localhost:9191';
         //axios.get('/data/2.5/weather')
 
-        axios.post('/login', {
+        var response = await Post('/login', {
             Email: email,
             Password: password,
             DeviceID: deviceId
-        })
-        .then(function (response) {
-            console.log(response);
-        })
+        });
     };
 
 

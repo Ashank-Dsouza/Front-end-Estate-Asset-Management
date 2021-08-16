@@ -89,7 +89,6 @@ export default function SingUp() {
         console.log("the value of username input is: ", username);
 
         axios.defaults.baseURL = 'http://localhost:9191';
-        //axios.get('/data/2.5/weather')
 
         var response = await Post('/signup', {
             FirstName: firstname,
@@ -99,18 +98,6 @@ export default function SingUp() {
             Password: password
         });
 
-        
-
-        // axios.post('/signup', {
-        //     FirstName: firstname,
-        //     LastName: lastname,
-        //     UserName: username,
-        //     Email: email,
-        //     Password: password
-        // })
-        //     .then(function (response) {
-        //         console.log(response);
-        //     })
     }
 
     return (
