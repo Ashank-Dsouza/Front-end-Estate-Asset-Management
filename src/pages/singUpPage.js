@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
 import { HashRouter as Router, Route, NavLink , Switch} from 'react-router-dom';
+import {Post} from "./../apis/api-controller";
 
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -90,16 +91,26 @@ export default function SingUp() {
         axios.defaults.baseURL = 'http://localhost:9191';
         //axios.get('/data/2.5/weather')
 
-        axios.post('/signup', {
+        var response = await Post('/signup', {
             FirstName: firstname,
             LastName: lastname,
             UserName: username,
             Email: email,
             Password: password
-        })
-            .then(function (response) {
-                console.log(response);
-            })
+        });
+
+        
+
+        // axios.post('/signup', {
+        //     FirstName: firstname,
+        //     LastName: lastname,
+        //     UserName: username,
+        //     Email: email,
+        //     Password: password
+        // })
+        //     .then(function (response) {
+        //         console.log(response);
+        //     })
     }
 
     return (
