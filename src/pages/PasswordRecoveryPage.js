@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from 'react';
 import axios from "axios";
-import { Grid, Typography, InputAdornment,
-         Container, CssBaseline, Card,
+import {
+  Grid, Typography, InputAdornment,
+  Container, CssBaseline, Card,
   CardContent,
   CardHeader,
   CardActions,
@@ -10,7 +11,7 @@ import { Grid, Typography, InputAdornment,
   TextField,
   Link,
 } from "@material-ui/core";
-
+import { Post } from "./../apis/api-controller";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { green } from "@material-ui/core/colors";
@@ -48,21 +49,12 @@ export default function PasswordRecoverPage(props) {
   const classes = useStyle();
 
   const [email, setEmailInput] = useState(''); // '' is the initial state value
-  
-  const submitOnClick = (event) => {
+
+  const submitOnClick = async(event) => {
     console.log("the value of email input is: ", email);
-
-    axios.defaults.baseURL = 'http://localhost:9191';
-
-    axios.post('/users/sendMail', {
+    var response = await Post('/users/sendMail', {
       Email: email
     })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch((error) =>{
-        console.log(error);
-      })
   }
 
 

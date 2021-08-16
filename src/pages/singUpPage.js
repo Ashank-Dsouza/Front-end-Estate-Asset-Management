@@ -79,7 +79,7 @@ export default function SingUp() {
         event.preventDefault();
     };
 
-    const submitOnClick = (event) => {
+    const submitOnClick =  async(event)  =>  {
         console.log("the submitOnClick");
         console.log("the value of checkbox input is: ", checkBoxValue);
         console.log("the value of firstname input is: ", firstname);
@@ -87,8 +87,6 @@ export default function SingUp() {
         console.log("the value of password input is: ", password);
         console.log("the value of email input is: ", email);
         console.log("the value of username input is: ", username);
-
-        axios.defaults.baseURL = 'http://localhost:9191';
 
         var response = await Post('/signup', {
             FirstName: firstname,

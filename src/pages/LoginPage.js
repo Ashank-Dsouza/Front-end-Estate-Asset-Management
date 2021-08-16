@@ -79,9 +79,6 @@ export default function LoginPage(props) {
 
         const deviceId = await GetDeviceId();
 
-        axios.defaults.baseURL = 'http://localhost:9191';
-        //axios.get('/data/2.5/weather')
-
         var response = await Post('/login', {
             Email: email,
             Password: password,

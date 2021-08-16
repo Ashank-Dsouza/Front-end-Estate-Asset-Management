@@ -16,6 +16,8 @@ import {
     Link,
     Box
 } from "@material-ui/core";
+import {Post} from "./../apis/api-controller";
+
 
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 
@@ -59,22 +61,14 @@ export default function PasswordResetPage(props) {
     const [password, setPasswordInput] = useState(''); // '' is the initial state value
 
 
-    const submitOnClick = (event) => {
+    const submitOnClick = async(event) => {
         console.log("the value of email input is: ", email);
         console.log("the value of password input is: ", password);
 
-        axios.defaults.baseURL = 'http://localhost:9191';
-
-        axios.post('/users/forgotPassword', {
+        var response = await Post('/users/forgotPassword', {
             Email: email,
             Password: password
         })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
     }
 
 
