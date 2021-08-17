@@ -138,7 +138,7 @@ export default function PasswordResetPage(props) {
                             </CardActions>
                         </Card>
                         <Typography>
-                            © 2021 All Rights Reserved. CORK is a product of Designreset.
+                            © 2021 All Rights Reserved. TruVest is a product of Designreset.
               <Link style={{ color: green[700] }}>Cookie Preferences, Privacy</Link>, and
               <Link style={{ color: green[700] }}> Terms</Link>.
             </Typography>

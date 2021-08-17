@@ -99,7 +99,7 @@ export default function LoginPage(props) {
                 >
                     <Grid item>
                         <Typography variant="h4" className={classes.MainTitle}>
-                            Log In to CORK
+                            Log In to TruVest
                         </Typography>
                         <Typography>
                             New Here? <Link href="/#sign-up"> Create an account</Link>
@@ -150,7 +150,7 @@ export default function LoginPage(props) {
                             {/* <Link>Forgot Password?</Link> */}
                         </Box>
                         <Typography>
-                            © 2021 All Rights Reserved. CORK is a product of Designreset.
+                            © 2021 All Rights Reserved. TruVest is a product of Designreset.
                             <Link style={{ color: green[700] }}>Cookie Preferences, Privacy</Link>, and
                             <Link style={{ color: green[700] }}> Terms</Link>.
                         </Typography>
