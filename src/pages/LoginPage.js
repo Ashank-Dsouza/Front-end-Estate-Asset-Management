@@ -149,11 +149,6 @@ export default function LoginPage(props) {
 
                             {/* <Link>Forgot Password?</Link> */}
                         </Box>
-                        <Typography>
-                            © 2021 All Rights Reserved. TruVest is a product of Designreset.
-                            <Link style={{ color: green[700] }}>Cookie Preferences, Privacy</Link>, and
-                            <Link style={{ color: green[700] }}> Terms</Link>.
-                        </Typography>
                     </Grid>
                 </Grid>
             </Container>
