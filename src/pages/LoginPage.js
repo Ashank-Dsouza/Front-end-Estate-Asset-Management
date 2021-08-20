@@ -21,6 +21,9 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
 import { HashRouter as Router, Route, NavLink , Switch} from 'react-router-dom';
 import {Post} from "./../apis/api-controller";
+import Auth from './../auth/Auth';
+import { useHistory } from "react-router-dom";
+
 
 
 import { green } from "@material-ui/core/colors";
@@ -68,6 +71,8 @@ async function GetDeviceId() {
 }
 
 export default function LoginPage(props) {
+    let history = useHistory();
+
     const classes = useStyle();
 
     const [email, setEmailInput] = useState(''); // '' is the initial state value
@@ -85,6 +90,26 @@ export default function LoginPage(props) {
             Password: password,
             DeviceID: deviceId
         });
+        if(response){
+        console.log("the access token is: ", response.data.access_token);
+
+        response = response.data;
+
+        // var jsonResponse = await response.JSON()
+
+        // response = response.data;
+        // console.log("the response data is ", response);
+
+        if(response && response.access_token){
+            console.log("login authenticated!!!");
+            Auth.authenticate();
+            history.push('/home-page');
+
+        }
+    }
+    else{
+        console.log("reponse was null");
+    }
     };
 
 

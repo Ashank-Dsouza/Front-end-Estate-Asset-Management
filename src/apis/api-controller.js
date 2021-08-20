@@ -1,8 +1,8 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://65.2.129.86:9191';
+axios.defaults.baseURL = 'http://localhost:9191';
 
-export function Post(url, body) {
+export async function Post(url, body) {
 
     return axios.post(url, body)
         .then(function (response) {
