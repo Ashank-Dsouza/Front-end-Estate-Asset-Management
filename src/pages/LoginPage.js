@@ -14,6 +14,7 @@ import {
     CssBaseline
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link as RouterLink } from 'react-router-dom';
 import { TextField } from "@material-ui/core";
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -102,7 +103,7 @@ export default function LoginPage(props) {
                             Log In to TruVest
                         </Typography>
                         <Typography>
-                            New Here? <Link href="/#sign-up"> Create an account</Link>
+                            New Here?  <Link href="/#sign-up"> Create an account</Link>
                         </Typography>
                         <Box my={4} mb={2}>
                             <TextField
@@ -145,7 +146,7 @@ export default function LoginPage(props) {
                             <Button onClick={() => submitLoginDetails()} fullWidth className={classes.loginButton} variant="contained">
                                 Login
                             </Button>
-                            <NavLink exact to="/forgot-password" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Forgot Password?</NavLink>
+                            <Link exact to="/forgot-password" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Forgot Password?</Link>
 
                             {/* <Link>Forgot Password?</Link> */}
                         </Box>

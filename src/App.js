@@ -44,8 +44,10 @@ function App() {
 // function App() {
 //   return (
 //     <>
+//       <Router basename="/react-auth-ui/">
+
 //       {/* <SingUp /> */}
-//       {/* <LoginPage/> */}
+//       {<LoginPage/>}
 //       {/* <PasswordRecoverPage/> */}
 //       {/* <AccountSettingPage/> */}
 //       {/* <UserProfile/> */}
@@ -54,9 +56,18 @@ function App() {
 //       {/* <AddUser/> */}
 //       {/* <DeleteUser/> */}
 //       {/* <EmailTemplate link="#"/> */}
-//       <MapUser/>
+//       {/* <MapUser/> */}
+//                    <Route exact path="/" component={LoginPage}>
+//              </Route>
+//              <Route path="/sign-up" component={SignUpPage}>
+//             </Route>
+//              <Route path="/forgot-password" component={PasswordRecoverPage}>
+//              </Route>
+//              <Route path="/password-reset" component={PasswordResetPage}>
+//              </Route>
+//       </Router>
 //     </>
 //   );
-// }
+//}
 
 export default App;
