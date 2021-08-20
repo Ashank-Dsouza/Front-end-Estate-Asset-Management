@@ -8,7 +8,8 @@ import {
     InputAdornment,
     FormControlLabel,
     Checkbox,
-    Button
+    Button,
+    CssBaseline
 } from "@material-ui/core";
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
 import { HashRouter as Router, Route, NavLink , Switch} from 'react-router-dom';
@@ -99,7 +100,8 @@ export default function SingUp() {
 
     return (
         <>
-            <Box className={classes.Container}>
+            <CssBaseline />
+            <Container>
                 <Container maxWidth="md">
                     <Typography variant="h4" style={{ color: green[700] }}>Get started with a free account</Typography>
                     <Typography>
@@ -199,7 +201,7 @@ export default function SingUp() {
                         <Button disabled={!checkBoxValue} onClick={() => submitOnClick()} variant='contained' className={classes.Button}>Get Started</Button>
                     </Box>
                 </Container>
-            </Box>
+                </Container>
         </>
     );
 }
