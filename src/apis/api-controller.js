@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://localhost:9191';
+axios.defaults.baseURL = 'http://15.206.194.199:9191';
 
 export function Post(url, body) {
 
