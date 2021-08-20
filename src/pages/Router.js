@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import Auth from './../auth/Auth';
+import useToken from './../auth/useToken';
+
 import MapUser from "./MapUser";
 
 export default function ProtectedRouter(props) {
@@ -13,6 +15,7 @@ export default function ProtectedRouter(props) {
 }
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
+
     <Route
     {...rest}
 

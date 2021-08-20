@@ -19,10 +19,12 @@ import { TextField } from "@material-ui/core";
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
-import { HashRouter as Router, Route, NavLink , Switch} from 'react-router-dom';
-import {Post} from "./../apis/api-controller";
+import { HashRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
+import { Post } from "./../apis/api-controller";
 import Auth from './../auth/Auth';
 import { useHistory } from "react-router-dom";
+import PropTypes from 'prop-types';
+
 
 
 
@@ -70,7 +72,7 @@ async function GetDeviceId() {
 
 }
 
-export default function LoginPage(props) {
+export default function LoginPage({ setToken }) {
     let history = useHistory();
 
     const classes = useStyle();
@@ -80,6 +82,7 @@ export default function LoginPage(props) {
 
 
     const submitLoginDetails = async (event) => {
+        //event.preventDefault();
         console.log("the email entered is: ", email);
         console.log("the password entered is: ", password);
 
@@ -90,26 +93,31 @@ export default function LoginPage(props) {
             Password: password,
             DeviceID: deviceId
         });
-        if(response){
-        console.log("the access token is: ", response.data.access_token);
 
-        response = response.data;
-
-        // var jsonResponse = await response.JSON()
-
-        // response = response.data;
-        // console.log("the response data is ", response);
-
-        if(response && response.access_token){
-            console.log("login authenticated!!!");
-            Auth.authenticate();
-            history.push('/home-page');
-
+        if (response) {
+            console.log("setting token: ", response);
+            setToken(response.data);
         }
-    }
-    else{
-        console.log("reponse was null");
-    }
+        // if (response) {
+        //     console.log("the access token is: ", response.data.access_token);
+
+        //     response = response.data;
+
+        //     // var jsonResponse = await response.JSON()
+
+        //     // response = response.data;
+        //     // console.log("the response data is ", response);
+
+        //     if (response && response.access_token) {
+        //         console.log("login authenticated!!!");
+        //         Auth.authenticate();
+        //         history.push('/home-page');
+
+        //     }
+        // }
+        // else {
+        //     console.log("reponse was null");
+        // }
     };
 
 
@@ -172,7 +180,7 @@ export default function LoginPage(props) {
                                 Login
                             </Button>
                             <Typography>
-                            <Link href="/#forgot-password" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Forgot Password?</Link>
+                                <Link href="/#forgot-password" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Forgot Password?</Link>
                             </Typography>
 
                         </Box>
@@ -182,3 +190,7 @@ export default function LoginPage(props) {
         </>
     );
 }
+
+LoginPage.propTypes = {
+    setToken: PropTypes.func.isRequired
+};

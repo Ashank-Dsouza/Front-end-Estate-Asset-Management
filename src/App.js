@@ -17,8 +17,15 @@ import ProtectedRouter from "./pages/Router";
 // import DeleteUser from "./pages/DeleteUser";
 // import EmailTemplate from "./pages/EmailTemplate";
 import MapUser from "./pages/MapUser";
+import useToken from './auth/useToken'; 
+
 
 function App() {
+  const { token, setToken } = useToken();
+
+  if(!token) {
+    return <LoginPage setToken={setToken} />
+  }
   
   return (
     <>
@@ -27,7 +34,7 @@ function App() {
         <div className="App__Aside"></div>
         <div className="App__Form">
 
-            <Route exact path="/" component={LoginPage}>
+            <Route exact path="/" component={LoginPage} setToken={setToken}>
             </Route>
             <Route path="/sign-up" component={SignUpPage}>
             </Route>

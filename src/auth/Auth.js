@@ -1,4 +1,8 @@
+import useToken from './useToken';
+
 const Auth = {
+    //const { token, setToken } = useToken();
+
     isAuthenticated: false,
     authenticate() {
         this.isAuthenticated = true;
@@ -7,7 +11,7 @@ const Auth = {
         this.isAuthenticated = false;
     },
     getAuth() {
-        return this.isAuthenticated;
+        return this.authenticate;
     }
 };
 export default Auth;
