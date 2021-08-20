@@ -146,7 +146,9 @@ export default function LoginPage(props) {
                             <Button onClick={() => submitLoginDetails()} fullWidth className={classes.loginButton} variant="contained">
                                 Login
                             </Button>
-                            <Link exact to="/forgot-password" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Forgot Password?</Link>
+                            <Typography>
+                            <Link href="/#forgot-password" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Forgot Password?</Link>
+                            </Typography>
 
                             {/* <Link>Forgot Password?</Link> */}
                         </Box>
