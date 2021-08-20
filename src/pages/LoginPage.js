@@ -150,7 +150,6 @@ export default function LoginPage(props) {
                             <Link href="/#forgot-password" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Forgot Password?</Link>
                             </Typography>
 
-                            {/* <Link>Forgot Password?</Link> */}
                         </Box>
                     </Grid>
                 </Grid>
