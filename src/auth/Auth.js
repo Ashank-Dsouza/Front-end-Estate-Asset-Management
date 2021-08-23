@@ -1,3 +1,4 @@
+import { isValidElement } from 'react';
 import useToken from './useToken';
 
 const Auth = {
@@ -11,7 +12,15 @@ const Auth = {
         this.isAuthenticated = false;
     },
     getAuth() {
-        return this.authenticate;
-    }
+        console.log("returning: ", this.authenticate);
+        if(sessionStorage.getItem('userToken') === null){
+            return false;
+        }
+        else{
+            return true;
+        }
+    },
+
+
 };
 export default Auth;

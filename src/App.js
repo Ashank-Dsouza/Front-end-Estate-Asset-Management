@@ -1,40 +1,27 @@
 import React from "react";
-import { Component } from 'react';
-import { HashRouter as Router, Route, Link, NavLink , Switch} from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
-import { Redirect } from "react-router-dom";
-import SignUpPage from "./pages/singUpPage";
 import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/singUpPage";
 import PasswordRecoverPage from "./pages/PasswordRecoveryPage";
 import PasswordResetPage from "./pages/PasswordReset";
-
-import ProtectedRouter from "./pages/Router";
-// import AccountSettingPage from "./pages/AccountSetting";
-// import UserProfile from "./pages/UserProfile";
-// import UserList from "./pages/UserList";
-// import ViewUser from "./pages/ViewUser";
-// import AddUser from "./pages/AddUser";
-// import DeleteUser from "./pages/DeleteUser";
-// import EmailTemplate from "./pages/EmailTemplate";
 import MapUser from "./pages/MapUser";
-import useToken from './auth/useToken'; 
+import Auth from './auth/Auth';
 
+export default function AuthExample() {
+    // const { token, setToken } = useToken();
 
-function App() {
-  const { token, setToken } = useToken();
-
-  if(!token) {
-    return <LoginPage setToken={setToken} />
-  }
-  
   return (
-    <>
-    <Router basename="/react-auth-ui/">
-      <div className="App">
-        <div className="App__Aside"></div>
-        <div className="App__Form">
+      <Router>
+        <div>
 
-            <Route exact path="/" component={LoginPage} setToken={setToken}>
+          <Switch>
+            <Route exact path="/login" component={LoginPage}  >
             </Route>
             <Route path="/sign-up" component={SignUpPage}>
             </Route>
@@ -42,47 +29,37 @@ function App() {
             </Route>
             <Route path="/password-reset" component={PasswordResetPage}>
             </Route>
-            <Route path="/home-page" component={ProtectedRouter}>
-            </Route>
+            <PrivateRoute path="/home-page" > <MapUser/></PrivateRoute>
+
+          </Switch>
         </div>
-
-      </div>
-
-    </Router>
-                </>
-
+      </Router>
   );
 }
 
 
 
-// function App() {
-//   return (
-//     <>
-//       <Router basename="/react-auth-ui/">
+// A wrapper for <Route> that redirects to the login
+// screen if you're not yet authenticated.
+function PrivateRoute({ children, ...rest }) {
+  let auth = Auth;
+  return (
+    <Route
+      {...rest}
+      render={({ location }) => 
+        auth.getAuth() ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: location }
+            }}
+          />
+        )
+      
+      }
+    />
+  );
+}
 
-//       {/* <SingUp /> */}
-//       {<LoginPage/>}
-//       {/* <PasswordRecoverPage/> */}
-//       {/* <AccountSettingPage/> */}
-//       {/* <UserProfile/> */}
-//       {/* <UserList/> */}
-//       {/* <ViewUser/> */}
-//       {/* <AddUser/> */}
-//       {/* <DeleteUser/> */}
-//       {/* <EmailTemplate link="#"/> */}
-//       {/* <MapUser/> */}
-//                    <Route exact path="/" component={LoginPage}>
-//              </Route>
-//              <Route path="/sign-up" component={SignUpPage}>
-//             </Route>
-//              <Route path="/forgot-password" component={PasswordRecoverPage}>
-//              </Route>
-//              <Route path="/password-reset" component={PasswordResetPage}>
-//              </Route>
-//       </Router>
-//     </>
-//   );
-//}
-
-export default App;

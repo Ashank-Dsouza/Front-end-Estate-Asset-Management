@@ -106,7 +106,7 @@ export default function SingUp() {
                     <Typography variant="h4" style={{ color: green[700] }}>Get started with a free account</Typography>
                     <Typography>
                         Already have an account?{" "}
-                        <NavLink exact to="/#sign-in" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
+                        <NavLink exact to="/login" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
 
 
                     </Typography>

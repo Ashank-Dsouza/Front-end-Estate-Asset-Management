@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from 'react';
-import axios from "axios";
 import {
     Grid,
     Typography,
@@ -14,20 +13,16 @@ import {
     CssBaseline
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link as RouterLink } from 'react-router-dom';
 import { TextField } from "@material-ui/core";
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import LockIcon from "@material-ui/icons/Lock";
-import { HashRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
 import { Post } from "./../apis/api-controller";
-import Auth from './../auth/Auth';
-import { useHistory } from "react-router-dom";
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 
 
 
+import Auth from "./../auth/Auth"
 import { green } from "@material-ui/core/colors";
 import { Container } from "@material-ui/core";
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
@@ -72,52 +67,41 @@ async function GetDeviceId() {
 
 }
 
-export default function LoginPage({ setToken }) {
-    let history = useHistory();
 
+export default function LoginPage({ setToken }) {
+    // let history = useHistory();
+
+    // const handleClick = () => history.push('/goodbye');
+
+    const auth = Auth;
     const classes = useStyle();
+
 
     const [email, setEmailInput] = useState(''); // '' is the initial state value
     const [password, setPasswordInput] = useState(''); // '' is the initial state value
 
 
-    const submitLoginDetails = async (event) => {
+
+    const SubmitLoginDetails = async (event) => {
         //event.preventDefault();
         console.log("the email entered is: ", email);
         console.log("the password entered is: ", password);
 
         const deviceId = await GetDeviceId();
 
-        var response = await Post('/login', {
-            Email: email,
-            Password: password,
-            DeviceID: deviceId
-        });
+        Post('/login', {
+                Email: email,
+                Password: password,
+                DeviceID: deviceId
+            })
+            .then((response) => {
+                console.log("the response is: ", response);
+                if(response?.data?.access_token){
+                    sessionStorage.setItem('userToken', response.data.access_token)
+                    auth.authenticate()
+                }
+            })
 
-        if (response) {
-            console.log("setting token: ", response);
-            setToken(response.data);
-        }
-        // if (response) {
-        //     console.log("the access token is: ", response.data.access_token);
-
-        //     response = response.data;
-
-        //     // var jsonResponse = await response.JSON()
-
-        //     // response = response.data;
-        //     // console.log("the response data is ", response);
-
-        //     if (response && response.access_token) {
-        //         console.log("login authenticated!!!");
-        //         Auth.authenticate();
-        //         history.push('/home-page');
-
-        //     }
-        // }
-        // else {
-        //     console.log("reponse was null");
-        // }
     };
 
 
@@ -136,7 +120,7 @@ export default function LoginPage({ setToken }) {
                             Log In to TruVest
                         </Typography>
                         <Typography>
-                            New Here?  <Link href="/#sign-up"> Create an account</Link>
+                            New Here?  <Link href="/sign-up"> Create an account</Link>
                         </Typography>
                         <Box my={4} mb={2}>
                             <TextField
@@ -176,11 +160,11 @@ export default function LoginPage({ setToken }) {
                                     control={<Checkbox style={{ color: green[700] }} />}
                                 />
                             </FormControl>
-                            <Button onClick={() => submitLoginDetails()} fullWidth className={classes.loginButton} variant="contained">
+                            <Button onClick={() => SubmitLoginDetails()} fullWidth className={classes.loginButton} variant="contained">
                                 Login
                             </Button>
                             <Typography>
-                                <Link href="/#forgot-password" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Forgot Password?</Link>
+                                <Link href="/forgot-password" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Forgot Password?</Link>
                             </Typography>
 
                         </Box>
@@ -191,6 +175,10 @@ export default function LoginPage({ setToken }) {
     );
 }
 
-LoginPage.propTypes = {
-    setToken: PropTypes.func.isRequired
-};
+LoginPage.contextTypes = {
+    auth: PropTypes.object
+  }
+  
+  LoginPage.propTypes = {
+    login: PropTypes.func
+  }
