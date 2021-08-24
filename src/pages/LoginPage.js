@@ -21,12 +21,11 @@ import PropTypes from 'prop-types'
 import { withStyles } from "@material-ui/core/styles";
 
 
-
-
 import Auth from "./../auth/Auth"
 import { green } from "@material-ui/core/colors";
 import { Container } from "@material-ui/core";
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
+import { login } from "../auth/authentication";
 
 
 const useStyle = theme => ({
@@ -83,41 +82,27 @@ class LoginPage extends React.Component {
             email: '',
             password: ''
         }
-        this.loginToApi = this.loginToApi.bind(this)
-
-        // const auth = Auth;
-        // const classes = useStyle();
-
-
-        const [password, setPasswordInput] = useState(''); // '' is the initial state value
-
-        this.SubmitLoginDetails = this.SubmitLoginDetails.bind(this)
-
-
+        console.log(props);
+        this.SubmitLoginDetails = this.SubmitLoginDetails.bind(this);
     }
-
-
-
-
 
     async SubmitLoginDetails() {
         //event.preventDefault();
         console.log("the email entered is: ", this.state.email);
-        console.log("the password entered is: ", password);
+        console.log("the password entered is: ",this.state.password);
 
         const deviceId = await GetDeviceId();
 
         Post('/login', {
             Email: this.state.email,
-            Password: password,
+            Password: this.state.password,
             DeviceID: deviceId
         })
             .then((response) => {
                 console.log("the response is: ", response);
                 if (response?.data?.access_token) {
                     sessionStorage.setItem('userToken', response.data.access_token)
-                    // auth.authenticate()
-                    this.props.login()
+                    this.props.history.push('/home-page')
                 }
             })
 
@@ -160,8 +145,8 @@ class LoginPage extends React.Component {
                                     fullWidth={true}
                                 />
                                 <TextField
-                                    value={password}
-                                    onInput={e => setPasswordInput(e.target.value)}
+                                    value={this.state.password}
+                                    onInput={e => this.setState({password: e.target.value})  }
                                     placeholder="Password"
                                     margin="normal"
                                     InputProps={{
@@ -198,8 +183,6 @@ class LoginPage extends React.Component {
 }
 export default withStyles(useStyle, { withTheme: true })(LoginPage);
 
-
-
 LoginPage.propTypes = {
-    login: PropTypes.func
-}
+    login: PropTypes.func.isRequired
+  }
