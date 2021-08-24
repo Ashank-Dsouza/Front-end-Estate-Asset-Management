@@ -4,8 +4,6 @@ import {
   Switch,
   Route,
   Redirect,
-  useHistory,
-  useLocation
 } from "react-router-dom";
 
 import LoginPage from "./pages/LoginPage";
@@ -18,14 +16,10 @@ import Auth from './auth/Auth';
 class App extends React.Component {
   constructor () {
     super()
-    this.login = this.login.bind(this)
   }
 
   
-    login() {
-        console.log("re routing to home page");
-        ChangeRoute("/home-page");
-    };
+
 
     render(){
   return (
@@ -33,7 +27,7 @@ class App extends React.Component {
         <div>
 
           <Switch>
-            <Route exact path="/login" component={LoginPage} props={{ login: this.login }}  >
+            <Route exact path="/login" component={LoginPage}   >
             </Route>
             <Route path="/sign-up" component={SignUpPage}>
             </Route>
@@ -52,10 +46,6 @@ class App extends React.Component {
 
 export default App;
 
-function ChangeRoute(path) {
-  let history = useHistory();
-  history.push(path);
-}
 
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.

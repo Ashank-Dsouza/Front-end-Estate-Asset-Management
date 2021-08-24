@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from 'react';
 import {
     Grid,
     Typography,
@@ -12,12 +11,10 @@ import {
     Checkbox,
     CssBaseline
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import LockIcon from "@material-ui/icons/Lock";
 import { Post } from "./../apis/api-controller";
-import PropTypes from 'prop-types'
 import { withStyles } from "@material-ui/core/styles";
 
 
@@ -182,7 +179,3 @@ class LoginPage extends React.Component {
     }
 }
 export default withStyles(useStyle, { withTheme: true })(LoginPage);
-
-LoginPage.propTypes = {
-    login: PropTypes.func.isRequired
-  }
