@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import Auth from './../auth/Auth';
-import useToken from './../auth/useToken';
 
 import MapUser from "./MapUser";
 

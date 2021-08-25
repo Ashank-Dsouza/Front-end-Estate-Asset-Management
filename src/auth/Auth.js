@@ -1,6 +1,3 @@
-import { isValidElement } from 'react';
-import useToken from './useToken';
-
 const Auth = {
     //const { token, setToken } = useToken();
 
@@ -20,7 +17,6 @@ const Auth = {
             return true;
         }
     },
-
 
 };
 export default Auth;

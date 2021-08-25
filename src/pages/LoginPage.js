@@ -22,7 +22,6 @@ import Auth from "./../auth/Auth"
 import { green } from "@material-ui/core/colors";
 import { Container } from "@material-ui/core";
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
-import { login } from "../auth/authentication";
 
 
 const useStyle = theme => ({
@@ -66,12 +65,6 @@ async function GetDeviceId() {
 
 
 class LoginPage extends React.Component {
-    // let history = useHistory();
-
-    // const handleClick = () => history.push('/goodbye');
-
-
-
     constructor(props) {
         super(props)
         this.state = {

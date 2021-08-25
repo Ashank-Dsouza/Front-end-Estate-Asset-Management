@@ -12,6 +12,7 @@ import PasswordRecoverPage from "./pages/PasswordRecoveryPage";
 import PasswordResetPage from "./pages/PasswordReset";
 import MapUser from "./pages/MapUser";
 import Auth from './auth/Auth';
+import UserProfile from './pages/UserProfile';
 
 class App extends React.Component {
   constructor () {
@@ -36,7 +37,9 @@ class App extends React.Component {
             <Route path="/password-reset" component={PasswordResetPage}>
             </Route>
             <PrivateRoute path="/home-page" > <MapUser/></PrivateRoute>
-
+            {/* <PrivateRoute path="/profile" > <UserProfile/></PrivateRoute> */}
+            <PrivateRoute  path="/profile" > <UserProfile/>
+            </PrivateRoute>
           </Switch>
         </div>
       </Router>
