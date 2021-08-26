@@ -3,16 +3,10 @@ import axios from "axios";
 axios.defaults.baseURL = 'http://65.2.129.86:9191';
 
 function getConfig(token) {
-    // const config = {
-    //     headers: 
     return {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-        Accept: "*/*"
+        headers: { Authorization: `Bearer ${token}` }
     }
 };
-//return config;
-//}
 
 function getAuth() {
     const token = sessionStorage.getItem('userToken');
@@ -43,10 +37,7 @@ export async function GetWithAuth(url) {
 
     const config = getConfig(token);
 
-    return axios.get(url,
-        {
-            headers: { Authorization: `Bearer ${token}` }
-        })
+    return axios.get(url, config)
         .then(function (response) {
             return response;
         })
@@ -57,21 +48,10 @@ export async function GetWithAuth(url) {
 }
 
 export async function PutWithAuth(url, body) {
-    console.log("inside PutWithAuth()");
-
-    const headers = {
-        'Authorization': 'Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJlbWFpbCI6ImFzaGFua2Rzb3V6YTA1NEBnbWFpbC5jb20iLCJleHAiOjE2Mjk5MDI4NDYsInJvbGUiOiIiLCJ1c2VyX2lkIjoiYjgxY2NiMjAtYjI1OS00YWUwLWFkMGUtNTNiZGJmMzViY2JjIiwidXNlcm5hbWUiOiJBLURzb3V6YSJ9.r5fd6or8qKbd9xwyR3llotuZhGJr2RgOSrgkQdJ1XLecs7Yb319z2TWujBV44acjhQNUw2Tb-uOMzI_ELg40Cw'
-    };
-
-    const config = getAuth();
-    console.log("inside PutWithAuth()");
     const token = sessionStorage.getItem('userToken');
-
-    return axios.put(url, body,
-            {
-                headers: { Authorization: `Bearer ${token}` }
-            }
-        )
+    const config = getConfig(token);
+    
+    return axios.put(url, body,config)
             .then(function (response) {
                 return response;
             })

@@ -15,20 +15,17 @@ import Auth from './auth/Auth';
 import UserProfile from './pages/UserProfile';
 
 class App extends React.Component {
-  constructor () {
+  constructor() {
     super()
   }
 
-  
-
-
-    render(){
-  return (
+  render() {
+    return (
       <Router>
         <div>
 
           <Switch>
-            <Route exact path="/login" component={LoginPage}   >
+            <Route exact path="/login" component={LoginPage} >
             </Route>
             <Route path="/sign-up" component={SignUpPage}>
             </Route>
@@ -36,15 +33,15 @@ class App extends React.Component {
             </Route>
             <Route path="/password-reset" component={PasswordResetPage}>
             </Route>
-            <PrivateRoute path="/home-page" > <MapUser/></PrivateRoute>
+            <PrivateRoute path="/home-page" > <MapUser /></PrivateRoute>
             {/* <PrivateRoute path="/profile" > <UserProfile/></PrivateRoute> */}
-            <PrivateRoute  path="/profile" > <UserProfile/>
+            <PrivateRoute path="/profile" > <UserProfile />
             </PrivateRoute>
           </Switch>
         </div>
       </Router>
-  );
-    }
+    );
+  }
 }
 
 export default App;
@@ -57,7 +54,7 @@ function PrivateRoute({ children, ...rest }) {
   return (
     <Route
       {...rest}
-      render={({ location }) => 
+      render={({ location }) =>
         auth.getAuth() ? (
           children
         ) : (
@@ -68,7 +65,7 @@ function PrivateRoute({ children, ...rest }) {
             }}
           />
         )
-      
+
       }
     />
   );
