@@ -29,7 +29,7 @@ class App extends React.Component {
 
           <Switch>
             <Route exact path="/login"    >
-              <LoginPage IsMockOn={true}></LoginPage>
+              <LoginPage ></LoginPage>
             </Route>
             <Route path="/sign-up" component={SignUpPage}>
             </Route>
