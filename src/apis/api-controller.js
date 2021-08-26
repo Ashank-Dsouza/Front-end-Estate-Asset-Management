@@ -68,15 +68,15 @@ export async function PutWithAuth(url, body) {
     const token = sessionStorage.getItem('userToken');
 
     return axios.put(url, body,
-        {
-            headers: { Authorization: `Bearer ${token}` }
-        }
-    )
-        .then(function (response) {
-            return response;
-        })
-        .catch((error) => {
-            console.log(error);
-            return error;
-        })
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            }
+        )
+            .then(function (response) {
+                return response;
+            })
+            .catch((error) => {
+                console.log(error);
+                return error;
+            })
 }

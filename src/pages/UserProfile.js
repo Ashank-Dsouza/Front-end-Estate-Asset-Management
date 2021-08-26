@@ -1,4 +1,5 @@
 import { GetWithAuth, PutWithAuth } from "../apis/api-controller";
+import { PopupForm } from "../components/PopUpForm";
 
 import React from "react";
 
@@ -42,9 +43,12 @@ class UserProfile extends React.Component {
             .then((externalData) => {
                 this._asyncRequest = null;
                 this.state.name = externalData.data.firstname + " " + externalData.data.lastname;
+                const updatedName = externalData.data.firstname + " " + externalData.data.lastname;
                 this.state.email = externalData.data.email;
+                const updatedEmail = externalData.data.email;
                 this.setState({ externalData });
                 console.log("the reponse is: ", externalData);
+                
             })
             .catch((error) => {
                 console.log("the error is ", error);
@@ -66,7 +70,7 @@ class UserProfile extends React.Component {
 
         const userId = this.state.externalData.data.id;
 
-        const url = "users/" + userId;
+        const url = "/users/" + userId;
 
         console.log("the url passed was: ", url);
 
@@ -76,11 +80,19 @@ class UserProfile extends React.Component {
             "lastname": "Dsilva",
             "password": "password",
             "username": "ashank"
-        }).then((response) => { console.log("the user was updated!", response);})
-                        .catch((error) => { console.log("updation failed!!!!");})
+        }).then((externalData) =>
+            { 
+                const updatedName = externalData.data.firstname + " " + externalData.data.lastname;
+                const updatedEmail = externalData.data.email;
+
+                this.setState({name: updatedName})
+                this.setState({email: updatedEmail})
+                console.log("the user was updated!", externalData);
+            })
+          .catch((error) => { console.log("updation failed!!!!");})
     }
 
-    render() { //this.SubmitLoginDetails()
+    render() { 
         if (this.state.externalData === null) {
             return (<> <p> Loading.... </p></>)
         }
@@ -105,6 +117,7 @@ class UserProfile extends React.Component {
                                             </IconButton>
                                         }
                                     />
+                                    <PopupForm></PopupForm>
                                     <CardContent>
                                         <Typography variant='h4'>{this.state.name}</Typography>
                                         <List disablePadding>
