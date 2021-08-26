@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://localhost:9191';
+axios.defaults.baseURL = 'http://65.2.129.86:9191';
 
 function getConfig(token) {
     // const config = {
