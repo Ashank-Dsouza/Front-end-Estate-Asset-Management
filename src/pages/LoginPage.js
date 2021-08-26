@@ -16,12 +16,11 @@ import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import LockIcon from "@material-ui/icons/Lock";
 import { Post } from "./../apis/api-controller";
 import { withStyles } from "@material-ui/core/styles";
-
-
-import Auth from "./../auth/Auth"
 import { green } from "@material-ui/core/colors";
 import { Container } from "@material-ui/core";
 import FingerprintJS from '@fingerprintjs/fingerprintjs'
+
+import {MockSetup} from "./../variables";
 
 
 const useStyle = theme => ({
@@ -63,6 +62,12 @@ async function GetDeviceId() {
 
 }
 
+function GetRandomNumberString() {
+    var deviceIdNumber = Math.floor((Math.random() * 1000) + 1);
+    const deviceId = deviceIdNumber.toString()
+    return deviceId;
+}
+
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -79,12 +84,16 @@ class LoginPage extends React.Component {
     async SubmitLoginDetails() {
         //event.preventDefault();
         console.log("the email entered is: ", this.state.email);
-        console.log("the password entered is: ",this.state.password);
+        console.log("the password entered is: ", this.state.password);
         var deviceId = null;
 
-       
-        deviceId = await GetDeviceId();
-    
+        if (MockSetup.IsMockOn) {
+            deviceId = GetRandomNumberString();
+        }
+        else {
+            deviceId = await GetDeviceId();
+        }
+
 
         Post('/login', {
             Email: this.state.email,
@@ -124,7 +133,7 @@ class LoginPage extends React.Component {
                             <Box my={4} mb={2}>
                                 <TextField
                                     value={this.state.email}
-                                    onInput={e => this.setState({email: e.target.value}) }
+                                    onInput={e => this.setState({ email: e.target.value })}
                                     label="Email"
                                     variant="outlined"
                                     className={classes.InputFieldsText}
@@ -139,7 +148,7 @@ class LoginPage extends React.Component {
                                 />
                                 <TextField
                                     value={this.state.password}
-                                    onInput={e => this.setState({password: e.target.value})  }
+                                    onInput={e => this.setState({ password: e.target.value })}
                                     placeholder="Password"
                                     margin="normal"
                                     InputProps={{
