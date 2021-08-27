@@ -1,5 +1,4 @@
 const Auth = {
-    //const { token, setToken } = useToken();
 
     isAuthenticated: false,
     authenticate() {
@@ -9,7 +8,6 @@ const Auth = {
         this.isAuthenticated = false;
     },
     getAuth() {
-        console.log("returning: ", this.authenticate);
         if(sessionStorage.getItem('userToken') === null){
             return false;
         }

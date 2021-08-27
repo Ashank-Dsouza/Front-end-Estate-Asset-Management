@@ -60,12 +60,9 @@ class UserProfile extends React.Component {
     }
 
     setProfileInfo(updatedName, updatedEmail){
-        console.log("the values passed were: ", updatedName, updatedEmail);
         this.setState({name: updatedName})
         this.setState({email: updatedEmail})
     }
-
-
 
     render() { 
         if (this.state.externalData === null) {

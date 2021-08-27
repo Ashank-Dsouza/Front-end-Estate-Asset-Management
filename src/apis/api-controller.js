@@ -1,14 +1,15 @@
 import axios from "axios";
 
-import {MockSetup} from "./../variables";
+import {MockSetup, EnvironmentVariables as env} from "./../variables";
+import {GetBaseURL} from   "./../utility/UrlBuilder";
 
 
 function setBaseURL() {
     if(MockSetup.IsMockOn){
-        axios.defaults.baseURL = 'http://localhost:9191';
+        axios.defaults.baseURL =  GetBaseURL(env.protocol, "localhost", env.port);
     }
     else{
-        axios.defaults.baseURL = 'http://3.108.41.85:9191';
+        axios.defaults.baseURL = GetBaseURL(env.protocol, env.host, env.port);
     }
 }
 

@@ -48,8 +48,6 @@ const useStyle = theme => ({
 });
 
 class ReactPopup extends React.Component {
-
-
     constructor(props) {
         super(props)
         console.log("the props: ", props);

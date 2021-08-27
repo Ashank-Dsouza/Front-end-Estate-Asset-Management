@@ -11,8 +11,8 @@ import SignUpPage from "./pages/singUpPage";
 import PasswordRecoverPage from "./pages/PasswordRecoveryPage";
 import PasswordResetPage from "./pages/PasswordReset";
 import MapUser from "./pages/MapUser";
-import Auth from './auth/Auth';
 import UserProfile from './pages/UserProfile';
+import PrivateRoute from "./components/PrivateRoute";
 
 class App extends React.Component {
   constructor() {
@@ -47,27 +47,4 @@ class App extends React.Component {
 export default App;
 
 
-// A wrapper for <Route> that redirects to the login
-// screen if you're not yet authenticated.
-function PrivateRoute({ children, ...rest }) {
-  let auth = Auth;
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        auth.getAuth() ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location }
-            }}
-          />
-        )
-
-      }
-    />
-  );
-}
 
