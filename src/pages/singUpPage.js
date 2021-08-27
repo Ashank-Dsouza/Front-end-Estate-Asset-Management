@@ -3,7 +3,6 @@ import { useState } from 'react';
 import {
     Container,
     Box,
-    Link,
     TextField,
     InputAdornment,
     FormControlLabel,
@@ -11,7 +10,6 @@ import {
     Button,
     CssBaseline
 } from "@material-ui/core";
-import FingerprintJS from '@fingerprintjs/fingerprintjs'
 import { HashRouter as Router, Route, NavLink , Switch} from 'react-router-dom';
 import {Post} from "./../apis/api-controller";
 

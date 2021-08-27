@@ -12,18 +12,15 @@ import {
     Card,
     CardContent,
     CardHeader,
-    IconButton,
     List,
     ListItem,
     ListItemText,
     ListItemIcon
 } from "@material-ui/core";
 
-import EditIcon from "@material-ui/icons/Edit";
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
 import { green } from "@material-ui/core/colors";
-import { LocalFlorist } from "@material-ui/icons";
 
 
 class UserProfile extends React.Component {

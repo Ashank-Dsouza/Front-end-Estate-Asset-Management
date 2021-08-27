@@ -1,16 +1,13 @@
 import React from "react";
-import MapUser from "./MapUser";
 import {
     Typography,
     Container,
     CssBaseline,
     IconButton,
     List,
-    Paper,
     ListItem,
     ListItemText,
     ListItemIcon,
-    ListItemAvatar,
     Button,
     AppBar,
     Toolbar,
@@ -20,9 +17,7 @@ import {
     Drawer,
     Divider,
     CardMedia,
-    Box,
     Grid,
-    Avatar,
     TextField,
     InputAdornment,
     FormControl,

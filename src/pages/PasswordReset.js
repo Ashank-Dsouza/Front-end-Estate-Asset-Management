@@ -7,12 +7,10 @@ import {
     Container,
     CssBaseline,
     Card,
-    CardContent,
     CardHeader,
     CardActions,
     Button,
     TextField,
-    Link,
     Box
 } from "@material-ui/core";
 import {Post} from "./../apis/api-controller";
