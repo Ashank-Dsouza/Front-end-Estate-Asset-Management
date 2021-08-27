@@ -1,6 +1,17 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://localhost:9191';
+import {MockSetup} from "./../variables"; 
+
+
+function setBaseURL() {
+    if(MockSetup.IsMockOn){
+        axios.defaults.baseURL = 'http://localhost:9191';
+    }
+    else{
+        axios.defaults.baseURL = 'http://65.2.129.86:9191';
+    }
+}
+
 
 function getConfig(token) {
     return {
@@ -20,7 +31,7 @@ function getAuth() {
 }
 
 export async function Post(url, body) {
-
+    setBaseURL();
     return axios.post(url, body)
         .then(function (response) {
             console.log(response);
@@ -33,6 +44,7 @@ export async function Post(url, body) {
 }
 
 export async function GetWithAuth(url) {
+    setBaseURL();
     const token = sessionStorage.getItem('userToken');
 
     const config = getConfig(token);
@@ -48,6 +60,7 @@ export async function GetWithAuth(url) {
 }
 
 export async function PutWithAuth(url, body) {
+    setBaseURL();
     const token = sessionStorage.getItem('userToken');
     const config = getConfig(token);
 
