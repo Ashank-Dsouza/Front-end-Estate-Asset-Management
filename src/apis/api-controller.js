@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {MockSetup} from "../variables"
+import {MockSetup} from "./../variables";
 
 
 function setBaseURL() {
