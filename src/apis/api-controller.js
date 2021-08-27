@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import {MockSetup} from "./../variables"; 
+import {MockSetup} from "../variables"
 
 
 function setBaseURL() {
@@ -18,17 +18,6 @@ function getConfig(token) {
         headers: { Authorization: `Bearer ${token}` }
     }
 };
-
-function getAuth() {
-    const token = sessionStorage.getItem('userToken');
-    console.log("the token is: ", token);
-    if (!token)
-        throw Error("User has logged out!");
-
-    const config = getConfig(token);
-
-    return config;
-}
 
 export async function Post(url, body) {
     setBaseURL();

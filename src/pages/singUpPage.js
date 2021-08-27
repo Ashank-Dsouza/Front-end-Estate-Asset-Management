@@ -10,7 +10,7 @@ import {
     Button,
     CssBaseline
 } from "@material-ui/core";
-import { HashRouter as Router, Route, NavLink , Switch} from 'react-router-dom';
+import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
 import {Post} from "./../apis/api-controller";
 
 
