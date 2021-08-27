@@ -8,7 +8,7 @@ function setBaseURL() {
         axios.defaults.baseURL = 'http://localhost:9191';
     }
     else{
-        axios.defaults.baseURL = 'http://65.2.129.86:9191';
+        axios.defaults.baseURL = 'http://3.108.41.85:9191';
     }
 }
 
