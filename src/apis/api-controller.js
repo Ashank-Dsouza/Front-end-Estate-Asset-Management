@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://65.2.129.86:9191';
+axios.defaults.baseURL = 'http://localhost:9191';
 
 function getConfig(token) {
     return {
@@ -50,7 +50,7 @@ export async function GetWithAuth(url) {
 export async function PutWithAuth(url, body) {
     const token = sessionStorage.getItem('userToken');
     const config = getConfig(token);
-    
+
     return axios.put(url, body,config)
             .then(function (response) {
                 return response;
