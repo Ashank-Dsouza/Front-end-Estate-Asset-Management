@@ -34,14 +34,11 @@ class UserProfile extends React.Component {
             email: 'Blank Email'
         }
         this.setProfileInfo = this.setProfileInfo.bind(this)
-        // this._asyncRequest = this._asyncRequest.bind(this)
     }
 
     UNSAFE_componentWillMount() {
-        console.log("inside componentWillMount");
         this._asyncRequest = GetWithAuth('/user/me')
             .then((externalData) => {
-                console.log("inside GetWithAuth");
                 this._asyncRequest = null;
                 const updatedName = externalData.data.firstname + " " + externalData.data.lastname;
                 const updatedEmail = externalData.data.email;
@@ -51,7 +48,6 @@ class UserProfile extends React.Component {
                 
             })
             .catch((error) => {
-                console.log("inside error");
                 console.log("the error is ", error);
             })
     }

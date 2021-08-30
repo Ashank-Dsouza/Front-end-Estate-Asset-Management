@@ -166,7 +166,7 @@ class LoginPage extends React.Component {
                                         control={<Checkbox style={{ color: green[700] }} />}
                                     />
                                 </FormControl>
-                                <Button id="hello" data-testid="custom-element" onClick={() => this.SubmitLoginDetails()} fullWidth className={classes.loginButton} variant="contained">
+                                <Button  onClick={() => this.SubmitLoginDetails()} fullWidth className={classes.loginButton} variant="contained">
                                     Login
                                 </Button>
                                 <Typography>
