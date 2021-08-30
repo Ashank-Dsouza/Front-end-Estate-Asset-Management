@@ -26,7 +26,7 @@ import {
     RadioGroup,
     Radio
 } from "@material-ui/core";
-
+import AddUserForm from "../components/forms/AddUserForm";
 
 
 import { green } from "@material-ui/core/colors";
@@ -144,123 +144,7 @@ export default function AddUser(props) {
                         <CardMedia src="https://miro.medium.com/max/1400/0*0fClPmIScV5pTLoE.jpg" component="img" style={{ width: 400, maxWidth: '100%' }} />
                     </Grid>
                     <Grid item md={6} sm={12} xs={12} style={{paddingBottom:10}}>
-                        <TextField
-                            placeholder="Enter User Name"
-                            margin="normal"
-                            label="User Name"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <AccountCircleOutlinedIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                            fullWidth
-                        />
-                        <TextField
-                            placeholder="Enter User Email"
-                            margin="normal"
-                            label="Email"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <AccountCircleOutlinedIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                            fullWidth
-                        />
-                        <TextField
-                            placeholder="Enter User Password"
-                            margin="normal"
-                            label="Password"
-                            type="password"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <AccountCircleOutlinedIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                            fullWidth
-                        />
-                        <TextField
-                            placeholder="Enter User Password"
-                            margin="normal"
-                            label="Confirm Password"
-                            type="password"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <AccountCircleOutlinedIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                            fullWidth
-                        />
-                        <TextField
-                            placeholder="Enter User Phone Number"
-                            margin="normal"
-                            label="Phone Number"
-                            type="number"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <AccountCircleOutlinedIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                            fullWidth
-                        />
-                        <TextField
-                            placeholder="Enter User Address"
-                            margin="normal"
-                            label="Address"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <AccountCircleOutlinedIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                            fullWidth
-                        />
-                        <TextField
-                            placeholder="Enter User City"
-                            margin="normal"
-                            label="City"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <AccountCircleOutlinedIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                            fullWidth
-                        />
-                        <TextField
-                            placeholder="Enter User Pincode"
-                            margin="normal"
-                            label="Pincode"
-                            type="number"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <AccountCircleOutlinedIcon />
-                                    </InputAdornment>
-                                ),
-                            }}
-                            fullWidth
-                        />
-                        <FormControl style={{margin:'10px 0px'}}>
-                            <FormLabel>Chose gender</FormLabel>
-                            <RadioGroup value={gender} onChange={selectGender} row>
-                                <FormControlLabel label='Male' control={<Radio style={{ color: green[700] }} />} value='male' />
-                                <FormControlLabel label='Female' control={<Radio style={{ color: green[700] }} />} value='female' />
-                                <FormControlLabel label='other' control={<Radio style={{ color: green[700] }} />} value='other' />
-                            </RadioGroup>
-                        </FormControl>
-                        <Button variant='contained' color='primary' fullWidth>Add User</Button>
+                        <AddUserForm/>
                     </Grid>
                 </Grid>
             </Container>

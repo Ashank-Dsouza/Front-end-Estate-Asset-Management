@@ -139,9 +139,6 @@ export default function SingUp() {
                             }}
                             fullWidth={true}
                         />
-
-
-
                         <TextField
                             value={username}
                             onInput={e => setUserNameInput(e.target.value)}
