@@ -14,7 +14,6 @@ import MapUser from "./pages/MapUser";
 import UserProfile from './pages/UserProfile';
 import PrivateRoute from "./components/PrivateRoute";
 import AddUser from "./pages/AddUser";
-import CreateUserForm from "./components/CreateUser";
 
 class App extends React.Component {
   constructor() {
@@ -28,7 +27,7 @@ class App extends React.Component {
         <div>
 
           <Switch>
-          <Route exact path="/add-user-form" component={AddUser} >
+          <Route exact path="/add-user" component={AddUser} >
             </Route>
             <Route exact path="/login" component={LoginPage} >
             </Route>
@@ -39,7 +38,6 @@ class App extends React.Component {
             <Route path="/password-reset" component={PasswordResetPage}>
             </Route>
             <PrivateRoute path="/home-page" > <MapUser /></PrivateRoute>
-            {/* <PrivateRoute path="/profile" > <UserProfile/></PrivateRoute> */}
             <PrivateRoute path="/profile" > <UserProfile />
             </PrivateRoute>
             <PrivateRoute path="/add-user" > <AddUser />
