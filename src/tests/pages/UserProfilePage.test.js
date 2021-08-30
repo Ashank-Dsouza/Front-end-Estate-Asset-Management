@@ -56,7 +56,7 @@ Enzyme.configure({ adapter: new Adapter() });
 const flushPromises = () => new Promise(setImmediate);
 
 
-describe('LoginPage component', () => {
+describe('UserProfile component', () => {
 
   it('email should be empty string initially', () => {
     const wrapper = shallow(<LoginPage />).dive();
