@@ -18,7 +18,6 @@ import { Post } from "./../apis/api-controller";
 import { withStyles } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
 import { Container } from "@material-ui/core";
-import FingerprintJS from '@fingerprintjs/fingerprintjs'
 
 import {MockSetup} from "./../variables";
 
@@ -49,18 +48,6 @@ const useStyle = theme => ({
         }
     },
 });
-
-async function GetDeviceId() {
-    const fpPromise = FingerprintJS.load()
-    const fp = await fpPromise
-    const result = await fp.get()
-
-    // This is the visitor identifier:
-    const deviceId = result.visitorId
-    console.log(deviceId);
-    return deviceId;
-
-}
 
 function GetRandomNumberString() {
     var deviceIdNumber = Math.floor((Math.random() * 1000) + 1);

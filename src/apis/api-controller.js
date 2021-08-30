@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import {MockSetup, EnvironmentVariables as env} from "./../variables";
-import {GetBaseURL} from   "./../utility/UrlBuilder";
+import {GetBaseURL} from   "../utility/ApiHelperFunctions";
 
 
 function setBaseURL() {
