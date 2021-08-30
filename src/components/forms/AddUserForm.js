@@ -12,6 +12,7 @@ import {
 } from "@material-ui/core";
 import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Post } from "../../apis/api-controller";
+import PropTypes from 'prop-types';
 
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -61,7 +62,7 @@ const useStyle = makeStyles((them) => ({
     }
 }));
 
-export default function AddUserForm() {
+export default function AddUserForm(props) {
     const [password, setPasswordInput] = useState(''); // '' is the initial state value
     const [username, setUserNameInput] = useState(''); // '' is the initial state value
     const [email, setEmailInput] = useState(''); // '' is the initial state value
@@ -176,16 +177,35 @@ export default function AddUserForm() {
                 }}
                 fullWidth={true}
             />
-            <FormControlLabel
-                value={checkBoxValue}
-                onChange={e => {
-                    setCheckBoxInput(e.target.checked)
-                }}
-                control={<Checkbox color={green['A700']} className={classes.CheckboxControler} />}
-                label="I agree to the terms and conditions"
-            />
-            <Button disabled={!checkBoxValue} onClick={() => submitOnClick()} variant='contained' className={classes.Button}>Get Started</Button>
-        </Box> 
+        
+        
+        {
+          props.ShowAgreementCheckbox
+          ? ( <div> 
+               <FormControlLabel
+            value={checkBoxValue}
+            onChange={e => {
+                setCheckBoxInput(e.target.checked)
+            }}
+            control={<Checkbox color={green['A700']} className={classes.CheckboxControler} />}
+            label="I agree to the terms and conditions"
+        />
+        <Button disabled={!checkBoxValue} onClick={() => submitOnClick()} variant='contained' className={classes.Button}>Get Started</Button>
+  </div>)
+          : (
+            <div>
+                      <Button onClick={() => submitOnClick()} variant='contained' className={classes.Button}>Get Started</Button>
+
+            </div>
+          )
+        }
+
+            
+     </Box> 
         </>
     );
 }
+
+AddUserForm.propTypes = {
+    ShowAgreementCheckbox: PropTypes.bool.isRequired,
+  };
