@@ -98,6 +98,8 @@ export default function AddUserForm() {
 
     return (
         <>
+        <Box className={classes.InputFields}>
+
             <TextField
                 value={firstname}
                 onInput={e => setFirstNameInput(e.target.value)}
@@ -183,7 +185,7 @@ export default function AddUserForm() {
                 label="I agree to the terms and conditions"
             />
             <Button disabled={!checkBoxValue} onClick={() => submitOnClick()} variant='contained' className={classes.Button}>Get Started</Button>
-
+        </Box> 
         </>
     );
 }
