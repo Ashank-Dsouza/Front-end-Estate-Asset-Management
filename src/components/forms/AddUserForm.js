@@ -1,22 +1,18 @@
 import React from "react";
 import { useState } from 'react';
 import {
-    Container,
     Box,
     TextField,
     InputAdornment,
     FormControlLabel,
     Checkbox,
     Button,
-    CssBaseline
 } from "@material-ui/core";
-import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Post } from "../../apis/api-controller";
 import PropTypes from 'prop-types';
 
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
 import { green } from '@material-ui/core/colors';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
@@ -99,113 +95,113 @@ export default function AddUserForm(props) {
 
     return (
         <>
-        <Box className={classes.InputFields}>
+            <Box className={classes.InputFields}>
 
-            <TextField
-                value={firstname}
-                onInput={e => setFirstNameInput(e.target.value)}
-                label="First Name"
-                variant="outlined"
-                className={classes.InputFieldsText}
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <AccountCircleIcon />
-                        </InputAdornment>
-                    ),
-                }}
-                fullWidth={true}
-            />
-            <TextField
-                value={lastname}
-                onInput={e => setSecondNameInput(e.target.value)}
-                label="Last Name"
-                variant="outlined"
-                className={classes.InputFieldsText}
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <AccountCircleIcon />
-                        </InputAdornment>
-                    ),
-                }}
-                fullWidth={true}
-            />
-            <TextField
-                value={username}
-                onInput={e => setUserNameInput(e.target.value)}
-                label="UserName"
-                variant="outlined"
-                className={classes.InputFieldsText}
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <AccountCircleIcon />
-                        </InputAdornment>
-                    ),
-                }}
-                fullWidth={true}
-            />
-            <TextField
-                value={email}
-                onInput={e => setEmailInput(e.target.value)}
-                label="Email"
-                variant="outlined"
-                className={classes.InputFieldsText}
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <AlternateEmailIcon />
-                        </InputAdornment>
-                    ),
-                }}
-                fullWidth={true}
-            />
-            <TextField
-                value={password}
-                onInput={e => setPasswordInput(e.target.value)}
-                label="Password"
-                variant="outlined"
-                type='password'
-                className={classes.InputFieldsText}
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <LockOpenIcon />
-                        </InputAdornment>
-                    ),
-                }}
-                fullWidth={true}
-            />
-        
-        
-        {
-          props.ShowAgreementCheckbox
-          ? ( <div> 
-               <FormControlLabel
-            value={checkBoxValue}
-            onChange={e => {
-                setCheckBoxInput(e.target.checked)
-            }}
-            control={<Checkbox color={green['A700']} className={classes.CheckboxControler} />}
-            label="I agree to the terms and conditions"
-        />
-        <Button disabled={!checkBoxValue} onClick={() => submitOnClick()} variant='contained' className={classes.Button}>Get Started</Button>
-  </div>)
-          : (
-            <div>
-                      <Button onClick={() => submitOnClick()} variant='contained' className={classes.Button}>Get Started</Button>
+                <TextField
+                    value={firstname}
+                    onInput={e => setFirstNameInput(e.target.value)}
+                    label="First Name"
+                    variant="outlined"
+                    className={classes.InputFieldsText}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <AccountCircleIcon />
+                            </InputAdornment>
+                        ),
+                    }}
+                    fullWidth={true}
+                />
+                <TextField
+                    value={lastname}
+                    onInput={e => setSecondNameInput(e.target.value)}
+                    label="Last Name"
+                    variant="outlined"
+                    className={classes.InputFieldsText}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <AccountCircleIcon />
+                            </InputAdornment>
+                        ),
+                    }}
+                    fullWidth={true}
+                />
+                <TextField
+                    value={username}
+                    onInput={e => setUserNameInput(e.target.value)}
+                    label="UserName"
+                    variant="outlined"
+                    className={classes.InputFieldsText}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <AccountCircleIcon />
+                            </InputAdornment>
+                        ),
+                    }}
+                    fullWidth={true}
+                />
+                <TextField
+                    value={email}
+                    onInput={e => setEmailInput(e.target.value)}
+                    label="Email"
+                    variant="outlined"
+                    className={classes.InputFieldsText}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <AlternateEmailIcon />
+                            </InputAdornment>
+                        ),
+                    }}
+                    fullWidth={true}
+                />
+                <TextField
+                    value={password}
+                    onInput={e => setPasswordInput(e.target.value)}
+                    label="Password"
+                    variant="outlined"
+                    type='password'
+                    className={classes.InputFieldsText}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <LockOpenIcon />
+                            </InputAdornment>
+                        ),
+                    }}
+                    fullWidth={true}
+                />
 
-            </div>
-          )
-        }
 
-            
-     </Box> 
+                {
+                    props.ShowAgreementCheckbox
+                        ? (<div>
+                            <FormControlLabel
+                                value={checkBoxValue}
+                                onChange={e => {
+                                    setCheckBoxInput(e.target.checked)
+                                }}
+                                control={<Checkbox color={green['A700']} className={classes.CheckboxControler} />}
+                                label="I agree to the terms and conditions"
+                            />
+                            <Button disabled={!checkBoxValue} onClick={() => submitOnClick()} variant='contained' className={classes.Button}>Get Started</Button>
+                        </div>)
+                        : (
+                            <div>
+                                <Button onClick={() => submitOnClick()} variant='contained' className={classes.Button}>Get Started</Button>
+
+                            </div>
+                        )
+                }
+
+
+            </Box>
         </>
     );
 }
 
 AddUserForm.propTypes = {
     ShowAgreementCheckbox: PropTypes.bool.isRequired,
-  };
+};
