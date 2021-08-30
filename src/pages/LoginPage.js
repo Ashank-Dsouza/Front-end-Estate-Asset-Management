@@ -77,7 +77,6 @@ class LoginPage extends React.Component {
             email: '',
             password: ''
         }
-        console.log(props);
         this.SubmitLoginDetails = this.SubmitLoginDetails.bind(this);
     }
 
@@ -93,7 +92,6 @@ class LoginPage extends React.Component {
         else {
             deviceId = await GetDeviceId();
         }
-
 
         Post('/login', {
             Email: this.state.email,
@@ -168,7 +166,7 @@ class LoginPage extends React.Component {
                                         control={<Checkbox style={{ color: green[700] }} />}
                                     />
                                 </FormControl>
-                                <Button onClick={() => this.SubmitLoginDetails()} fullWidth className={classes.loginButton} variant="contained">
+                                <Button id="hello" data-testid="custom-element" onClick={() => this.SubmitLoginDetails()} fullWidth className={classes.loginButton} variant="contained">
                                     Login
                                 </Button>
                                 <Typography>

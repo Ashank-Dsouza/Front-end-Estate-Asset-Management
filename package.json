@@ -13,13 +13,17 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "focus-trap-react": "^8.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-test-renderer": "^17.0.2",
     "reactjs-popup": "^2.0.5",
+    "unsplash-js": "^7.0.15",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -47,7 +51,12 @@
     ]
   },
   "devDependencies": {
+    "@types/jasmine": "^3.8.2",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "jasmine": "^3.9.0",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
   }
 }
