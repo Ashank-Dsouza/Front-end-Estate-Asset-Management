@@ -1,18 +1,9 @@
 import React from "react";
-
 import {
-    Typography,
-    Container,
-    CssBaseline,
-    Link,
-    Box
+    Typography, Container, CssBaseline, Link, Box
 } from "@material-ui/core";
 
-
-
-
 import { green } from "@material-ui/core/colors";
-
 
 export default function EmailTemplate(props) {
 
