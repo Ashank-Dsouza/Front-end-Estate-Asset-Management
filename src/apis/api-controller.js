@@ -56,6 +56,7 @@ export async function GetWithAuth(url) {
 
     return axios.get(url, config)
         .then(function (response) {
+            console.log("the response is ", response);
             return response;
         })
         .catch((error) => {
