@@ -33,6 +33,21 @@ export async function Post(url, body) {
         })
 }
 
+export async function PostWithAuth(url, body) {
+    setBaseURL();
+    const token = sessionStorage.getItem('userToken');
+    const config = getConfig(token);
+
+    return axios.post(url, body, config)
+            .then(function (response) {
+                return response;
+            })
+            .catch((error) => {
+                console.log(error);
+                return error;
+            })
+}
+
 export async function GetWithAuth(url) {
     setBaseURL();
     const token = sessionStorage.getItem('userToken');

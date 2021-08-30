@@ -8,7 +8,7 @@ import {
     Checkbox,
     Button,
 } from "@material-ui/core";
-import { Post } from "../../apis/api-controller";
+import { Post, PostWithAuth } from "../../apis/api-controller";
 import PropTypes from 'prop-types';
 
 
@@ -83,13 +83,21 @@ export default function AddUserForm(props) {
         console.log("the value of email input is: ", email);
         console.log("the value of username input is: ", username);
 
-        var response = await Post('/signup', {
+        var body = {
             FirstName: firstname,
             LastName: lastname,
             UserName: username,
             Email: email,
             Password: password
-        });
+        }
+        if (props.ShowAgreementCheckbox) {
+        
+            var response = await Post('/signup', body);
+        }
+        else {
+            console.log("admin is adding user");
+            var response = await PostWithAuth('/users', body);
+        }
 
     }
 
