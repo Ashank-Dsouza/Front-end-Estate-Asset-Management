@@ -5,20 +5,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const options = [
-  'None',
-  'Atria',
-  'Callisto',
-  'Dione',
-  'Ganymede',
-  'Hangouts Call',
-  'Luna',
-  'Oberon',
-  'Phobos',
-  'Pyxis',
-  'Sedna',
-  'Titania',
-  'Triton',
-  'Umbriel',
+  'Subscriber',
+  'User',
 ];
 
 const ITEM_HEIGHT = 48;
@@ -28,10 +16,14 @@ export default function LongMenu() {
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    console.log("the chosen value is", event);
+    // const { myValue } = event.currentTarget.;
+    // console.log(myValue) // --> 123
+    setAnchorEl(event);
   };
 
-  const handleClose = () => {
+  const handleClose = (event) => {
+    console.log("the chosen value is", event);
     setAnchorEl(null);
   };
 
@@ -59,7 +51,7 @@ export default function LongMenu() {
         }}
       >
         {options.map((option) => (
-          <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
+          <MenuItem key={option} selected={option === 'Pyxis'} onClick={(event) => handleClose(event)}>
             {option}
           </MenuItem>
         ))}

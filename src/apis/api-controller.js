@@ -65,6 +65,23 @@ export async function GetWithAuth(url) {
         })
 }
 
+export async function DeleteWithAuth(url) {
+    setBaseURL();
+    const token = sessionStorage.getItem('userToken');
+
+    const config = getConfig(token);
+
+    return axios.delete(url, config)
+        .then(function (response) {
+            console.log("the response is ", response);
+            return response;
+        })
+        .catch((error) => {
+            console.log(error);
+            return error;
+        })
+}
+
 export async function PutWithAuth(url, body) {
     setBaseURL();
     const token = sessionStorage.getItem('userToken');

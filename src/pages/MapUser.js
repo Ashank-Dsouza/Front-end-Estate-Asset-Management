@@ -1,3 +1,5 @@
+import { GetWithAuth, DeleteWithAuth } from "../apis/api-controller";
+
 import React from "react";
 
 import {
@@ -25,12 +27,14 @@ import {
     MenuItem,
     Drawer,
     Divider,
-    Select,
-    Link
+    Link,
+    
 } from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 
+import LongMenu from "../components/Menu";
 
 import { green } from "@material-ui/core/colors";
 
@@ -40,7 +44,6 @@ import AppsIcon from '@material-ui/icons/Apps';
 import AndroidIcon from '@material-ui/icons/Android';
 
 import { useState, useEffect } from 'react';
-import { GetWithAuth } from "../apis/api-controller";
 
 
 
@@ -52,18 +55,39 @@ export default function MapUser(props) {
     const [menuOpen, setMenuOpen] = useState(false);
 
     var [userList, setUsers] = useState([{ 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }, { 'username': 'Ahmad.Nader89', 'email': "Ahmad_Nader91@yahoo.com", "Gender": 'Female', "City": "South Coleville", "Status": 'Approved' }])
-    
+
+
+
     useEffect(() => {
         console.log(props);
+        GetUsersAndDisplay();
+
+    }, []);
+
+    async function GetUsersAndDisplay() {
         GetWithAuth('/users')
-            .then((response) =>{
+            .then((response) => {
                 const UserDataList = FormatData(response.data)
                 setUsers(UserDataList);
             })
+    }
 
-    }, [])
+    const DeleteUser =  (event) => {
+        console.log(event);
+        // console.log("delete was clicked", event.target.getAttribute('data-tag'));
+        // console.log( event.target.attributes);
+        const url = '/users/' + event.id;
+        DeleteWithAuth(url)
+            .then((response) =>{
+                console.log("the user was deleted!");
+                GetUsersAndDisplay();
+            })
+    }
 
-    function FormatData(UserDataList){
+    function FormatData(UserDataList) {
+        if(!UserDataList || UserDataList.length == 0){
+            return [];
+        }
         var formattedUserData = [];
         for (let index = 0; index < UserDataList.length; index++) {
             const User = UserDataList[index];
@@ -73,7 +97,8 @@ export default function MapUser(props) {
                 'email': User.email,
                 'Gender': 'Unavaliable',
                 'City': 'Unavaliable',
-                'Status': 'Unknown'
+                'Status': 'Unknown',
+                'id': User.id,
             })
         }
         return formattedUserData;
@@ -161,14 +186,14 @@ export default function MapUser(props) {
                                     <TableCell>{item.username}</TableCell>
                                     <TableCell>{item.email}</TableCell>
                                     <TableCell>{item.Gender}</TableCell>
-                                    <TableCell>{item.City}</TableCell>
-                                    <TableCell>{item.Status}</TableCell>
                                     <TableCell>
-                                        <Select label="Role" variant='outlined' fullWidth>
-                                            <MenuItem value={10}>Ten</MenuItem>
-                                            <MenuItem value={20}>Twenty</MenuItem>
-                                            <MenuItem value={30}>Thirty</MenuItem>
-                                        </Select>
+                                        <IconButton data-tag={item}  onClick={DeleteUser.bind(null, item)}aria-label="delete">
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </TableCell>
+                                    <TableCell>{item.Status} </TableCell>
+                                    <TableCell>
+                                        <LongMenu />
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -180,5 +205,5 @@ export default function MapUser(props) {
         </>
     );
 
-    
+
 }
