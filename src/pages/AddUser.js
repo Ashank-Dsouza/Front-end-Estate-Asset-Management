@@ -19,6 +19,7 @@ export default function AddUser(props) {
     const selectGender = (event) => setGender(event.target.value);
 
     return (
+
         <>
             <CssBaseline />
             <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} >
@@ -85,7 +86,7 @@ export default function AddUser(props) {
                         <CardMedia src="https://miro.medium.com/max/1400/0*0fClPmIScV5pTLoE.jpg" component="img" style={{ width: 400, maxWidth: '100%' }} />
                     </Grid>
                     <Grid item md={6} sm={12} xs={12} style={{ paddingBottom: 10 }}>
-                        <AddUserForm />
+                        <AddUserForm ShowAgreementCheckbox={false}/>
                     </Grid>
                 </Grid>
             </Container>

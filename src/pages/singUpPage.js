@@ -22,7 +22,7 @@ export default function SingUp() {
                         Already have an account?{" "}
                         <NavLink exact to="/login" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
                     </Typography>
-                    <AddUserForm/>
+                    <AddUserForm ShowAgreementCheckbox={true}/>
                 </Container>
                 </Container>
         </>
