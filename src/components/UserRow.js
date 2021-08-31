@@ -16,15 +16,12 @@ function UserRow(props) {
     const [checked, setChecked] = useState(false);
 
     const handleChange = (event) => {
-        console.log(event.target.checked);
         setChecked(event.target.checked);
         props.onCheckBoxChange(props.UserData.id, event.target.checked);
     };
 
     const DeleteUser =  (event) => {
-        console.log(props.UserData);
         const url = '/users/' + props.UserData.id;
-        console.log("api called with: ", url);
         DeleteWithAuth(url)
             .then((response) =>{
                 console.log("the user was deleted!");

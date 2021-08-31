@@ -35,18 +35,11 @@ const ITEM_HEIGHT = 48;
     const [gender, setGender] = React.useState('male');
     const selectGender = (event) => setGender(event.target.value);
 
-    useEffect(() => {
-        console.log(props);
-
-    }, []);
-
     async function Logout() {
-        const device_id = "389489774676758543234-8686-9";
-        //= await GetDeviceId();
+        const device_id = await GetDeviceId();
         PostWithAuth('/logout', {
             'device_id': device_id
         }).then(() =>{
-            // const {location} = props;
             props.history.push('/login');
         })
     }

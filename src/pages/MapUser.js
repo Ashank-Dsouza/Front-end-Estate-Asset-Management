@@ -5,21 +5,19 @@ import { GetWithAuth, PostWithAuth } from "../apis/api-controller";
 import React from "react";
 
 import {    Container, CssBaseline, Paper,  Table,
-    TableContainer, TableBody, TableHead, TableRow, TableCell, TablePagination,
- MenuItem, Link, Select,
-} from "@material-ui/core";
+            TableContainer, TableBody, TableHead,
+            TableRow, TableCell, TablePagination,
+            MenuItem, Link, Select}
+from "@material-ui/core";
 import { useState, useEffect } from 'react';
 
 
 import NavBar from "../components/NavBar";
 
 export default function MapUser(props) {
-    const [role, setRole] = useState('');
 
     const [page, setPage] = useState(0);
     const [row, setRow] = useState(10);
-    const [drawerOpen, setDrawerOpen] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false);
 
     var selectedUsers = [];
 
@@ -63,22 +61,18 @@ export default function MapUser(props) {
         else{
             DeleteUserToSelection(UserId);
         }
-        console.log("the selected user is now: ", selectedUsers);
     }
 
     function AddUserToSelection(UserId) {
         selectedUsers.push(UserId);
-        console.log("the user was added! ", UserId);
     }
     function DeleteUserToSelection(UserId) {
-        console.log("the user was removed! ", UserId);
         selectedUsers = selectedUsers.filter(function(item) {
             return item !== UserId
         })
     }
 
   const handleChange = (event) => {
-    console.log("the value selected is: ", event.target.value);
     const chosenRole = event.target.value;
     const roleToRoleId ={
         "Guest": "4",
