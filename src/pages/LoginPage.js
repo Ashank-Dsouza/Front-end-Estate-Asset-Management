@@ -173,5 +173,5 @@ class LoginPage extends React.Component {
 export default withStyles(useStyle, { withTheme: true })(LoginPage);
 
 LoginPage.propTypes = {
-    history: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
 };

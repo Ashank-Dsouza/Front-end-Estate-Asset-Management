@@ -2,7 +2,7 @@ import { GetWithAuth } from "../apis/api-controller";
 import ReactPopup from "../components/ReactPopup";
 
 import React from "react";
-
+import { withRouter } from "react-router-dom";
 import {
     Grid,
     Typography,
@@ -27,6 +27,7 @@ class UserProfile extends React.Component {
 
     constructor(props) {
         super(props)
+        console.log("the props are: ", props);
         this.state = {
             externalData: null,
             redirectToReferrer: false,
@@ -50,7 +51,7 @@ class UserProfile extends React.Component {
             })
             .catch((error) => {
                 console.log("the error recorded in UserProfile is ", error);
-                this.props.history('/page-not-found')
+                this.props.history.push('/page-not-found')
             })
     }
 
@@ -109,8 +110,8 @@ class UserProfile extends React.Component {
         }
     }
 }
-export default UserProfile;
+export default withRouter(UserProfile);
 
 UserProfile.propTypes = {
-    history: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
 };
