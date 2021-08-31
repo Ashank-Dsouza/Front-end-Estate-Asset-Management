@@ -22,4 +22,10 @@ describe('UserProfile component', () => {
     expect(wrapper.instance().state.password).toBe(''); //error appears here
   });
 
+//   it('history should be passed in the props for routing', () => {
+//     const wrapper = shallow(<LoginPage />).dive();
+//     console.log(wrapper.instance());
+//     expect(wrapper.instance().props.history).toBeDefined() //error appears here
+//   });
+
 });

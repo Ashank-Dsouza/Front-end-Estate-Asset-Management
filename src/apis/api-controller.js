@@ -28,7 +28,7 @@ export async function Post(url, body) {
         })
         .catch((error) => {
             console.log(error);
-            return error;
+            throw error;
         })
 }
 
@@ -43,7 +43,7 @@ export async function PostWithAuth(url, body) {
             })
             .catch((error) => {
                 console.log(error);
-                return error;
+                throw error;
             })
 }
 
@@ -60,7 +60,7 @@ export async function GetWithAuth(url) {
         })
         .catch((error) => {
             console.log(error);
-            return error;
+            throw error;
         })
 }
 
@@ -77,7 +77,7 @@ export async function DeleteWithAuth(url) {
         })
         .catch((error) => {
             console.log(error);
-            return error;
+            throw error;
         })
 }
 
@@ -92,6 +92,6 @@ export async function PutWithAuth(url, body) {
             })
             .catch((error) => {
                 console.log(error);
-                return error;
+                throw error;
             })
 }

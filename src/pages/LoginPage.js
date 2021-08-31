@@ -18,6 +18,8 @@ import { Post } from "./../apis/api-controller";
 import { withStyles } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
 import { Container } from "@material-ui/core";
+import PropTypes from 'prop-types'
+import { GetDeviceId } from "../utility/ApiHelperFunctions";
 
 import {MockSetup} from "./../variables";
 
@@ -169,3 +171,7 @@ class LoginPage extends React.Component {
     }
 }
 export default withStyles(useStyle, { withTheme: true })(LoginPage);
+
+LoginPage.propTypes = {
+    history: PropTypes.func.isRequired,
+};

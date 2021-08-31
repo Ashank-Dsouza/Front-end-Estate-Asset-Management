@@ -11,7 +11,6 @@ import {
 import { Post, PostWithAuth } from "../../apis/api-controller";
 import PropTypes from 'prop-types';
 
-
 import { makeStyles } from "@material-ui/core/styles";
 import { green } from '@material-ui/core/colors';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';

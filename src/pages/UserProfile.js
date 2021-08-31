@@ -1,4 +1,4 @@
-import { GetWithAuth, PutWithAuth } from "../apis/api-controller";
+import { GetWithAuth } from "../apis/api-controller";
 import ReactPopup from "../components/ReactPopup";
 
 import React from "react";
@@ -17,7 +17,7 @@ import {
     ListItemText,
     ListItemIcon
 } from "@material-ui/core";
-
+import PropTypes from 'prop-types'
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
 import { green } from "@material-ui/core/colors";
@@ -39,6 +39,7 @@ class UserProfile extends React.Component {
     UNSAFE_componentWillMount() {
         this._asyncRequest = GetWithAuth('/user/me')
             .then((externalData) => {
+                console.log("the external data is: ", externalData);
                 this._asyncRequest = null;
                 const updatedName = externalData.data.firstname + " " + externalData.data.lastname;
                 const updatedEmail = externalData.data.email;
@@ -48,15 +49,16 @@ class UserProfile extends React.Component {
                 
             })
             .catch((error) => {
-                console.log("the error is ", error);
+                console.log("the error recorded in UserProfile is ", error);
+                this.props.history('/page-not-found')
             })
     }
 
-    componentWillUnmount() {
-        if (this._asyncRequest) {
-            this._asyncRequest.cancel();
-        }
-    }
+    // componentWillUnmount() {
+    //     if (this._asyncRequest) {
+    //         this._asyncRequest.cancel();
+    //     }
+    // }
 
     setProfileInfo(updatedName, updatedEmail){
         this.setState({name: updatedName})
@@ -108,3 +110,7 @@ class UserProfile extends React.Component {
     }
 }
 export default UserProfile;
+
+UserProfile.propTypes = {
+    history: PropTypes.func.isRequired,
+};
