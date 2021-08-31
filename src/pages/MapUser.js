@@ -15,6 +15,7 @@ import AndroidIcon from '@material-ui/icons/Android';
 import { useState, useEffect } from 'react';
 
 import LongMenu from "../components/Menu";
+import NavBar from "../components/NavBar";
 
 export default function MapUser(props) {
 
@@ -72,63 +73,7 @@ export default function MapUser(props) {
     return (
         <>
             <CssBaseline />
-            <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} >
-                <List disablePadding style={{ width: '80vw', maxWidth: 300 }}>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AndroidIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="List Item 1" secondary="this is discripation" />
-                    </ListItem>
-                    <Divider />
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AndroidIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="List Item 2" secondary="this is discripation" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AndroidIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="List Item 3" secondary="this is discripation" />
-                    </ListItem>
-                </List>
-            </Drawer>
-            <AppBar style={{ backgroundColor: green[700] }}>
-                <Toolbar>
-                    <IconButton onClick={() => setDrawerOpen(true)}>
-                        <DehazeIcon style={{ color: 'white' }} />
-                    </IconButton>
-                    <Typography variant='h6' style={{ flex: 1 }}>Menu Component</Typography>
-                    <Hidden xsDown>
-                        <Button color='inherit'>Home</Button>
-                        <Button color='inherit'>About</Button>
-                        <Button color='inherit'>Details</Button>
-                        <Button color='inherit'>Contect Us</Button>
-                    </Hidden>
-                    <Hidden smUp>
-                        <Button variant='text' style={{ color: 'white' }} onClick={(e) => setMenuOpen(e.currentTarget)}>
-                            <AppsIcon />
-                        </Button>
-                        <Menu open={Boolean(menuOpen)} onClose={() => setMenuOpen(null)} anchorEl={menuOpen}>
-                            <MenuItem>
-                                <Button color='inherit'>Home</Button>
-                            </MenuItem>
-                            <MenuItem>
-                                <Button color='inherit'>About</Button>
-                            </MenuItem>
-                            <MenuItem>
-                                <Button color='inherit'>Details</Button>
-                            </MenuItem>
-                            <MenuItem>
-                                <Button color='inherit'>Contect Us</Button>
-                            </MenuItem>
-                        </Menu>
-                    </Hidden>
-                </Toolbar>
-            </AppBar>
-            <Toolbar />
+            <NavBar/>
             <Container style={{ marginTop: 10 }}>
                 <TableContainer component={Paper}>
                     <Link href="/add-user" className="btn btn-primary">Add User</Link>

@@ -21,6 +21,7 @@ import PropTypes from 'prop-types'
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
 import { green } from "@material-ui/core/colors";
+import NavBar from "../components/NavBar";
 
 
 class UserProfile extends React.Component {
@@ -77,6 +78,7 @@ class UserProfile extends React.Component {
 
                 <>
                     <CssBaseline />
+                    <NavBar/>
                     <Container component={Box} my={4}>
                         <Grid container justifyContent="space-between" spacing={4}>
                             <Grid item md={5} xs={12}>
