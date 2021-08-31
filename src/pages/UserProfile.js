@@ -38,15 +38,19 @@ class UserProfile extends React.Component {
         this.setProfileInfo = this.setProfileInfo.bind(this)
     }
 
-    UNSAFE_componentWillMount() {
+    componentDidMount() {
+        this.mounted = true;
+
         this._asyncRequest = GetWithAuth('/user/me')
             .then((externalData) => {
                 console.log("the external data is: ", externalData);
                 this._asyncRequest = null;
                 const updatedName = externalData.data.firstname + " " + externalData.data.lastname;
                 const updatedEmail = externalData.data.email;
-                this.setProfileInfo(updatedName, updatedEmail);
-                this.setState({ externalData });
+                if(this.mounted){
+                    this.setProfileInfo(updatedName, updatedEmail);
+                    this.setState({ externalData });
+                }
                 console.log("the reponse is: ", externalData);
                 
             })
@@ -56,18 +60,14 @@ class UserProfile extends React.Component {
             })
     }
 
-    // componentWillUnmount() {
-    //     if (this._asyncRequest) {
-    //         this._asyncRequest.cancel();
-    //     }
-    // }
+    componentWillUnmount(){
+        this.mounted = false;
+      }
 
     setProfileInfo(updatedName, updatedEmail){
         this.setState({name: updatedName})
         this.setState({email: updatedEmail})
     }
-
-
 
     render() { 
         if (this.state.externalData === null) {
