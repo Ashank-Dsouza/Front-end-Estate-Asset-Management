@@ -4,6 +4,7 @@ import {
     ListItem, ListItemText, ListItemIcon, Button, AppBar, Toolbar, Hidden, Menu, MenuItem, Drawer, Divider, CardMedia, Grid
 } from "@material-ui/core";
 import AddUserForm from "../components/forms/AddUserForm";
+import NavBar from "../components/NavBar";
 
 
 import { green } from "@material-ui/core/colors";
@@ -13,72 +14,12 @@ import AndroidIcon from '@material-ui/icons/Android';
 
 export default function AddUser(props) {
 
-    const [drawerOpen, setDrawerOpen] = React.useState(false);
-    const [menuOpen, setMenuOpen] = React.useState(false);
-    const [gender, setGender] = React.useState('male');
-    const selectGender = (event) => setGender(event.target.value);
 
     return (
 
         <>
             <CssBaseline />
-            <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} >
-                <List disablePadding style={{ width: '80vw', maxWidth: 300 }}>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AndroidIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="List Item 1" secondary="this is discripation" />
-                    </ListItem>
-                    <Divider />
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AndroidIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="List Item 2" secondary="this is discripation" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AndroidIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="List Item 3" secondary="this is discripation" />
-                    </ListItem>
-                </List>
-            </Drawer>
-            <AppBar style={{ backgroundColor: green[700] }}>
-                <Toolbar>
-                    <IconButton onClick={() => setDrawerOpen(true)}>
-                        <DehazeIcon style={{ color: 'white' }} />
-                    </IconButton>
-                    <Typography variant='h6' style={{ flex: 1 }}>Menu Component</Typography>
-                    <Hidden xsDown>
-                        <Button color='inherit'>Home</Button>
-                        <Button color='inherit'>About</Button>
-                        <Button color='inherit'>Details</Button>
-                        <Button color='inherit'>Contect Us</Button>
-                    </Hidden>
-                    <Hidden smUp>
-                        <Button variant='text' style={{ color: 'white' }} onClick={(e) => setMenuOpen(e.currentTarget)}>
-                            <AppsIcon />
-                        </Button>
-                        <Menu open={Boolean(menuOpen)} onClose={() => setMenuOpen(null)} anchorEl={menuOpen}>
-                            <MenuItem>
-                                <Button color='inherit'>Home</Button>
-                            </MenuItem>
-                            <MenuItem>
-                                <Button color='inherit'>About</Button>
-                            </MenuItem>
-                            <MenuItem>
-                                <Button color='inherit'>Details</Button>
-                            </MenuItem>
-                            <MenuItem>
-                                <Button color='inherit'>Contect Us</Button>
-                            </MenuItem>
-                        </Menu>
-                    </Hidden>
-                </Toolbar>
-            </AppBar>
-            <Toolbar />
+            <NavBar/>
             <Container style={{ marginTop: 10, marginBottom: 32 }}>
                 <Typography variant='h4' style={{ color: green[700], marginBottom: 20 }}>Personal Information</Typography>
                 <Grid container justifyContent='space-between'>
