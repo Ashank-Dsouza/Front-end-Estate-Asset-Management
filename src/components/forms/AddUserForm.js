@@ -91,7 +91,10 @@ export default function AddUserForm(props) {
         }
         if (props.ShowAgreementCheckbox) {
         
-            var response = await Post('/signup', body);
+            Post('/signup', body)
+                .then((response) =>{
+                    props.navigateToLogin();
+                })
         }
         else {
             console.log("admin is adding user");

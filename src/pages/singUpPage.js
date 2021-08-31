@@ -6,11 +6,19 @@ import {
 import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
 import { Typography } from "@material-ui/core";
 import { green } from '@material-ui/core/colors';
+import { withRouter } from "react-router-dom";
+import PropTypes from 'prop-types'
+
 
 import AddUserForm from "../components/forms/AddUserForm";
 
 
-export default function SingUp() {
+function SingUp(props) {
+
+    const navigateToLogin = () => { // the callback. Use a better name
+        console.log("inside SignUp. Routing to Login page");
+        props.history.push('/login');
+      };
 
     return (
         <>
@@ -22,9 +30,15 @@ export default function SingUp() {
                         Already have an account?{" "}
                         <NavLink exact to="/login" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
                     </Typography>
-                    <AddUserForm ShowAgreementCheckbox={true}/>
+                    <AddUserForm navigateToLogin={navigateToLogin} ShowAgreementCheckbox={true}/>
                 </Container>
                 </Container>
         </>
     );
 }
+
+export default withRouter(SingUp);
+
+SingUp.propTypes = {
+    history: PropTypes.object.isRequired,
+};
