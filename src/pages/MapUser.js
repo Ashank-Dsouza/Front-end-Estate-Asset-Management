@@ -1,25 +1,34 @@
 import UserRow from "../components/UserRow";
-
 import { GetWithAuth, PostWithAuth } from "../apis/api-controller";
-
 import React from "react";
-
 import {
     Container, CssBaseline, Paper, Table,
     TableContainer, TableBody, TableHead,
     TableRow, TableCell, TablePagination,
-    MenuItem, Link, Select, CircularProgress
+    MenuItem, Link, Select, CircularProgress, Button, InputLabel, FormControl
 }
     from "@material-ui/core";
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types'
 import { withRouter } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
 
-
-import NotEnoughPermissions from "./NotEnoughPermissions";
 import NavBar from "../components/NavBar";
 
+const useStyles = makeStyles((theme) => ({
+    linkButton: {
+        textDecoration: 'none',
+        color: 'white',
+        fontWeight: 500,
+        backgroundColor: '#3f51b5',
+        padding: '12px 18px',
+        borderRadius: '4px',
+    },
+}));
+
 function MapUser(props) {
+
+    const classes = useStyles();
 
     const [page, setPage] = useState(0);
     const [row, setRow] = useState(10);
@@ -44,15 +53,15 @@ function MapUser(props) {
     }
 
     function GetAssignableRoles(roles) {
-        if(!roles)
+        if (!roles)
             return "Unassigned";
         for (let index = 0; index < roles.length; index++) {
             const role = roles[index];
-            if(role.name === "Guest" || role.name === "Customer"){
+            if (role.name === "Guest" || role.name === "Customer") {
                 return role.name
             }
-        } 
-            return "Unassigned";
+        }
+        return "Unassigned";
     }
 
     function FormatData(UserDataList) {
@@ -92,16 +101,17 @@ function MapUser(props) {
         })
     }
 
-    const handleChange = (event) => {
-        if(selectedUsers.length === 0){
+    const AssignRole = (event) => {
+        const chosenRole = event.target.value;
+        if (selectedUsers.length === 0 || !chosenRole) {
             console.log("no user selected. ");
             return
         }
-        const chosenRole = event.target.value;
         const roleToRoleId = {
             "Guest": "4",
             "Customer": "3"
         }
+        console.log("the selected role is: ", chosenRole);
         console.log(roleToRoleId[chosenRole]);
         const roleId = roleToRoleId[chosenRole];
 
@@ -128,29 +138,30 @@ function MapUser(props) {
                     (
                         <div>
                             <CssBaseline />
-                            
-                            <Container style={{ marginTop: 10 }}>
-                            <Link href="/add-user" className="btn btn-primary">Add User</Link>
+                            <Container style={{ marginTop: 20 }}>
+                                <Link href="/add-user" className={classes.linkButton} >Add User</Link>
+                                <FormControl style={{ float: "right", width: '170px' }}>
+                                    <InputLabel style={{paddingLeft: '10px'}} id="demo-simple-select-label">Assign Role</InputLabel>
+                                    <Select onChange={AssignRole}
+                                        label="Role" variant='outlined' >
+                                        <MenuItem value="">
+                                            <em>None</em>
+                                        </MenuItem>
+                                        <MenuItem value={'Guest'} >Guest</MenuItem>
+                                        <MenuItem value={'Customer'}>Customer</MenuItem>
+                                    </Select>
+                                </FormControl>
 
-                            <Select  onChange={handleChange}
-                                    label="Role" variant='outlined'  style={{ marginTop: 10,
-                                                                                       float:"right"
-                                                                                     }}>
-                                    <MenuItem value={'Guest'} >Guest</MenuItem>
-                                    <MenuItem value={'Customer'}>Customer</MenuItem>
-                                </Select>
-                                
                                 <TableContainer component={Paper}>
 
                                     <Table>
                                         <TableHead>
                                             <TableRow>
-                                                <TableCell>User Name</TableCell>
+                                                <TableCell>Select</TableCell>
+                                                <TableCell>Username</TableCell>
                                                 <TableCell>Email</TableCell>
-                                                <TableCell>Gender</TableCell>
-                                                <TableCell>City</TableCell>
-                                                <TableCell>Status</TableCell>
                                                 <TableCell>Role</TableCell>
+                                                <TableCell>Delete</TableCell>
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>

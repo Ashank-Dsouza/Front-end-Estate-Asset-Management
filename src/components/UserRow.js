@@ -47,12 +47,13 @@ function UserRow(props) {
                 </TableCell>
                 <TableCell>{props.UserData.username}</TableCell>
                 <TableCell>{props.UserData.email}</TableCell>
+                
+                <TableCell> {props.UserData.role} </TableCell>
                 <TableCell>
                     <IconButton  onClick={DeleteUser} aria-label="delete">
                         <DeleteIcon />
                     </IconButton>
                 </TableCell>
-                <TableCell> {props.UserData.role} </TableCell>
             </TableRow>
         </>
     )

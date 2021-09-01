@@ -77,10 +77,11 @@ class LoginPage extends React.Component {
 
         // if (MockSetup.IsMockOn) {
         //     deviceId = GetRandomNumberString();
+        //     console.log("the device id is ", deviceId);
         // }
         // else {
             deviceId = await GetDeviceId();
-        //}
+        //git }
 
         Post('/login', {
             Email: this.state.email,
