@@ -48,11 +48,7 @@ function NavBar(props) {
         <>
 
             <AppBar style={{ backgroundColor: green[700] }}>
-                <Toolbar>
-                    <IconButton onClick={() => setDrawerOpen(true)}>
-                        <DehazeIcon style={{ color: 'white' }} />
-                    </IconButton>
-                    <Hidden xsDown>
+                <Toolbar >
                         <Link to="/home-page">
                             Home
                         </Link>
@@ -68,7 +64,6 @@ function NavBar(props) {
                         </Link>
                         <Button onClick={() => Logout()} color='inherit'>Logout</Button>
 
-                    </Hidden>
                 </Toolbar>
             </AppBar>
             <Toolbar />
