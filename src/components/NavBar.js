@@ -66,7 +66,6 @@ function NavBar(props) {
 
                 </Toolbar>
             </AppBar>
-            <Toolbar />
         </>
     );
 }
