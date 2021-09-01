@@ -15,7 +15,8 @@ import {
     List,
     ListItem,
     ListItemText,
-    ListItemIcon
+    ListItemIcon,
+    CircularProgress
 } from "@material-ui/core";
 import PropTypes from 'prop-types'
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
@@ -70,8 +71,12 @@ class UserProfile extends React.Component {
     }
 
     render() { 
+        
         if (this.state.externalData === null) {
-            return (<> <p role='contentinfo'> Loading.... </p></>)
+            return (<> 	
+                    <NavBar/>		
+                    <CircularProgress />
+                </>)
         }
         else {
             return (
