@@ -76,8 +76,14 @@ const ITEM_HEIGHT = 48;
                     </IconButton>
                     <Typography variant='h6' style={{ flex: 1 }}>Menu Component</Typography>
                     <Hidden xsDown>
-                        <Button color='inherit'>Home</Button>
+                    <Link to="/home-page">
+                                Home
+                        </Link>
+                        
                         <Button color='inherit'>About</Button>
+                        <Link to="/account-setting">
+                                Settings
+                        </Link>
                         <Button color='inherit'>Details</Button>
                         <Button color='inherit'>Contect Us</Button>
                         <Link to="/profile">
