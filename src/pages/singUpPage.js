@@ -11,13 +11,14 @@ import PropTypes from 'prop-types'
 
 
 import AddUserForm from "../components/forms/AddUserForm";
+import { RoutePath } from "../constants/routes";
 
 
 function SingUp(props) {
 
     const navigateToLogin = () => { // the callback. Use a better name
         console.log("inside SignUp. Routing to Login page");
-        props.history.push('/login');
+        props.history.push(RoutePath.LoginPage);
       };
 
     return (
@@ -28,7 +29,7 @@ function SingUp(props) {
                     <Typography variant="h4" style={{ color: green[700] }}>Get started with a free account</Typography>
                     <Typography>
                         Already have an account?{" "}
-                        <NavLink exact to="/login" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
+                        <NavLink exact to={RoutePath.LoginPage} activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
                     </Typography>
                     <AddUserForm navigateToLogin={navigateToLogin} ShowAgreementCheckbox={true}/>
                 </Container>

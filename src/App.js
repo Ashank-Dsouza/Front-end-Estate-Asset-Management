@@ -17,6 +17,8 @@ import PageNotFound from "./pages/PageNotFound";
 import NotEnoughPermissions from "./pages/NotEnoughPermissions";
 import AccountSettingPage from "./pages/AccountSetting";
 
+import { RoutePath } from "./constants/routes";
+
 class App extends React.Component {
   constructor() {
     super()
@@ -29,25 +31,26 @@ class App extends React.Component {
         <div>
 
           <Switch>
-            <Route exact path="/add-user" component={AddUser} >
+            <Route exact path={RoutePath.LoginPage} component={LoginPage} >
             </Route>
-            <Route exact path="/login" component={LoginPage} >
+            <Route exact path={RoutePath.SignUpPage} component={SignUpPage}>
             </Route>
-            <Route exact path="/sign-up" component={SignUpPage}>
+            <Route exact path={RoutePath.PasswordRecoveryPage} component={PasswordRecoverPage}>
             </Route>
-            <Route exact path="/forgot-password" component={PasswordRecoverPage}>
+            <Route exact path={RoutePath.PasswordResetPage} component={PasswordResetPage}>
             </Route>
-            <Route exact path="/password-reset" component={PasswordResetPage}>
+            <Route exact path={RoutePath.NotAllowed} component={NotEnoughPermissions}>
             </Route>
-            <Route exact path="/not-allowed" component={NotEnoughPermissions}>
-            </Route>
-            <PrivateRoute exact path="/home-page" > <MapUser /></PrivateRoute>
-            <PrivateRoute exact path="/profile" > <UserProfile />
+
+
+            <PrivateRoute exact path={RoutePath.MapUser} > <MapUser /></PrivateRoute>
+            <PrivateRoute exact path={RoutePath.UserProfile} > <UserProfile />
             </PrivateRoute>
-            <PrivateRoute exact path="/add-user" > <AddUser />
+            <PrivateRoute exact path={RoutePath.AddUserPage}> <AddUser />
             </PrivateRoute>
-            <PrivateRoute exact path="/account-setting" > <AccountSettingPage />
+            <PrivateRoute exact path={RoutePath.SettingsPage} > <AccountSettingPage />
             </PrivateRoute>
+
             <Route component={PageNotFound} />
           </Switch>
         </div>

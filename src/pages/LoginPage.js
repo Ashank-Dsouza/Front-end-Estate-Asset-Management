@@ -22,6 +22,7 @@ import PropTypes from 'prop-types'
 import { GetDeviceId } from "../utility/ApiHelperFunctions";
 
 import {MockSetup} from "./../variables";
+import { RoutePath } from "../constants/routes";
 
 
 const useStyle = theme => ({
@@ -92,7 +93,7 @@ class LoginPage extends React.Component {
                 console.log("the response is: ", response);
                 if (response?.data?.access_token) {
                     sessionStorage.setItem('userToken', response.data.access_token)
-                    this.props.history.push('/home-page')
+                    this.props.history.push(RoutePath.MapUser)
                 }
             })
 
@@ -116,7 +117,7 @@ class LoginPage extends React.Component {
                                 Log In to TruVest
                             </Typography>
                             <Typography>
-                                New Here?  <Link href="/sign-up"> Create an account</Link>
+                                New Here?  <Link href={RoutePath.SignUpPage}> Create an account</Link>
                             </Typography>
                             <Box my={4} mb={2}>
                                 <TextField
@@ -160,7 +161,7 @@ class LoginPage extends React.Component {
                                     Login
                                 </Button>
                                 <Typography>
-                                    <Link href="/forgot-password" activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Forgot Password?</Link>
+                                    <Link href={RoutePath.PasswordRecoveryPage} activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Forgot Password?</Link>
                                 </Typography>
 
                             </Box>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import NavBar from "../components/NavBar";
+import { RoutePath } from "../constants/routes";
 
 export default function AccountSettingPage(props) {
 
@@ -8,7 +9,7 @@ export default function AccountSettingPage(props) {
         <>
             <NavBar/>
            <h1>Account Settings</h1>
-           <Link to="/password-reset">Change Password</Link>
+           <Link to={RoutePath.PasswordResetPage}>Change Password</Link>
 
         </>
     );

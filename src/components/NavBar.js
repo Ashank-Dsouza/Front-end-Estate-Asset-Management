@@ -11,13 +11,15 @@ import PropTypes from 'prop-types'
 import { green } from "@material-ui/core/colors";
 import { withRouter } from 'react-router';
 import { makeStyles } from '@material-ui/core/styles';
+import { RoutePath } from '../constants/routes';
 
 
 const useStyles = makeStyles((theme) => ({
     linkButton: {
         textDecoration: 'none',
         color:   'white',
-        fontWeight:500
+        fontWeight:500,
+        paddingLeft: '20px'
     },
 }));
 
@@ -32,7 +34,7 @@ function NavBar(props) {
         }).then(() => {
             console.log("removing token.... logging out.....");
             sessionStorage.removeItem('userToken');
-            props.history.push('/login');
+            props.history.push(RoutePath.LoginPage);
         })
     }
 
@@ -44,17 +46,14 @@ function NavBar(props) {
                     <Box display='flex' flexGrow={1}>
                         {/* this is to align the rest to the right */}
                     </Box>
-                    <Link className={classes.linkButton}  to="/home-page">
+                    <Link className={classes.linkButton}  to={RoutePath.MapUser}>
                         HOME
                     </Link>
 
-                    <Button color='inherit'>About</Button>
-                    <Link className={classes.linkButton} to="/account-setting">
+                    <Link className={classes.linkButton} to={RoutePath.SettingsPage}>
                         SETTINGS
                     </Link>
-                    <Button color='inherit'>Details</Button>
-                    <Button color='inherit'>Contect Us</Button>
-                    <Link className={classes.linkButton} to="/profile">
+                    <Link className={classes.linkButton} to={RoutePath.UserProfile}>
                         PROFILE
                     </Link>
                     <Button onClick={() => Logout()} color='inherit'>Logout</Button>
