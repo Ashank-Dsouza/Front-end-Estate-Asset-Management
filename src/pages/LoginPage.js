@@ -75,12 +75,12 @@ class LoginPage extends React.Component {
         console.log("the password entered is: ", this.state.password);
         var deviceId = null;
 
-        if (MockSetup.IsMockOn) {
-            deviceId = GetRandomNumberString();
-        }
-        else {
+        // if (MockSetup.IsMockOn) {
+        //     deviceId = GetRandomNumberString();
+        // }
+        // else {
             deviceId = await GetDeviceId();
-        }
+        //}
 
         Post('/login', {
             Email: this.state.email,
