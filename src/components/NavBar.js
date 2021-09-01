@@ -22,14 +22,14 @@ import { useState, useEffect } from 'react';
 
 
 const options = [
-  'Subscriber',
-  'User',
+    'Subscriber',
+    'User',
 ];
 
 const ITEM_HEIGHT = 48;
 
- function NavBar(props) {
-    
+function NavBar(props) {
+
     const [drawerOpen, setDrawerOpen] = React.useState(false);
     const [menuOpen, setMenuOpen] = React.useState(false);
     const [gender, setGender] = React.useState('male');
@@ -39,83 +39,41 @@ const ITEM_HEIGHT = 48;
         const device_id = await GetDeviceId();
         PostWithAuth('/logout', {
             'device_id': device_id
-        }).then(() =>{
+        }).then(() => {
             props.history.push('/login');
         })
     }
 
-  return (
-    <>
-            <Drawer open={drawerOpen} onClose={() => setDrawerOpen(false)} >
-                <List disablePadding style={{ width: '80vw', maxWidth: 300 }}>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AndroidIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="List Item 1" secondary="this is discripation" />
-                    </ListItem>
-                    <Divider />
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AndroidIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="List Item 2" secondary="this is discripation" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AndroidIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="List Item 3" secondary="this is discripation" />
-                    </ListItem>
-                </List>
-            </Drawer>
+    return (
+        <>
+
             <AppBar style={{ backgroundColor: green[700] }}>
                 <Toolbar>
                     <IconButton onClick={() => setDrawerOpen(true)}>
                         <DehazeIcon style={{ color: 'white' }} />
                     </IconButton>
-                    <Typography variant='h6' style={{ flex: 1 }}>Menu Component</Typography>
                     <Hidden xsDown>
-                    <Link to="/home-page">
-                                Home
+                        <Link to="/home-page">
+                            Home
                         </Link>
-                        
+
                         <Button color='inherit'>About</Button>
                         <Link to="/account-setting">
-                                Settings
+                            Settings
                         </Link>
                         <Button color='inherit'>Details</Button>
                         <Button color='inherit'>Contect Us</Button>
                         <Link to="/profile">
-                                Profile
+                            Profile
                         </Link>
                         <Button onClick={() => Logout()} color='inherit'>Logout</Button>
 
                     </Hidden>
-                    <Hidden smUp>
-                        <Button variant='text' style={{ color: 'white' }} onClick={(e) => setMenuOpen(e.currentTarget)}>
-                            <AppsIcon />
-                        </Button>
-                        <Menu open={Boolean(menuOpen)} onClose={() => setMenuOpen(null)} anchorEl={menuOpen}>
-                            <MenuItem>
-                                <Button color='inherit'>Home</Button>
-                            </MenuItem>
-                            <MenuItem>
-                                <Button color='inherit'>About</Button>
-                            </MenuItem>
-                            <MenuItem>
-                                <Button color='inherit'>Details</Button>
-                            </MenuItem>
-                            <MenuItem>
-                                <Button color='inherit'>Contect Us</Button>
-                            </MenuItem>
-                        </Menu>
-                    </Hidden>
                 </Toolbar>
             </AppBar>
             <Toolbar />
-    </>
-  );
+        </>
+    );
 }
 
 export default withRouter(NavBar);
