@@ -98,7 +98,11 @@ export default function AddUserForm(props) {
         }
         else {
             console.log("admin is adding user");
-            var response = await PostWithAuth('/users', body);
+            PostWithAuth('/users', body)
+                .then(() =>{
+                    props.AddedUserAlert();
+                    
+                });
         }
 
     }
