@@ -13,6 +13,7 @@ import PropTypes from 'prop-types'
 import { withRouter } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import { RoutePath } from "../constants/routes";
+import Heading from "../components/Heading";
 
 import NavBar from "../components/NavBar";
 
@@ -140,6 +141,7 @@ function MapUser(props) {
                         <div>
                             <CssBaseline />
                             <Container style={{ marginTop: 20 }}>
+                                <Heading Text={"User List"}> </Heading>
                                 <Link href={RoutePath.AddUserPage} className={classes.linkButton} >Add User</Link>
                                 <FormControl style={{ float: "right", width: '170px' }}>
                                     <InputLabel style={{paddingLeft: '10px'}} id="demo-simple-select-label">Assign Role</InputLabel>

@@ -18,6 +18,7 @@ import NotEnoughPermissions from "./pages/NotEnoughPermissions";
 import AccountSettingPage from "./pages/AccountSetting";
 
 import { RoutePath } from "./constants/routes";
+import Dashboard from "./pages/Dashboard";
 
 class App extends React.Component {
   constructor() {
@@ -50,6 +51,8 @@ class App extends React.Component {
             </PrivateRoute>
             <PrivateRoute exact path={RoutePath.SettingsPage} > <AccountSettingPage />
             </PrivateRoute>
+            <PrivateRoute exact path={RoutePath.Dashboard} > <Dashboard /></PrivateRoute>
+
 
             <Route component={PageNotFound} />
           </Switch>

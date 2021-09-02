@@ -47,7 +47,11 @@ function NavBar(props) {
                         {/* this is to align the rest to the right */}
                     </Box>
                     <Link className={classes.linkButton}  to={RoutePath.MapUser}>
-                        HOME
+                        USER LIST
+                    </Link>
+
+                    <Link className={classes.linkButton}  to={RoutePath.Dashboard}>
+                        DASHBOARD
                     </Link>
 
                     <Link className={classes.linkButton} to={RoutePath.SettingsPage}>

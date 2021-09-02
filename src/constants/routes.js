@@ -5,9 +5,10 @@ export const RoutePath = {
     PasswordRecoveryPage: "/forgot-password",
     PasswordResetPage: "/password-reset",
     NotAllowed: "/not-allowed",
-    MapUser:"/home-page",
+    MapUser:"/map-user",
     UserProfile:"/profile",
-    SettingsPage:"/account-setting"
+    SettingsPage:"/account-setting",
+    Dashboard: "/dashboard"
 }
 
 

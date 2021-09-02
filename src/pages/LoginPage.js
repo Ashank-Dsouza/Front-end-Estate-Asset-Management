@@ -93,7 +93,7 @@ class LoginPage extends React.Component {
                 console.log("the response is: ", response);
                 if (response?.data?.access_token) {
                     sessionStorage.setItem('userToken', response.data.access_token)
-                    this.props.history.push(RoutePath.MapUser)
+                    this.props.history.push(RoutePath.Dashboard)
                 }
             })
 
