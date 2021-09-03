@@ -13,6 +13,8 @@ import { withRouter } from 'react-router';
 import { makeStyles } from '@material-ui/core/styles';
 import { RoutePath } from '../constants/routes';
 
+import ButtonLink from './ButtonLink';
+
 import { Avatar } from '@material-ui/core';
 import {
     Container, CssBaseline, Paper, Table,
@@ -54,9 +56,6 @@ function NavBar(props) {
             <AppBar style={{ backgroundColor: green[700], position: 'static' }}>
                 <Toolbar >
                     <Box display='flex' flexGrow={1}>
-                        {/* this is to align the rest to the right */}
-                    </Box>
-
                     <Link className={classes.linkButton} to={RoutePath.MapUser}>
                         USER LIST
                     </Link>
@@ -64,13 +63,10 @@ function NavBar(props) {
                     <Link className={classes.linkButton} to={RoutePath.Dashboard}>
                         DASHBOARD
                     </Link>
+                    </Box>
 
-                    <Link className={classes.linkButton} to={RoutePath.SettingsPage}>
-                        SETTINGS
-                    </Link>
-                    <Link className={classes.linkButton} to={RoutePath.UserProfile}>
-                        PROFILE
-                    </Link>
+
+              
 
                     <CustomizedMenus></CustomizedMenus>
 
