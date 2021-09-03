@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import {
-    Button, AppBar, Toolbar, Box,
+     AppBar, Toolbar, Box,
 } from "@material-ui/core";
 import { PostWithAuth } from '../apis/api-controller';
 import { GetDeviceId } from '../utility/ApiHelperFunctions';
@@ -12,17 +12,6 @@ import { green } from "@material-ui/core/colors";
 import { withRouter } from 'react-router';
 import { makeStyles } from '@material-ui/core/styles';
 import { RoutePath } from '../constants/routes';
-
-import ButtonLink from './ButtonLink';
-
-import { Avatar } from '@material-ui/core';
-import {
-    Container, CssBaseline, Paper, Table,
-    TableContainer, TableBody, TableHead,
-    TableRow, TableCell, TablePagination, IconButton,
-    MenuItem, Select, CircularProgress, InputLabel, FormControl
-}
-    from "@material-ui/core";
 
 import CustomizedMenus from './CustomisedMenu';
 
@@ -64,10 +53,6 @@ function NavBar(props) {
                         DASHBOARD
                     </Link>
                     </Box>
-
-
-              
-
                     <CustomizedMenus></CustomizedMenus>
 
                 </Toolbar>
