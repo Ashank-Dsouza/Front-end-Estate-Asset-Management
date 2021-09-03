@@ -8,7 +8,8 @@ export const RoutePath = {
     MapUser:"/map-user",
     UserProfile:"/profile",
     SettingsPage:"/account-setting",
-    Dashboard: "/dashboard"
+    Dashboard: "/dashboard",
+    ConfirmEmail: "/confirm-email/:confirmationToken"
 }
 
 

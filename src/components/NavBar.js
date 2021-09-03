@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import {
-    Button, AppBar, Toolbar, Box, withStyles
+    Button, AppBar, Toolbar, Box,
 } from "@material-ui/core";
 import { PostWithAuth } from '../apis/api-controller';
 import { GetDeviceId } from '../utility/ApiHelperFunctions';
@@ -12,13 +12,24 @@ import { green } from "@material-ui/core/colors";
 import { withRouter } from 'react-router';
 import { makeStyles } from '@material-ui/core/styles';
 import { RoutePath } from '../constants/routes';
+import LongMenu from './Menu';
 
+import { Avatar } from '@material-ui/core';
+import {
+    Container, CssBaseline, Paper, Table,
+    TableContainer, TableBody, TableHead,
+    TableRow, TableCell, TablePagination, IconButton,
+    MenuItem, Select, CircularProgress, InputLabel, FormControl
+}
+    from "@material-ui/core";
+
+import CustomizedMenus from './CustomisedMenu';
 
 const useStyles = makeStyles((theme) => ({
     linkButton: {
         textDecoration: 'none',
-        color:   'white',
-        fontWeight:500,
+        color: 'white',
+        fontWeight: 500,
         paddingLeft: '20px'
     },
 }));
@@ -46,11 +57,12 @@ function NavBar(props) {
                     <Box display='flex' flexGrow={1}>
                         {/* this is to align the rest to the right */}
                     </Box>
-                    <Link className={classes.linkButton}  to={RoutePath.MapUser}>
+
+                    <Link className={classes.linkButton} to={RoutePath.MapUser}>
                         USER LIST
                     </Link>
 
-                    <Link className={classes.linkButton}  to={RoutePath.Dashboard}>
+                    <Link className={classes.linkButton} to={RoutePath.Dashboard}>
                         DASHBOARD
                     </Link>
 
@@ -60,7 +72,8 @@ function NavBar(props) {
                     <Link className={classes.linkButton} to={RoutePath.UserProfile}>
                         PROFILE
                     </Link>
-                    <Button onClick={() => Logout()} color='inherit'>Logout</Button>
+
+                    <CustomizedMenus></CustomizedMenus>
 
                 </Toolbar>
             </AppBar>

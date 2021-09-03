@@ -3,6 +3,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Avatar } from '@material-ui/core';
 
 const options = [
   'Subscriber',
@@ -35,7 +36,7 @@ export default function LongMenu() {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <MoreVertIcon />
+          <Avatar >OP</Avatar>
       </IconButton>
       <Menu
         id="long-menu"
@@ -47,6 +48,7 @@ export default function LongMenu() {
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
             width: '20ch',
+            position: 'static'
           },
         }}
       >

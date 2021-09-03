@@ -19,6 +19,7 @@ import AccountSettingPage from "./pages/AccountSetting";
 
 import { RoutePath } from "./constants/routes";
 import Dashboard from "./pages/Dashboard";
+import ConfirmEmail from "./pages/ConfirmEmail";
 
 class App extends React.Component {
   constructor() {
@@ -52,7 +53,9 @@ class App extends React.Component {
             <PrivateRoute exact path={RoutePath.SettingsPage} > <AccountSettingPage />
             </PrivateRoute>
             <PrivateRoute exact path={RoutePath.Dashboard} > <Dashboard /></PrivateRoute>
+            <PrivateRoute  path={RoutePath.ConfirmEmail} > <ConfirmEmail /></PrivateRoute>
 
+  
 
             <Route component={PageNotFound} />
           </Switch>

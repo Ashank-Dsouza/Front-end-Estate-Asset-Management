@@ -8,6 +8,7 @@ const Auth = {
         this.isAuthenticated = false;
     },
     getAuth() {
+
         if(sessionStorage.getItem('userToken') === null){
             return false;
         }
