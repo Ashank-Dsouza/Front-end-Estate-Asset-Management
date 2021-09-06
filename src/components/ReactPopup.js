@@ -62,7 +62,6 @@ class ReactPopup extends React.Component {
         const url = "/user/edit/" + this.props.UserInfo.id;
 
         PutWithAuth(url, {
-            "email": this.state.email,
             "firstname": this.state.firstName,
             "lastname": this.state.lastName,
         }).then((response) => {
@@ -70,15 +69,13 @@ class ReactPopup extends React.Component {
 
             const firstName = userInfo.firstname;
             const lastName = userInfo.lastname;
-            const email = userInfo.email;
 
-            this.setState({ email: email })
             this.setState({ firstName: firstName })
             this.setState({ lastName: lastName })
 
             const fullName = firstName + " " + lastName;
 
-            this.props.onUpdateInfo(fullName, email);
+            this.props.onUpdateInfo(fullName);
             console.log("the user was updated!", response);
         })
             .catch((error) => { console.log("updation failed!!!!", error); })
@@ -126,21 +123,7 @@ class ReactPopup extends React.Component {
                         fullWidth={true}
                     />
 
-                    <TextField
-                        value={this.state.email}
-                        onInput={e => this.setState({ email: e.target.value })}
-                        label="Email"
-                        variant="outlined"
-                        className={classes.InputFieldsText}
-                        InputProps={{
-                            startAdornment: (
-                                <InputAdornment position="start">
-                                    <AlternateEmailIcon />
-                                </InputAdornment>
-                            ),
-                        }}
-                        fullWidth={true}
-                    />
+
                     <Button onClick={() => this.UpdateUserInfo()} fullWidth className={classes.loginButton} variant="contained">
                         Update
                     </Button>
