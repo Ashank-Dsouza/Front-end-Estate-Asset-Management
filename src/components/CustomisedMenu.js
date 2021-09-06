@@ -34,17 +34,6 @@ const StyledMenu = withStyles({
     />
 ));
 
-const StyledMenuItem = withStyles((theme) => ({
-    root: {
-        "&:focus": {
-            backgroundColor: 'red',
-            "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-                color: theme.palette.common.white
-            }
-        }
-    }
-}))(MenuItem);
-
 export default function CustomizedMenus(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -86,7 +75,7 @@ export default function CustomizedMenus(props) {
                 </MenuItem>
                 <MenuItem >        <ButtonLink Text="Profile" RoutePath={RoutePath.UserProfile}>Hello</ButtonLink>
                 </MenuItem>
-                <MenuItem ><Button onClick={Logout}>  Logout </Button></MenuItem>
+                <MenuItem >        <Button style={{textTransform: "none", fontSize: "16px"}} onClick={Logout}>  Logout </Button>                 </MenuItem>
 
             </StyledMenu>
 

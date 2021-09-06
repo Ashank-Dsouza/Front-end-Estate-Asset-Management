@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: 'none',
         color: 'blue',
         fontWeight: 500,
-        paddingLeft: '20px'
     },
 }));
 
