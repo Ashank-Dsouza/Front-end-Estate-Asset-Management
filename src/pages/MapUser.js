@@ -35,12 +35,48 @@ function MapUser(props) {
     const [page, setPage] = useState(0);
     const [row, setRow] = useState(10);
 
+    var roleToRoleId = {
+        "Guest": null,
+        "Customer": null
+    }
+
     var selectedUsers = [];
 
     var [userList, setUsers] = useState(null);
     useEffect(() => {
+        SetRoleIds();
         GetUsersAndDisplay();
     }, []);
+
+    async function SetRoleIds() {
+        GetWithAuth('/roles')
+            .then((response) => {
+                console.log("the roles are: ", response);
+                roleToRoleId = GetRoleMap(response.data)
+            })
+            .catch((error) => {
+                props.history.push(RoutePath.NotAllowed);
+            })
+    }
+
+    function GetRoleMap(Roles) {
+        var roleToRoleId = {
+            "Guest": "4",
+            "Customer": "3"
+        }
+
+        for (let index = 0; index < Roles.length; index++) {
+            const role = Roles[index];
+            if(role.name === "Customer"){
+                roleToRoleId["Customer"] = role.id.toString()
+            }
+            else if(role.name === "Guest"){
+                roleToRoleId["Guest"] = role.id.toString()
+            }
+            
+        }
+        return roleToRoleId;
+    }
 
     async function GetUsersAndDisplay() {
         GetWithAuth('/users')

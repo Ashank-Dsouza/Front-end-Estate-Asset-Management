@@ -90,8 +90,7 @@ class ReactPopup extends React.Component {
                 <EditIcon />
             </IconButton>}
                 position="bottom center">
-                <div>Popup content here !!</div>
-                <Box className={classes.InputFields}>
+                <Box className={classes.InputFields} >
                     <TextField
                         value={this.state.firstName}
                         onInput={e => this.setState({ firstName: e.target.value })}
