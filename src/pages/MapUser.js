@@ -8,7 +8,7 @@ import {
     MenuItem, Link, Select, CircularProgress, Button, InputLabel, FormControl
 }
     from "@material-ui/core";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types'
 import { withRouter } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
@@ -38,7 +38,7 @@ function MapUser(props) {
 
     var [userList, setUsers] = useState(null);
 
-    const [isPopupOpen, setIsPopupOpen] = useState(true)
+    const [isPopupOpen, setIsPopupOpen] = useState(false)
 
     var roleToRoleId = {
         "Guest": null,
@@ -49,32 +49,29 @@ function MapUser(props) {
 
     var selectedUserToBeDeleted = null;
 
-    // function DeleteUserAndRefresh(params) {
-    //     DeleteUser()
-    //         .then((response) =>{
+    const SelectedUserId = useRef(null);
 
-    //         })
-    // }
 
     function openConfirmationPopup(user_id){
         console.log("confirm the deletion");
-        if(!user_id){
+        if(!SelectedUserId){
             console.log("no user was selected!!! expected selection!");
             return;
         }
-        selectedUserToBeDeleted  = user_id;
+        SelectedUserId.current = user_id;
         //isPopupOpen = true;
+        console.log("the value of the popup is: ", isPopupOpen);
         setIsPopupOpen(true);
         //console.log("the value of isOpen is: ", isPopupOpen);
 
     }
 
     async function DeleteUser(){
-        if(!selectedUserToBeDeleted){
+        if(!SelectedUserId.current){
             console.log("error: no user was selected!");
             return;
         }
-        const url = '/users/' + selectedUserToBeDeleted;
+        const url = '/users/' + SelectedUserId.current;
         DeleteWithAuth(url)
             .then((response) =>{
                 console.log("the user was deleted! ", response);
@@ -202,6 +199,10 @@ function MapUser(props) {
         })
     };
 
+    const ClosePopup = () =>{
+        setIsPopupOpen(false);
+    }
+
     return (
 
         <>
@@ -217,7 +218,7 @@ function MapUser(props) {
                             <CssBaseline />
                             <Container style={{ marginTop: 20 }}>
                                 <Heading Text={"User List"}> </Heading>
-                                <ConfirmationPopup Message={"Do you really want to delete this user?"} onConfirm={DeleteUser} IsOpen={isPopupOpen} />
+                                <ConfirmationPopup ClosePopup={ClosePopup} Message={"Do you really want to delete this user?"} onConfirm={DeleteUser} IsOpen={isPopupOpen} />
                                 <Link href={RoutePath.AddUserPage} className={classes.linkButton} >Add User</Link>
                                 <FormControl style={{ float: "right", width: '170px' }}>
                                     <InputLabel style={{paddingLeft: '10px'}} id="demo-simple-select-label">Assign Role</InputLabel>
@@ -245,7 +246,7 @@ function MapUser(props) {
                                         </TableHead>
                                         <TableBody>
                                             {userList.slice(page * row, (page + 1) * row).map((item) => (
-                                                <UserRow onDelete={openConfirmationPopup} UserData={item} onCheckBoxChange={ChangeSelection} />
+                                                <UserRow  onDelete={openConfirmationPopup} UserData={item} onCheckBoxChange={ChangeSelection} />
                                             ))}
                                             <TablePagination rowsPerPageOptions={[2, 4, 10, 15]} count={userList.length} rowsPerPage={row} page={page} onChangePage={(event, newPage) => setPage(newPage)} onChangeRowsPerPage={(event) => setRow(event.target.value)} />
                                         </TableBody>
