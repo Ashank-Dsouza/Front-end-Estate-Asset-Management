@@ -12,13 +12,8 @@ import { withRouter } from "react-router";
 function ConfirmationPopup(props) {
 
   const [open, setOpen] = useState(false);
-  
-  // const handleClickOpen = () => {
-  //   setOpen(true );
-  // };
 
   const handleClose = () => {
-    //setOpen(false);
     props.ClosePopup()
   };
 
@@ -27,7 +22,6 @@ function ConfirmationPopup(props) {
     handleClose();
   };
   const handleDisagree = () => {
-    console.log("I do not agree.");
     handleClose();
   };
 
@@ -37,9 +31,6 @@ function ConfirmationPopup(props) {
   
     return (
       <div>
-        {/* Button to trigger the opening of the dialog */}
-        <Button onClick={console.log("handing was removed!")}>Open alert dialog</Button>
-        {/* Dialog that is displayed if the state open is true */}
         <Dialog
           open={open}
           onClose={() => setOpen(false)}
@@ -47,7 +38,7 @@ function ConfirmationPopup(props) {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            {"Successful Alert"}
+            {"Confirmation"}
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
@@ -56,10 +47,10 @@ function ConfirmationPopup(props) {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleDisagree} color="primary">
-              Disagree
+              Cancel  
             </Button>
             <Button onClick={handleAgree} color="primary" autoFocus>
-              Agree
+              Yes
             </Button>
           </DialogActions>
         </Dialog>
