@@ -1,5 +1,5 @@
 import UserRow from "../components/UserRow";
-import { GetWithAuth, PostWithAuth } from "../apis/api-controller";
+import { GetWithAuth, PostWithAuth, DeleteWithAuth } from "../apis/api-controller";
 import React from "react";
 import {
     Container, CssBaseline, Paper, Table,
@@ -14,6 +14,7 @@ import { withRouter } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import { RoutePath } from "../constants/routes";
 import Heading from "../components/Heading";
+import ConfirmationPopup from "../components/ConfirmationPopup";
 
 import NavBar from "../components/NavBar";
 
@@ -35,6 +36,10 @@ function MapUser(props) {
     const [page, setPage] = useState(0);
     const [row, setRow] = useState(10);
 
+    var [userList, setUsers] = useState(null);
+
+    const [isPopupOpen, setIsPopupOpen] = useState(true)
+
     var roleToRoleId = {
         "Guest": null,
         "Customer": null
@@ -42,7 +47,41 @@ function MapUser(props) {
 
     var selectedUsers = [];
 
-    var [userList, setUsers] = useState(null);
+    var selectedUserToBeDeleted = null;
+
+    // function DeleteUserAndRefresh(params) {
+    //     DeleteUser()
+    //         .then((response) =>{
+
+    //         })
+    // }
+
+    function openConfirmationPopup(user_id){
+        console.log("confirm the deletion");
+        if(!user_id){
+            console.log("no user was selected!!! expected selection!");
+            return;
+        }
+        selectedUserToBeDeleted  = user_id;
+        //isPopupOpen = true;
+        setIsPopupOpen(true);
+        //console.log("the value of isOpen is: ", isPopupOpen);
+
+    }
+
+    async function DeleteUser(){
+        if(!selectedUserToBeDeleted){
+            console.log("error: no user was selected!");
+            return;
+        }
+        const url = '/users/' + selectedUserToBeDeleted;
+        DeleteWithAuth(url)
+            .then((response) =>{
+                console.log("the user was deleted! ", response);
+                GetUsersAndDisplay();
+            })
+    }
+
     useEffect(() => {
         SetRoleIds();
         GetUsersAndDisplay();
@@ -178,6 +217,7 @@ function MapUser(props) {
                             <CssBaseline />
                             <Container style={{ marginTop: 20 }}>
                                 <Heading Text={"User List"}> </Heading>
+                                <ConfirmationPopup Message={"Do you really want to delete this user?"} onConfirm={DeleteUser} IsOpen={isPopupOpen} />
                                 <Link href={RoutePath.AddUserPage} className={classes.linkButton} >Add User</Link>
                                 <FormControl style={{ float: "right", width: '170px' }}>
                                     <InputLabel style={{paddingLeft: '10px'}} id="demo-simple-select-label">Assign Role</InputLabel>
@@ -205,7 +245,7 @@ function MapUser(props) {
                                         </TableHead>
                                         <TableBody>
                                             {userList.slice(page * row, (page + 1) * row).map((item) => (
-                                                <UserRow UpdateUsers={GetUsersAndDisplay} UserData={item} onCheckBoxChange={ChangeSelection} />
+                                                <UserRow onDelete={openConfirmationPopup} UserData={item} onCheckBoxChange={ChangeSelection} />
                                             ))}
                                             <TablePagination rowsPerPageOptions={[2, 4, 10, 15]} count={userList.length} rowsPerPage={row} page={page} onChangePage={(event, newPage) => setPage(newPage)} onChangeRowsPerPage={(event) => setRow(event.target.value)} />
                                         </TableBody>

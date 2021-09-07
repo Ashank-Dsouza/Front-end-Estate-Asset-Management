@@ -21,12 +21,13 @@ function UserRow(props) {
     };
 
     const DeleteUser =  (event) => {
-        const url = '/users/' + props.UserData.id;
-        DeleteWithAuth(url)
-            .then((response) =>{
-                console.log("the user was deleted!");
-                props.UpdateUsers()
-            })
+        console.log("trying to delete");
+        // const url = '/users/' + props.UserData.id;
+        // DeleteWithAuth(url)
+        //     .then((response) =>{
+        //         console.log("the user was deleted!");
+                props.onDelete(props.UserData.id)
+        //    })
     }
 
     return (
@@ -65,5 +66,5 @@ export default UserRow;
 UserRow.propTypes = {
     UserData: PropTypes.object.isRequired,
     onCheckBoxChange: PropTypes.func.isRequired,
-    UpdateUsers: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
 }
