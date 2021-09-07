@@ -13,6 +13,8 @@ import { GetDeviceId } from "../utility/ApiHelperFunctions";
 import { PostWithAuth } from "../apis/api-controller";
 import { RoutePath } from "../constants/routes";
 import ButtonLink from "./ButtonLink";
+import { withRouter } from "react-router";
+import PropTypes from 'prop-types'
 
 const StyledMenu = withStyles({
     paper: {
@@ -33,8 +35,7 @@ const StyledMenu = withStyles({
         {...props}
     />
 ));
-
-export default function CustomizedMenus(props) {
+function CustomizedMenus(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -62,7 +63,7 @@ export default function CustomizedMenus(props) {
 
                 onClick={handleClick}
             >
-                <Avatar>OP</Avatar>
+                <Avatar>P</Avatar>
             </Button>
             <StyledMenu
                 id="customized-menu"
@@ -82,3 +83,10 @@ export default function CustomizedMenus(props) {
         </div>
     );
 }
+
+export default withRouter(CustomizedMenus);
+
+CustomizedMenus.propTypes = {
+    history: PropTypes.object.isRequired,
+};
+

@@ -77,8 +77,9 @@ class LoginPage extends React.Component {
         var deviceId = null;
 
          if (MockSetup.IsMockOn) {
-             deviceId = GetRandomNumberString();
-             console.log("the device id is ", deviceId);
+            //  deviceId = GetRandomNumberString();
+            //  console.log("the device id is ", deviceId);
+            deviceId = await GetDeviceId();
          }
          else {
              deviceId = await GetDeviceId();
