@@ -22,12 +22,8 @@ function UserRow(props) {
 
     const DeleteUser =  (event) => {
         console.log("trying to delete");
-        // const url = '/users/' + props.UserData.id;
-        // DeleteWithAuth(url)
-        //     .then((response) =>{
-        //         console.log("the user was deleted!");
-                props.onDelete(props.UserData.id)
-        //    })
+        props.onDelete(props.UserData.id)
+        
     }
 
     return (

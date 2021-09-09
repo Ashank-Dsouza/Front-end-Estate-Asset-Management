@@ -14,7 +14,6 @@ import { green } from "@material-ui/core/colors";
 import { TextField } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import EditIcon from "@material-ui/icons/Edit";
 
 import { PutWithAuth } from "../apis/api-controller";
