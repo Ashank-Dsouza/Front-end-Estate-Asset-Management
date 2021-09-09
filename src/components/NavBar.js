@@ -46,13 +46,9 @@ function NavBar(props) {
             <AppBar style={{ backgroundColor: green[700], position: 'static' }}>
                 <Toolbar >
                     <Box display='flex' flexGrow={1}>
-                    <ButtonLink Kind={"White"} Text={"USER LIST"} To={RoutePath.MapUser}>
-                        
-                    </ButtonLink>
+                    <ButtonLink Kind={"White"}  To={RoutePath.MapUser}>USER LIST</ButtonLink>
 
-                    <ButtonLink Kind={"White"} Text={"DASHBOARD"} To={RoutePath.Dashboard}>
-                    
-                    </ButtonLink>
+                    <ButtonLink Kind={"White"}  To={RoutePath.Dashboard}>DASHBOARD</ButtonLink>
                     </Box>
                     <CustomizedMenus></CustomizedMenus>
 

@@ -67,9 +67,9 @@ function CustomizedMenus(props) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem >        <ButtonLink Text="Setting" To={RoutePath.SettingsPage}>Hello</ButtonLink>
+                <MenuItem >        <ButtonLink To={RoutePath.SettingsPage}>Setting</ButtonLink>
                 </MenuItem>
-                <MenuItem >        <ButtonLink Text="Profile" To={RoutePath.UserProfile}>Hello</ButtonLink>
+                <MenuItem >        <ButtonLink To={RoutePath.UserProfile}>Profile</ButtonLink>
                 </MenuItem>
                 <MenuItem >        <Button style={{textTransform: "none", fontSize: "16px"}} onClick={Logout}>  Logout </Button>                 </MenuItem>
 

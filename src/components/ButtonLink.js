@@ -30,6 +30,7 @@ export default function ButtonLink(props) {
     const classes = useStyles();
     var ClassName = null;
 
+
     if(props.Kind === "Blue"){
         ClassName = classes.blueButton;
     }else if(props.Kind === "White"){
@@ -41,7 +42,7 @@ export default function ButtonLink(props) {
     return (
         <>
             <Link to={props.To} className={ClassName}>
-                {props.Text}
+                {props.children}
             </Link>
         </>
     );
@@ -49,8 +50,6 @@ export default function ButtonLink(props) {
 
 
 ButtonLink.propTypes = {
-    Text: PropTypes.string.isRequired,
     To: PropTypes.string.isRequired,
-
     Kind: PropTypes.string,
 };
