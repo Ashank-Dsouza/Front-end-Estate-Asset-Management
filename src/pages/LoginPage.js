@@ -71,19 +71,9 @@ class LoginPage extends React.Component {
     }
 
     async SubmitLoginDetails() {
-        //event.preventDefault();
         console.log("the email entered is: ", this.state.email);
         console.log("the password entered is: ", this.state.password);
-        var deviceId = null;
-
-         if (MockSetup.IsMockOn) {
-            //  deviceId = GetRandomNumberString();
-            //  console.log("the device id is ", deviceId);
-            deviceId = await GetDeviceId();
-         }
-         else {
-             deviceId = await GetDeviceId();
-          }
+        const deviceId = await GetDeviceId();;
 
         Post('/login', {
             Email: this.state.email,
