@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { RoutePath } from '../constants/routes';
 import ButtonLink from './ButtonLink';
 
-import CustomizedMenus from './CustomisedMenu';
+import AvatarMenu from './AvatarMenu';
 
 const useStyles = makeStyles((theme) => ({
     linkButton: {
@@ -50,7 +50,7 @@ function NavBar(props) {
 
                     <ButtonLink Kind={"White"}  To={RoutePath.Dashboard}>DASHBOARD</ButtonLink>
                     </Box>
-                    <CustomizedMenus></CustomizedMenus>
+                    <AvatarMenu></AvatarMenu>
 
                 </Toolbar>
             </AppBar>

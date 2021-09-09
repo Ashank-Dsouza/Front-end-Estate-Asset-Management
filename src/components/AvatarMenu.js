@@ -30,7 +30,7 @@ const StyledMenu = withStyles({
         {...props}
     />
 ));
-function CustomizedMenus(props) {
+function AvatarMenu(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -79,9 +79,9 @@ function CustomizedMenus(props) {
     );
 }
 
-export default withRouter(CustomizedMenus);
+export default withRouter(AvatarMenu);
 
-CustomizedMenus.propTypes = {
+AvatarMenu.propTypes = {
     history: PropTypes.object.isRequired,
 };
 
