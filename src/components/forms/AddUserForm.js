@@ -1,4 +1,6 @@
-import React from "react";
+import { Post, PostWithAuth } from "../../apis/api-controller";
+
+import React, { useRef } from "react";
 import { useState } from 'react';
 import {
     Box,
@@ -8,7 +10,6 @@ import {
     Checkbox,
     Button,
 } from "@material-ui/core";
-import { Post, PostWithAuth } from "../../apis/api-controller";
 import PropTypes from 'prop-types';
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -67,11 +68,34 @@ export default function AddUserForm(props) {
 
     const [checkBoxValue, setCheckBoxInput] = useState(false);
 
+    const [btnEnabled, setBtnEnabled] = useState(true);
+
     const classes = useStyle();
 
-    const preventDefault = (event) => {
-        event.preventDefault();
-    };
+    const addUser = async (event) => {
+        setBtnEnabled(false);
+        try{
+            await PostUser();
+        }finally{
+            setBtnEnabled(true);
+        }
+
+    }
+
+    async function PostUser() {
+        var body = {
+            FirstName: firstname,
+            LastName: lastname,
+            UserName: username,
+            Email: email,
+            Password: password
+        }
+        return PostWithAuth('/users', body)
+            .then((response) =>{
+                props.AddedUserAlert();
+                return response;
+             })
+    }
 
     const submitOnClick = async (event) => {
         console.log("the submitOnClick");
@@ -89,21 +113,10 @@ export default function AddUserForm(props) {
             Email: email,
             Password: password
         }
-        if (props.ShowAgreementCheckbox) {
-        
             Post('/signup', body)
                 .then((response) =>{
                     props.navigateToLogin();
                 })
-        }
-        else {
-            console.log("admin is adding user");
-            PostWithAuth('/users', body)
-                .then(() =>{
-                    props.AddedUserAlert();
-                    
-                });
-        }
 
     }
 
@@ -204,7 +217,8 @@ export default function AddUserForm(props) {
                         </div>)
                         : (
                             <div>
-                                <Button onClick={() => submitOnClick()} variant='contained' className={classes.Button}>Get Started</Button>
+                                <Button disabled={!btnEnabled} onClick={() => addUser()} 
+                                    variant='contained' className={classes.Button}>Get Started</Button>
 
                             </div>
                         )
