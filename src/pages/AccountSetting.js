@@ -7,6 +7,7 @@ import {
     Container
 }
     from "@material-ui/core";
+import ButtonLink from "../components/ButtonLink";
 
 export default function AccountSettingPage(props) {
 
@@ -15,7 +16,7 @@ export default function AccountSettingPage(props) {
             <NavBar/>
             <Container style={{ marginTop: 20 }}>
            <Heading >Account Settings</Heading>
-           <Link to={RoutePath.PasswordResetPage}>Change Password</Link>
+           <ButtonLink Kind="Blue" To={RoutePath.PasswordResetPage}>Change Password</ButtonLink>
            </Container>
 
         </>
