@@ -206,7 +206,7 @@ class MapUser extends React.Component{
                         <div>
                             <CssBaseline />
                             <Container style={{ marginTop: 20 }}>
-                                <Heading Text={"User List"}> </Heading>
+                                <Heading>User List </Heading>
                                 <ConfirmationPopup ClosePopup={this.ClosePopup} Message={"Do you really want to delete this user?"} onConfirm={this.DeleteUser} IsOpen={this.state.isPopupOpen} />
                                 <ButtonLink Text={"Add User"} Kind={"Blue"} To={RoutePath.AddUserPage}  >Add User</ButtonLink>
                                 <FormControl style={{ float: "right", width: '170px' }}>

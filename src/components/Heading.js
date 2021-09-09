@@ -5,7 +5,7 @@ function Heading(props) {
 
     return (
         <>
-            <Typography variant="h3"> {props.Text} </Typography>
+            <Typography variant="h3"> {props.children} </Typography>
         </>
     )
 

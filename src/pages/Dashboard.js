@@ -14,7 +14,7 @@ function Dashboard(props) {
             <NavBar></NavBar>
             <Container style={{ marginTop: 20 }}>
 
-            <Heading Text={"Dashboard"}></Heading>
+            <Heading>Dashboard</Heading>
             </Container>
         </>
     )

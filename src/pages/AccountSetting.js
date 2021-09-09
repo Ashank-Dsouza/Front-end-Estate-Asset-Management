@@ -14,7 +14,7 @@ export default function AccountSettingPage(props) {
         <>
             <NavBar/>
             <Container style={{ marginTop: 20 }}>
-           <Heading Text={"Account Settings"}></Heading>
+           <Heading >Account Settings</Heading>
            <Link to={RoutePath.PasswordResetPage}>Change Password</Link>
            </Container>
 
