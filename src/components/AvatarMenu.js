@@ -4,12 +4,9 @@ import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Avatar } from "@material-ui/core";
-import { GetDeviceId } from "../utility/ApiHelperFunctions";
-import { PostWithAuth } from "../apis/api-controller";
 import { RoutePath } from "../constants/routes";
 import ButtonLink from "./ButtonLink";
-import { withRouter } from "react-router";
-import PropTypes from 'prop-types'
+import LogoutButton from "./LogoutButton";
 
 const StyledMenu = withStyles({
     paper: {
@@ -41,16 +38,6 @@ function AvatarMenu(props) {
         setAnchorEl(null);
     };
 
-    async function Logout() {
-        const device_id = await GetDeviceId();
-        PostWithAuth('/logout', {
-            'device_id': device_id
-        }).then(() => {
-            console.log("removing token.... logging out.....");
-            sessionStorage.removeItem('userToken');
-            props.history.push(RoutePath.LoginPage);
-        })
-    }
 
     return (
         <div>
@@ -71,7 +58,7 @@ function AvatarMenu(props) {
                 </MenuItem>
                 <MenuItem >        <ButtonLink To={RoutePath.UserProfile}>Profile</ButtonLink>
                 </MenuItem>
-                <MenuItem >        <Button style={{textTransform: "none", fontSize: "16px"}} onClick={Logout}>  Logout </Button>                 </MenuItem>
+                <MenuItem >        <LogoutButton > Logout </LogoutButton>                 </MenuItem>
 
             </StyledMenu>
 
@@ -79,9 +66,7 @@ function AvatarMenu(props) {
     );
 }
 
-export default withRouter(AvatarMenu);
+export default AvatarMenu;
 
-AvatarMenu.propTypes = {
-    history: PropTypes.object.isRequired,
-};
+
 
