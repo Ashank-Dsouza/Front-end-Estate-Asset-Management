@@ -12,6 +12,7 @@ import { green } from "@material-ui/core/colors";
 import { withRouter } from 'react-router';
 import { makeStyles } from '@material-ui/core/styles';
 import { RoutePath } from '../constants/routes';
+import ButtonLink from './ButtonLink';
 
 import CustomizedMenus from './CustomisedMenu';
 
@@ -45,13 +46,13 @@ function NavBar(props) {
             <AppBar style={{ backgroundColor: green[700], position: 'static' }}>
                 <Toolbar >
                     <Box display='flex' flexGrow={1}>
-                    <Link className={classes.linkButton} to={RoutePath.MapUser}>
-                        USER LIST
-                    </Link>
+                    <ButtonLink Kind={"White"} Text={"USER LIST"} To={RoutePath.MapUser}>
+                        
+                    </ButtonLink>
 
-                    <Link className={classes.linkButton} to={RoutePath.Dashboard}>
-                        DASHBOARD
-                    </Link>
+                    <ButtonLink Kind={"White"} Text={"DASHBOARD"} To={RoutePath.Dashboard}>
+                    
+                    </ButtonLink>
                     </Box>
                     <CustomizedMenus></CustomizedMenus>
 

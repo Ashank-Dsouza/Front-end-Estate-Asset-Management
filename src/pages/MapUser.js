@@ -5,97 +5,81 @@ import {
     Container, CssBaseline, Paper, Table,
     TableContainer, TableBody, TableHead,
     TableRow, TableCell, TablePagination,
-    MenuItem, Link, Select, CircularProgress, Button, InputLabel, FormControl
+    MenuItem, Select, CircularProgress, InputLabel, FormControl
 }
     from "@material-ui/core";
-import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types'
 import { withRouter } from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
 import { RoutePath } from "../constants/routes";
 import Heading from "../components/Heading";
 import ConfirmationPopup from "../components/ConfirmationPopup";
 
 import NavBar from "../components/NavBar";
+import ButtonLink from "../components/ButtonLink";
 
-const useStyles = makeStyles((theme) => ({
-    linkButton: {
-        textDecoration: 'none',
-        color: 'white',
-        fontWeight: 500,
-        backgroundColor: '#3f51b5',
-        padding: '12px 18px',
-        borderRadius: '4px',
-    },
-}));
+class MapUser extends React.Component{
 
-function MapUser(props) {
+    constructor(props){
+        super(props);
+        console.log("the props are ", props);
+        this.state ={
+            page: 0,
+            row: 10,
+            userList: null,
+            isPopupOpen: false,
+            roleToRoleId: null
+        }
+        this.selectedUsers = [];
+        this.roleToRoleId = {
+            "Guest": null,
+            "Customer": null
+        }
 
-    const classes = useStyles();
-
-    const [page, setPage] = useState(0);
-    const [row, setRow] = useState(10);
-
-    var [userList, setUsers] = useState(null);
-
-    const [isPopupOpen, setIsPopupOpen] = useState(false)
-
-    var roleToRoleId = {
-        "Guest": null,
-        "Customer": null
+        this.selectedUserToBeDeleted = null;
+        this.SelectedUserId = React.createRef(null);
     }
 
-    var selectedUsers = [];
+    componentDidMount(){
+        this.SetRoleIds();
+        this.GetUsersAndDisplay();
+    }
 
-    var selectedUserToBeDeleted = null;
-
-    const SelectedUserId = useRef(null);
-
-
-    function openConfirmationPopup(user_id){
+    openConfirmationPopup = (user_id) => {
         console.log("confirm the deletion");
-        if(!SelectedUserId){
+        if(!this.SelectedUserId){
             console.log("no user was selected!!! expected selection!");
             return;
         }
-        SelectedUserId.current = user_id;
-        //isPopupOpen = true;
-        console.log("the value of the popup is: ", isPopupOpen);
-        setIsPopupOpen(true);
-        //console.log("the value of isOpen is: ", isPopupOpen);
-
+        this.SelectedUserId.current = user_id;
+        this.setState({isPopupOpen: true})
     }
 
-    async function DeleteUser(){
-        if(!SelectedUserId.current){
+    DeleteUser = async() => {
+        console.log(this.SelectedUserId);
+        if(!this.SelectedUserId.current){
             console.log("error: no user was selected!");
             return;
         }
-        const url = '/users/' + SelectedUserId.current;
+        const url = '/users/' + this.SelectedUserId.current;
         DeleteWithAuth(url)
             .then((response) =>{
                 console.log("the user was deleted! ", response);
-                GetUsersAndDisplay();
+                this.GetUsersAndDisplay();
             })
     }
 
-    useEffect(() => {
-        SetRoleIds();
-        GetUsersAndDisplay();
-    }, []);
-
-    async function SetRoleIds() {
+    async SetRoleIds() {
         GetWithAuth('/roles')
             .then((response) => {
                 console.log("the roles are: ", response);
-                roleToRoleId = GetRoleMap(response.data)
+                this.roleToRoleId = this.GetRoleMap(response.data)
             })
             .catch((error) => {
-                props.history.push(RoutePath.NotAllowed);
+                this.props.history.push(RoutePath.NotAllowed);
             })
     }
 
-    function GetRoleMap(Roles) {
+    async GetRoleMap(Roles) {
         var roleToRoleId = {
             "Guest": "4",
             "Customer": "3"
@@ -114,19 +98,20 @@ function MapUser(props) {
         return roleToRoleId;
     }
 
-    async function GetUsersAndDisplay() {
+    async GetUsersAndDisplay() {
         GetWithAuth('/users')
             .then((response) => {
                 console.log("the user data is: ", response);
-                const UserDataList = FormatData(response.data)
-                setUsers(UserDataList);
+                const UserDataList = this.FormatData(response.data)
+                console.log("setting state of userList with ", UserDataList);
+                this.setState({userList: UserDataList});
             })
             .catch((error) => {
-                props.history.push(RoutePath.NotAllowed);
+                this.props.history.push(RoutePath.NotAllowed);
             })
     }
 
-    function GetAssignableRoles(roles) {
+    GetAssignableRoles(roles) {
         if (!roles)
             return "Unassigned";
         for (let index = 0; index < roles.length; index++) {
@@ -138,14 +123,14 @@ function MapUser(props) {
         return "Unassigned";
     }
 
-    function FormatData(UserDataList) {
+    FormatData(UserDataList) {
         if (!UserDataList || UserDataList.length == 0) {
             return [];
         }
         var formattedUserData = [];
         for (let index = 0; index < UserDataList.length; index++) {
             const User = UserDataList[index];
-            const role = GetAssignableRoles(User.roles)
+            const role = this.GetAssignableRoles(User.roles)
 
             formattedUserData.push({
                 'username': User.username,
@@ -157,27 +142,27 @@ function MapUser(props) {
         return formattedUserData;
     }
 
-    function ChangeSelection(UserId, Selected) {
+    ChangeSelection = (UserId, Selected) => {
         if (Selected) {
-            AddUserToSelection(UserId);
+            this.AddUserToSelection(UserId);
         }
         else {
-            DeleteUserToSelection(UserId);
+            this.DeleteUserToSelection(UserId);
         }
     }
 
-    function AddUserToSelection(UserId) {
-        selectedUsers.push(UserId);
+    AddUserToSelection = (UserId) => {
+        this.selectedUsers.push(UserId);
     }
-    function DeleteUserToSelection(UserId) {
-        selectedUsers = selectedUsers.filter(function (item) {
+    DeleteUserToSelection = (UserId) => {
+        this.selectedUsers = this.selectedUsers.filter(function (item) {
             return item !== UserId
         })
     }
 
-    const AssignRole = (event) => {
+    AssignRole = (event) => {
         const chosenRole = event.target.value;
-        if (selectedUsers.length === 0 || !chosenRole) {
+        if (this.selectedUsers.length === 0 || !chosenRole) {
             console.log("no user selected. ");
             return
         }
@@ -191,17 +176,21 @@ function MapUser(props) {
 
         const url = "/roles/" + roleId + "/users";
         PostWithAuth(url, {
-            "users": selectedUsers
+            "users": this.selectedUsers
         }).then((response) => {
-            GetUsersAndDisplay();
+            this.GetUsersAndDisplay();
             console.log("assigned role to users");
 
         })
     };
 
-    const ClosePopup = () =>{
-        setIsPopupOpen(false);
+    ClosePopup = () => {
+        this.setState({isPopupOpen: false})
     }
+
+    render(){
+        const { classes } = this.props;
+        console.log("rendering with ", this.state.userList);
 
     return (
 
@@ -209,7 +198,7 @@ function MapUser(props) {
             <NavBar />
 
             {
-                userList === null ?
+                this.state.userList === null || this.state.userList === undefined ?
                     (
                         <CircularProgress />
                     ) :
@@ -218,11 +207,11 @@ function MapUser(props) {
                             <CssBaseline />
                             <Container style={{ marginTop: 20 }}>
                                 <Heading Text={"User List"}> </Heading>
-                                <ConfirmationPopup ClosePopup={ClosePopup} Message={"Do you really want to delete this user?"} onConfirm={DeleteUser} IsOpen={isPopupOpen} />
-                                <Link href={RoutePath.AddUserPage} className={classes.linkButton} >Add User</Link>
+                                <ConfirmationPopup ClosePopup={this.ClosePopup} Message={"Do you really want to delete this user?"} onConfirm={this.DeleteUser} IsOpen={this.state.isPopupOpen} />
+                                <ButtonLink Text={"Add User"} Kind={"Blue"} To={RoutePath.AddUserPage}  >Add User</ButtonLink>
                                 <FormControl style={{ float: "right", width: '170px' }}>
                                     <InputLabel style={{paddingLeft: '10px'}} id="demo-simple-select-label">Assign Role</InputLabel>
-                                    <Select onChange={AssignRole}
+                                    <Select onChange={this.AssignRole}
                                         label="Role" variant='outlined' >
                                         <MenuItem value="">
                                             <em>None</em>
@@ -245,10 +234,10 @@ function MapUser(props) {
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                            {userList.slice(page * row, (page + 1) * row).map((item) => (
-                                                <UserRow  onDelete={openConfirmationPopup} UserData={item} onCheckBoxChange={ChangeSelection} />
+                                            {this.state.userList.slice(this.state.page * this.state.row, (this.state.page + 1) * this.state.row).map((item) => (
+                                                <UserRow  onDelete={this.openConfirmationPopup} UserData={item} onCheckBoxChange={this.ChangeSelection} />
                                             ))}
-                                            <TablePagination rowsPerPageOptions={[2, 4, 10, 15]} count={userList.length} rowsPerPage={row} page={page} onChangePage={(event, newPage) => setPage(newPage)} onChangeRowsPerPage={(event) => setRow(event.target.value)} />
+                                            <TablePagination rowsPerPageOptions={[2, 4, 10, 15]} count={this.state.userList.length} rowsPerPage={this.state.row} page={this.state.page} onChangePage={(event, newPage) => this.setState({page: newPage})} onChangeRowsPerPage={(event) => this.setState({row: event.target.value})} />
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
@@ -259,6 +248,7 @@ function MapUser(props) {
             }
         </>
     );
+        }
 }
 
 export default withRouter(MapUser);
