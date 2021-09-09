@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/singUpPage";
+import SignUpPage from "./pages/SingUpPage";
 import PasswordRecoverPage from "./pages/PasswordRecoveryPage";
 import PasswordResetPage from "./pages/PasswordReset";
 import MapUser from "./pages/MapUser";
