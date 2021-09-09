@@ -13,6 +13,3 @@ function Heading(props) {
 
 export default Heading;
 
-Heading.propTypes = {
-    Text: PropTypes.string.isRequired,
-}

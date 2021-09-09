@@ -28,7 +28,7 @@ function ConfirmEmail(props) {
     return (
         <>
         <NavBar></NavBar> 
-        <Heading Text={"Confirm Email"}></Heading>
+        <Heading >Confirm Email</Heading>
         <div>   Confirmation Token: { confirmationToken }</div>
         </>
     )

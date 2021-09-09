@@ -17,12 +17,12 @@ import ConfirmationPopup from "../components/ConfirmationPopup";
 import NavBar from "../components/NavBar";
 import ButtonLink from "../components/ButtonLink";
 
-class MapUser extends React.Component{
+class MapUser extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         console.log("the props are ", props);
-        this.state ={
+        this.state = {
             page: 0,
             row: 10,
             userList: null,
@@ -39,30 +39,30 @@ class MapUser extends React.Component{
         this.SelectedUserId = React.createRef(null);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.SetRoleIds();
         this.GetUsersAndDisplay();
     }
 
     openConfirmationPopup = (user_id) => {
         console.log("confirm the deletion");
-        if(!this.SelectedUserId){
+        if (!this.SelectedUserId) {
             console.log("no user was selected!!! expected selection!");
             return;
         }
         this.SelectedUserId.current = user_id;
-        this.setState({isPopupOpen: true})
+        this.setState({ isPopupOpen: true })
     }
 
-    DeleteUser = async() => {
+    DeleteUser = async () => {
         console.log(this.SelectedUserId);
-        if(!this.SelectedUserId.current){
+        if (!this.SelectedUserId.current) {
             console.log("error: no user was selected!");
             return;
         }
         const url = '/users/' + this.SelectedUserId.current;
         DeleteWithAuth(url)
-            .then((response) =>{
+            .then((response) => {
                 console.log("the user was deleted! ", response);
                 this.GetUsersAndDisplay();
             })
@@ -87,13 +87,13 @@ class MapUser extends React.Component{
 
         for (let index = 0; index < Roles.length; index++) {
             const role = Roles[index];
-            if(role.name === "Customer"){
+            if (role.name === "Customer") {
                 roleToRoleId["Customer"] = role.id.toString()
             }
-            else if(role.name === "Guest"){
+            else if (role.name === "Guest") {
                 roleToRoleId["Guest"] = role.id.toString()
             }
-            
+
         }
         return roleToRoleId;
     }
@@ -104,7 +104,7 @@ class MapUser extends React.Component{
                 console.log("the user data is: ", response);
                 const UserDataList = this.FormatData(response.data)
                 console.log("setting state of userList with ", UserDataList);
-                this.setState({userList: UserDataList});
+                this.setState({ userList: UserDataList });
             })
             .catch((error) => {
                 this.props.history.push(RoutePath.NotAllowed);
@@ -185,70 +185,62 @@ class MapUser extends React.Component{
     };
 
     ClosePopup = () => {
-        this.setState({isPopupOpen: false})
+        this.setState({ isPopupOpen: false })
     }
 
-    render(){
+    render() {
         const { classes } = this.props;
         console.log("rendering with ", this.state.userList);
 
-    return (
+        return (
 
-        <>
-            <NavBar />
+            <>
+                <NavBar />
 
-            {
-                this.state.userList === null || this.state.userList === undefined ?
-                    (
-                        <CircularProgress />
-                    ) :
-                    (
-                        <div>
-                            <CssBaseline />
-                            <Container style={{ marginTop: 20 }}>
-                                <Heading>User List </Heading>
-                                <ConfirmationPopup ClosePopup={this.ClosePopup} Message={"Do you really want to delete this user?"} onConfirm={this.DeleteUser} IsOpen={this.state.isPopupOpen} />
-                                <ButtonLink Text={"Add User"} Kind={"Blue"} To={RoutePath.AddUserPage}  >Add User</ButtonLink>
-                                <FormControl style={{ float: "right", width: '170px' }}>
-                                    <InputLabel style={{paddingLeft: '10px'}} id="demo-simple-select-label">Assign Role</InputLabel>
-                                    <Select onChange={this.AssignRole}
-                                        label="Role" variant='outlined' >
-                                        <MenuItem value="">
-                                            <em>None</em>
-                                        </MenuItem>
-                                        <MenuItem value={'Guest'} >Guest</MenuItem>
-                                        <MenuItem value={'Customer'}>Customer</MenuItem>
-                                    </Select>
-                                </FormControl>
+                {
+                    this.state.userList === null || this.state.userList === undefined ?
+                        (
+                            <CircularProgress />
+                        ) :
+                        (
+                            <div>
+                                <CssBaseline />
+                                <Container style={{ marginTop: 20 }}>
+                                    <Heading>User List </Heading>
+                                    <ConfirmationPopup ClosePopup={this.ClosePopup} Message={"Do you really want to delete this user?"} onConfirm={this.DeleteUser} IsOpen={this.state.isPopupOpen} />
+                                    <ButtonLink Text={"Add User"} Kind={"Blue"} To={RoutePath.AddUserPage}  >Add User</ButtonLink>
+                                    <FormControl style={{ float: "right", width: '170px' }}>
+                                        <InputLabel style={{ paddingLeft: '10px' }} id="demo-simple-select-label">Assign Role</InputLabel>
+                                        <Select onChange={this.AssignRole}
+                                            label="Role" variant='outlined' >
+                                            <MenuItem value="">
+                                                <em>None</em>
+                                            </MenuItem>
+                                            <MenuItem value={'Guest'} >Guest</MenuItem>
+                                            <MenuItem value={'Customer'}>Customer</MenuItem>
+                                        </Select>
+                                    </FormControl>
 
-                                <TableContainer component={Paper}>
+                                    <TableContainer component={Paper}>
 
-                                    <Table>
-                                        <TableHead>
-                                            <TableRow>
-                                                <TableCell>Select</TableCell>
-                                                <TableCell>Username</TableCell>
-                                                <TableCell>Email</TableCell>
-                                                <TableCell>Role</TableCell>
-                                                <TableCell>Delete</TableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            {this.state.userList.slice(this.state.page * this.state.row, (this.state.page + 1) * this.state.row).map((item) => (
-                                                <UserRow  onDelete={this.openConfirmationPopup} UserData={item} onCheckBoxChange={this.ChangeSelection} />
-                                            ))}
-                                            <TablePagination rowsPerPageOptions={[2, 4, 10, 15]} count={this.state.userList.length} rowsPerPage={this.state.row} page={this.state.page} onChangePage={(event, newPage) => this.setState({page: newPage})} onChangeRowsPerPage={(event) => this.setState({row: event.target.value})} />
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-                            </Container>
-                        </div>
-                    )
+                                        <Table>
+                                            <TableHeading />
+                                            <TableBody>
+                                                {this.state.userList.slice(this.state.page * this.state.row, (this.state.page + 1) * this.state.row).map((item) => (
+                                                    <UserRow onDelete={this.openConfirmationPopup} UserData={item} onCheckBoxChange={this.ChangeSelection} />
+                                                ))}
+                                                <TablePagination rowsPerPageOptions={[2, 4, 10, 15]} count={this.state.userList.length} rowsPerPage={this.state.row} page={this.state.page} onChangePage={(event, newPage) => this.setState({ page: newPage })} onChangeRowsPerPage={(event) => this.setState({ row: event.target.value })} />
+                                            </TableBody>
+                                        </Table>
+                                    </TableContainer>
+                                </Container>
+                            </div>
+                        )
 
-            }
-        </>
-    );
-        }
+                }
+            </>
+        );
+    }
 }
 
 export default withRouter(MapUser);
@@ -256,3 +248,22 @@ export default withRouter(MapUser);
 MapUser.propTypes = {
     history: PropTypes.object.isRequired,
 };
+
+
+
+function TableHeading() {
+
+    return (
+        <>
+            <TableHead>
+                <TableRow>
+                    <TableCell>Select</TableCell>
+                    <TableCell>Username</TableCell>
+                    <TableCell>Email</TableCell>
+                    <TableCell>Role</TableCell>
+                    <TableCell>Delete</TableCell>
+                </TableRow>
+            </TableHead>
+        </>
+    );
+}
