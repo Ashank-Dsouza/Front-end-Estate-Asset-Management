@@ -74,7 +74,7 @@ export default function PasswordRecoverPage(props) {
                     Password Recovery
                   </Typography>
                 }
-                subheader="Enter your email and a code will be sent to you!"
+                subheader="Enter your email and instructions will be sent to you!"
               />
               <CardContent>
                 <TextField
