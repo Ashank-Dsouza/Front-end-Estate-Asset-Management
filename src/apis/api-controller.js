@@ -13,7 +13,8 @@ function setBaseURL() {
     }
 }
 
-function getConfig(token) {
+function getConfig() {
+    const token = sessionStorage.getItem('userToken');
     return {
         headers: { Authorization: `Bearer ${token}` }
     }
@@ -34,8 +35,7 @@ export async function Post(url, body) {
 
 export async function PostWithAuth(url, body) {
     setBaseURL();
-    const token = sessionStorage.getItem('userToken');
-    const config = getConfig(token);
+    const config = getConfig();
 
     return axios.post(url, body, config)
             .then(function (response) {
@@ -49,9 +49,7 @@ export async function PostWithAuth(url, body) {
 
 export async function GetWithAuth(url) {
     setBaseURL();
-    const token = sessionStorage.getItem('userToken');
-
-    const config = getConfig(token);
+    const config = getConfig();
 
     return axios.get(url, config)
         .then(function (response) {
@@ -65,9 +63,7 @@ export async function GetWithAuth(url) {
 
 export async function DeleteWithAuth(url) {
     setBaseURL();
-    const token = sessionStorage.getItem('userToken');
-
-    const config = getConfig(token);
+    const config = getConfig();
 
     return axios.delete(url, config)
         .then(function (response) {
@@ -81,8 +77,7 @@ export async function DeleteWithAuth(url) {
 
 export async function PutWithAuth(url, body) {
     setBaseURL();
-    const token = sessionStorage.getItem('userToken');
-    const config = getConfig(token);
+    const config = getConfig();
 
     return axios.put(url, body,config)
             .then(function (response) {

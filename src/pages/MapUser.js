@@ -13,6 +13,7 @@ import { withRouter } from "react-router-dom";
 import { RoutePath } from "../constants/routes";
 import Heading from "../components/Heading";
 import ConfirmationPopup from "../components/ConfirmationPopup";
+import { TransferSessionDataAcrossTabs } from "../utility/SessionStorageManager";
 
 import NavBar from "../components/NavBar";
 import ButtonLink from "../components/ButtonLink";
@@ -40,6 +41,8 @@ class MapUser extends React.Component {
     }
 
     componentDidMount() {
+        console.log("inside componentDidMount()");
+        TransferSessionDataAcrossTabs();
         this.SetRoleIds();
         this.GetUsersAndDisplay();
     }

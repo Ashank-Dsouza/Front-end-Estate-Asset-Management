@@ -16,6 +16,7 @@ import AddUser from "./pages/AddUser";
 import PageNotFound from "./pages/PageNotFound";
 import NotEnoughPermissions from "./pages/NotEnoughPermissions";
 import AccountSettingPage from "./pages/AccountSetting";
+import { TransferSessionDataAcrossTabs } from "./utility/SessionStorageManager";
 
 import { RoutePath } from "./constants/routes";
 import Dashboard from "./pages/Dashboard";
@@ -24,6 +25,10 @@ import ConfirmEmail from "./pages/ConfirmEmail";
 class App extends React.Component {
   constructor() {
     super()
+  }
+
+  componentWillMount(){
+    TransferSessionDataAcrossTabs();
   }
 
   render() {
