@@ -14,15 +14,14 @@ import {
 import { TextField } from "@material-ui/core";
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import LockIcon from "@material-ui/icons/Lock";
-import { Post } from "./../apis/api-controller";
+import { Post } from "../../apis/api-controller";
 import { withStyles } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
 import { Container } from "@material-ui/core";
 import PropTypes from 'prop-types'
-import { GetDeviceId } from "../utility/ApiHelperFunctions";
+import { GetDeviceId } from "../../utility/ApiHelperFunctions";
 
-import {MockSetup} from "./../variables";
-import { RoutePath } from "../constants/routes";
+import { RoutePath } from "../../constants/routes";
 
 
 const useStyle = theme => ({

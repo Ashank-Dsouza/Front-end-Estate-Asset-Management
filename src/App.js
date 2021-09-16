@@ -5,10 +5,10 @@ import {
   Route,
 } from "react-router-dom";
 
-import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SingUpPage";
-import PasswordRecoverPage from "./pages/PasswordRecoveryPage";
-import PasswordResetPage from "./pages/PasswordReset";
+import LoginPage from "./pages/security/LoginPage"; 
+import SignUpPage from "./pages/security/SingUpPage";
+import PasswordRecoverPage from "./pages/security/PasswordRecoveryPage";
+import PasswordResetPage from "./pages/security/PasswordReset";
 import MapUser from "./pages/MapUser";
 import UserProfile from './pages/UserProfile';
 import PrivateRoute from "./components/PrivateRoute";
@@ -16,6 +16,7 @@ import AddUser from "./pages/AddUser";
 import PageNotFound from "./pages/PageNotFound";
 import NotEnoughPermissions from "./pages/NotEnoughPermissions";
 import AccountSettingPage from "./pages/AccountSetting";
+import CodeVerificationPage from "./pages/security/CodeVerificationPage";
 
 import { RoutePath } from "./constants/routes";
 import Dashboard from "./pages/Dashboard";
@@ -43,6 +44,10 @@ class App extends React.Component {
             </Route>
             <Route exact path={RoutePath.NotAllowed} component={NotEnoughPermissions}>
             </Route>
+
+            <Route exact path={RoutePath.CodeVerificationPage} component={CodeVerificationPage}>
+            </Route>
+
 
 
             <PrivateRoute exact path={RoutePath.MapUser} > <MapUser /></PrivateRoute>

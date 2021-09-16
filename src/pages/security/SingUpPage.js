@@ -9,9 +9,8 @@ import { green } from '@material-ui/core/colors';
 import { withRouter } from "react-router-dom";
 import PropTypes from 'prop-types'
 
-
-import AddUserForm from "../components/forms/AddUserForm";
-import { RoutePath } from "../constants/routes";
+import AddUserForm from "../../components/forms/AddUserForm";
+import { RoutePath } from "../../constants/routes";
 
 
 function SingUp(props) {

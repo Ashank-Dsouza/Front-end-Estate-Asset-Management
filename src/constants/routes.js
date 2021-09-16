@@ -9,7 +9,8 @@ export const RoutePath = {
     UserProfile:"/profile",
     SettingsPage:"/account-setting",
     Dashboard: "/dashboard",
-    ConfirmEmail: "/confirm-email/:confirmationToken"
+    ConfirmEmail: "/confirm-email/:confirmationToken",
+    CodeVerificationPage: "/code-confirmation-page"
 }
 
 

@@ -13,7 +13,7 @@ import {
     TextField,
     Box
 } from "@material-ui/core";
-import {Post} from "./../apis/api-controller";
+import { Post } from "../../apis/api-controller";
 
 
 import LockOpenIcon from '@material-ui/icons/LockOpen';

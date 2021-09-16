@@ -9,7 +9,7 @@ import {
   Button,
   TextField,
 } from "@material-ui/core";
-import { Post } from "./../apis/api-controller";
+import { Post } from "../../apis/api-controller";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { green } from "@material-ui/core/colors";

@@ -13,8 +13,6 @@ import {
     TextField,
     Box
 } from "@material-ui/core";
-import {Post} from "./../apis/api-controller";
-
 
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 
@@ -62,10 +60,10 @@ export default function CodeVerificationPage(props) {
         console.log("the value of email input is: ", email);
         console.log("the value of password input is: ", password);
 
-        var response = await Post('/users/forgotPassword', {
-            Email: email,
-            Password: password
-        })
+        // var response = await Post('/users/forgotPassword', {
+        //     Email: email,
+        //     Password: password
+        // })
     }
 
 
