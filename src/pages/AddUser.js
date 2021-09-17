@@ -1,18 +1,10 @@
 import React from "react";
 import {
-    Typography, Container, CssBaseline, IconButton, List,
-    ListItem, ListItemText, ListItemIcon, Button, AppBar, Toolbar, Hidden, Menu, MenuItem, Drawer, Divider, CardMedia, Grid
+    Typography, Container, CssBaseline, Grid
 } from "@material-ui/core";
 import AddUserForm from "../components/forms/AddUserForm";
 import NavBar from "../components/NavBar";
-
-
-
-
 import { green } from "@material-ui/core/colors";
-import DehazeIcon from '@material-ui/icons/Dehaze';
-import AppsIcon from '@material-ui/icons/Apps';
-import AndroidIcon from '@material-ui/icons/Android';
 
 export default function AddUser(props) {
 
@@ -22,7 +14,6 @@ export default function AddUser(props) {
 
 
     return (
-
         <>
             <CssBaseline />
             <NavBar/>
