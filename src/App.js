@@ -47,6 +47,7 @@ class App extends React.Component {
 
             <Route exact path={RoutePath.CodeVerificationPage} component={CodeVerificationPage}>
             </Route>
+            <Route exact path={RoutePath.ConfirmEmail} > <ConfirmEmail /></Route>
 
 
 
@@ -58,7 +59,6 @@ class App extends React.Component {
             <PrivateRoute exact path={RoutePath.SettingsPage} > <AccountSettingPage />
             </PrivateRoute>
             <PrivateRoute exact path={RoutePath.Dashboard} > <Dashboard /></PrivateRoute>
-            <PrivateRoute  path={RoutePath.ConfirmEmail} > <ConfirmEmail /></PrivateRoute>
 
   
 
