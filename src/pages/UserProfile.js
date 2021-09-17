@@ -1,4 +1,5 @@
 import { GetWithAuth } from "../apis/api-controller";
+import UserInfo from "../components/user-components/UserInfo";
 import ReactPopup from "../components/ReactPopup";
 
 import React from "react";
@@ -98,13 +99,7 @@ class UserProfile extends React.Component {
                                         }
                                     />
                                     <CardContent>
-                                        <Typography variant='h4'>{this.state.name}</Typography>
-                                        <List disablePadding>
-                                            <ListItem>
-                                                <ListItemIcon><MailOutlineIcon /></ListItemIcon>
-                                                <ListItemText style={{ color: green[700] }} primary={this.state.email} />
-                                            </ListItem>
-                                        </List>
+                                        <UserInfo email={this.state.email} name={this.state.name}/>
                                     </CardContent>
                                 </Card>
 
