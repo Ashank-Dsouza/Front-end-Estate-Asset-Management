@@ -8,28 +8,28 @@ import { useEffect } from "react";
 
 function ConfirmEmail(props) {
 
-    const { confirmationToken } = useParams('blank');
+    const { confirmationToken: PIN } = useParams('blank');
 
 
     useEffect(() => {
         // This effect uses the `value` variable,
         // so it "depends on" `value`.
         console.log("the value is now: ");
-        console.log(confirmationToken);
+        console.log(PIN);
         Put('/confirmEmail',{
-            "confirmation_token": confirmationToken
+            "confirmation_token": PIN
         }).then((response) =>{
             console.log("the response is: ", response);
         }).catch((error) =>{
             console.log("api call failed with error: ", error);
         })
-      }, [confirmationToken])
+      }, [PIN])
 
     return (
         <>
         <NavBar></NavBar> 
         <Heading >Confirm Email</Heading>
-        <div>   Confirmation Token: { confirmationToken }</div>
+        <div>   Confirmation Token: { PIN }</div>
         </>
     )
 
