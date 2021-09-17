@@ -13,7 +13,7 @@ import { withRouter } from "react-router-dom";
 import { RoutePath } from "../constants/routes";
 import Heading from "../components/Heading";
 import ConfirmationPopup from "../components/ConfirmationPopup";
-
+import ErrorBoundary from "../components/ErrorBoundary"; 
 import NavBar from "../components/NavBar";
 import ButtonLink from "../components/ButtonLink";
 
@@ -188,6 +188,7 @@ class MapUser extends React.Component {
         this.setState({ isPopupOpen: false })
     }
 
+
     render() {
         const { classes } = this.props;
         console.log("rendering with ", this.state.userList);
@@ -196,48 +197,50 @@ class MapUser extends React.Component {
 
             <>
                 <NavBar />
+                <ErrorBoundary>
 
-                {
-                    this.state.userList === null || this.state.userList === undefined ?
-                        (
-                            <CircularProgress />
-                        ) :
-                        (
-                            <div>
-                                <CssBaseline />
-                                <Container style={{ marginTop: 20 }}>
-                                    <Heading>User List </Heading>
-                                    <ConfirmationPopup ClosePopup={this.ClosePopup} Message={"Do you really want to delete this user?"} onConfirm={this.DeleteUser} IsOpen={this.state.isPopupOpen} />
-                                    <ButtonLink Text={"Add User"} Kind={"Blue"} To={RoutePath.AddUserPage}  >Add User</ButtonLink>
-                                    <FormControl style={{ float: "right", width: '170px' }}>
-                                        <InputLabel style={{ paddingLeft: '10px' }} id="demo-simple-select-label">Assign Role</InputLabel>
-                                        <Select onChange={this.AssignRole}
-                                            label="Role" variant='outlined' >
-                                            <MenuItem value="">
-                                                <em>None</em>
-                                            </MenuItem>
-                                            <MenuItem value={'Guest'} >Guest</MenuItem>
-                                            <MenuItem value={'Customer'}>Customer</MenuItem>
-                                        </Select>
-                                    </FormControl>
+                    {
+                        this.state.userList === null || this.state.userList === undefined ?
+                            (
+                                <CircularProgress />
+                            ) :
+                            (
+                                <div>
+                                    <CssBaseline />
+                                    <Container style={{ marginTop: 20 }}>
+                                        <Heading>User List </Heading>
+                                        <ConfirmationPopup ClosePopup={this.ClosePopup} Message={"Do you really want to delete this user?"} onConfirm={this.DeleteUser} IsOpen={this.state.isPopupOpen} />
+                                        <ButtonLink Text={"Add User"} Kind={"Blue"} To={RoutePath.AddUserPage}  >Add User</ButtonLink>
+                                        <FormControl style={{ float: "right", width: '170px' }}>
+                                            <InputLabel style={{ paddingLeft: '10px' }} id="demo-simple-select-label">Assign Role</InputLabel>
+                                            <Select onChange={this.AssignRole}
+                                                label="Role" variant='outlined' >
+                                                <MenuItem value="">
+                                                    <em>None</em>
+                                                </MenuItem>
+                                                <MenuItem value={'Guest'} >Guest</MenuItem>
+                                                <MenuItem value={'Customer'}>Customer</MenuItem>
+                                            </Select>
+                                        </FormControl>
 
-                                    <TableContainer component={Paper}>
+                                        <TableContainer component={Paper}>
 
-                                        <Table>
-                                            <TableHeading />
-                                            <TableBody>
-                                                {this.state.userList.slice(this.state.page * this.state.row, (this.state.page + 1) * this.state.row).map((item) => (
-                                                    <UserRow onDelete={this.openConfirmationPopup} UserData={item} onCheckBoxChange={this.ChangeSelection} />
-                                                ))}
-                                                <TablePagination rowsPerPageOptions={[2, 4, 10, 15]} count={this.state.userList.length} rowsPerPage={this.state.row} page={this.state.page} onChangePage={(event, newPage) => this.setState({ page: newPage })} onChangeRowsPerPage={(event) => this.setState({ row: event.target.value })} />
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                </Container>
-                            </div>
-                        )
+                                            <Table>
+                                                <TableHeading />
+                                                <TableBody>
+                                                    {this.state.userList.slice(this.state.page * this.state.row, (this.state.page + 1) * this.state.row).map((item) => (
+                                                        <UserRow onDelete={this.openConfirmationPopup} UserData={item} onCheckBoxChange={this.ChangeSelection} />
+                                                    ))}
+                                                    <TablePagination rowsPerPageOptions={[2, 4, 10, 15]} count={this.state.userList.length} rowsPerPage={this.state.row} page={this.state.page} onChangePage={(event, newPage) => this.setState({ page: newPage })} onChangeRowsPerPage={(event) => this.setState({ row: event.target.value })} />
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+                                    </Container>
+                                </div>
+                            )
 
-                }
+                    }
+                </ErrorBoundary>
             </>
         );
     }
