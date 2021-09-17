@@ -13,14 +13,9 @@ import {
     Card,
     CardContent,
     CardHeader,
-    List,
-    ListItem,
-    ListItemText,
-    ListItemIcon,
     CircularProgress
 } from "@material-ui/core";
 import PropTypes from 'prop-types'
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
 import { green } from "@material-ui/core/colors";
 import NavBar from "../components/NavBar";
