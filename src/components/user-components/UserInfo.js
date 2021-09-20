@@ -6,7 +6,7 @@ function UserInfo({name, email}) {
 
     return (
         <>
-        <UserName name={name}></UserName>
+            <Typography variant='h4'>{name}</Typography>
         <Typography variant='h6'>{email}</Typography>
 
         </>
