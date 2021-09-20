@@ -22,6 +22,7 @@ import PropTypes from 'prop-types'
 import { GetDeviceId } from "../../utility/ApiHelperFunctions";
 
 import { RoutePath } from "../../constants/routes";
+import { MockSetup } from "../../variables";
 
 
 const useStyle = theme => ({
@@ -72,7 +73,7 @@ class LoginPage extends React.Component {
     async SubmitLoginDetails() {
         console.log("the email entered is: ", this.state.email);
         console.log("the password entered is: ", this.state.password);
-        const deviceId = await GetDeviceId();;
+        const deviceId = await GetDeviceId();
 
         Post('/login', {
             Email: this.state.email,
@@ -82,12 +83,16 @@ class LoginPage extends React.Component {
             .then((response) => {
                 console.log("the response is: ", response);
                 if (response?.data?.access_token) {
-                    sessionStorage.setItem('userToken', response.data.access_token)
-                    this.props.history.push(RoutePath.Dashboard)
+                    this.SetUserTokenGotoHomePage(response.data.access_token);
                 }
             })
 
     };
+
+    SetUserTokenGotoHomePage(token){
+        sessionStorage.setItem('userToken', token)
+        this.props.history.push(RoutePath.Dashboard)
+    }
 
     render() {
         const { classes } = this.props;
@@ -151,7 +156,7 @@ class LoginPage extends React.Component {
                                     Login
                                 </Button>
                                 <Typography>
-                                    <Link href={RoutePath.PasswordRecoveryPage} activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Forgot Password?</Link>
+                                    <Link href={RoutePath.ForgotPasswordPage} activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Forgot Password?</Link>
                                 </Typography>
 
                             </Box>
