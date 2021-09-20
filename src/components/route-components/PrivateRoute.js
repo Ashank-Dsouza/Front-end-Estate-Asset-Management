@@ -1,9 +1,9 @@
-import Auth from "./../auth/Auth";
+import Auth from "../../auth/Auth";
 import {
     Route,
     Redirect,
   } from "react-router-dom";
-import { RoutePath } from "../constants/routes";
+import { RoutePath } from "../../constants/routes";
 
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
