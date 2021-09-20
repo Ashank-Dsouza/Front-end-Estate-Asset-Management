@@ -1,9 +1,8 @@
-import React from "react";
+import React, {useContext} from "react";
 import { useState } from 'react';
 import {
     Grid,
     Typography,
-    InputAdornment,
     Container,
     CssBaseline,
     Card,
@@ -13,14 +12,15 @@ import {
     TextField,
     Box
 } from "@material-ui/core";
-
-import LockOpenIcon from '@material-ui/icons/LockOpen';
+import { withRouter } from "react-router";
+import PropTypes from 'prop-types';
+import { Put } from "../../apis/api-controller";
 
 import { makeStyles } from "@material-ui/core/styles";
+import { RoutePath } from "../../constants/routes";
 
 import { green } from "@material-ui/core/colors";
-
-import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
+import { EmailContext } from "../../state-management/EmailContext";
 
 const useStyle = makeStyles((them) => ({
     root: {
@@ -49,23 +49,32 @@ const useStyle = makeStyles((them) => ({
     },
 }));
 
-export default function CodeVerificationPage(props) {
+function CodeVerificationPage(props) {
     const classes = useStyle();
 
-    const [email, setEmailInput] = useState(''); // '' is the initial state value
-    const [password, setPasswordInput] = useState(''); // '' is the initial state value
+    const [code, setCode] = useState('');
+
+    const [userEmail, setUserEmail] = useContext(EmailContext);
 
 
-    const submitOnClick = async(event) => {
-        console.log("the value of email input is: ", email);
-        console.log("the value of password input is: ", password);
-
-        // var response = await Post('/users/forgotPassword', {
-        //     Email: email,
-        //     Password: password
-        // })
+    const submitOnClick = async (event) => {
+        console.log("the value of code input is: ", code);
+        console.log("the value of email is: ", userEmail);
+        var response = await Put('/user/verifyPIN', {
+            PIN: code
+        }).then((response) => {
+            props.history.push(RoutePath.PasswordResetPage)
+        })
     }
 
+    let hideEmail = function(email) {
+        return email.replace(/(.{2})(.*)(?=@)/,
+          function(gp1, gp2, gp3) { 
+            for(let i = 0; i < gp3.length; i++) { 
+              gp2+= "*"; 
+            } return gp2; 
+          });
+      };
 
     return (
         <>
@@ -82,44 +91,22 @@ export default function CodeVerificationPage(props) {
                             <CardHeader
                                 title={
                                     <Typography variant="h4" className={classes.MainTitle}>
-                                        Password Reset
-                  </Typography>
+                                        We sent a code to your email
+                                    </Typography>
                                 }
-                                subheader="Enter your email and instructions will be sent to you!"
+                                subheader={"Enter the verification code sent to " + hideEmail(userEmail)}
                             />
                             <Box className={classes.InputFields}>
                                 <TextField
-                                    value={email}
-                                    onInput={e => setEmailInput(e.target.value)}
-                                    label="Email"
+                                    value={code}
+                                    onInput={e => setCode(e.target.value)}
+                                    label="Verification Code"
                                     variant="outlined"
-                                    className={classes.InputFieldsText}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <AlternateEmailIcon />
-                                            </InputAdornment>
-                                        ),
-                                    }}
+                                    // className={classes.InputFieldsText}
+                                
                                     fullWidth={true}
                                 />
 
-                                <TextField
-                                    value={password}
-                                    onInput={e => setPasswordInput(e.target.value)}
-                                    label="Password"
-                                    variant="outlined"
-                                    type='password'
-                                    className={classes.InputFieldsText}
-                                    InputProps={{
-                                        startAdornment: (
-                                            <InputAdornment position="start">
-                                                <LockOpenIcon />
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                    fullWidth={true}
-                                />
                             </Box>
                             <CardActions>
                                 <Button
@@ -129,7 +116,7 @@ export default function CodeVerificationPage(props) {
                                     fullWidth
                                 >
                                     Reset
-                </Button>
+                                </Button>
                             </CardActions>
                         </Card>
                     </Grid>
@@ -138,3 +125,10 @@ export default function CodeVerificationPage(props) {
         </>
     );
 }
+
+export default withRouter(CodeVerificationPage);
+
+CodeVerificationPage.propTypes = {
+    history: PropTypes.object.isRequired,
+    Email: PropTypes.string.isRequired,
+};
