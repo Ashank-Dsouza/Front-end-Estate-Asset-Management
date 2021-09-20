@@ -1,6 +1,5 @@
 import { Typography } from "@material-ui/core";
 import PropTypes from 'prop-types';
-import UserName from "./UserName";
 
 function UserInfo({name, email}) {
 
