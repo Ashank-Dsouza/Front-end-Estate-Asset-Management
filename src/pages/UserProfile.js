@@ -61,8 +61,10 @@ class UserProfile extends React.Component {
         this.mounted = false;
       }
 
-    setProfileInfo(updatedName){
+    setProfileInfo(updatedName, updatedEmail){
         this.setState({name: updatedName})
+        this.setState({email: updatedEmail})
+
     }
 
     render() { 

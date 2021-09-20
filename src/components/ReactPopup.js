@@ -68,13 +68,14 @@ class ReactPopup extends React.Component {
 
             const firstName = userInfo.firstname;
             const lastName = userInfo.lastname;
+            const email = userInfo.email;
 
             this.setState({ firstName: firstName })
             this.setState({ lastName: lastName })
 
             const fullName = firstName + " " + lastName;
 
-            this.props.onUpdateInfo(fullName);
+            this.props.onUpdateInfo(fullName, email);
             console.log("the user was updated!", response);
         })
             .catch((error) => { console.log("updation failed!!!!", error); })
