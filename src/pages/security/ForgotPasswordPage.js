@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { useState } from 'react';
 import {
   Grid, Typography, InputAdornment,
@@ -11,10 +11,16 @@ import {
 } from "@material-ui/core";
 import { Post } from "../../apis/api-controller";
 import { makeStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router-dom";
+import PropTypes from 'prop-types'
+
+import { RoutePath } from "../../constants/routes";
 
 import { green } from "@material-ui/core/colors";
 
 import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
+import { EmailContext } from "../../state-management/EmailContext";
+
 
 const useStyle = makeStyles((them) => ({
   root: {
@@ -43,16 +49,21 @@ const useStyle = makeStyles((them) => ({
   },
 }));
 
-export default function PasswordRecoverPage(props) {
+function ForgotPasswordPage(props) {
   const classes = useStyle();
 
   const [email, setEmailInput] = useState(''); // '' is the initial state value
+
+  const [userEmail, setUserEmail] = useContext(EmailContext);
 
   const submitOnClick = async(event) => {
     console.log("the value of email input is: ", email);
     var response = await Post('/users/sendMail', {
       Email: email
-    })
+    }).then((resp) =>{
+      setUserEmail(email)
+      props.history.push(RoutePath.CodeVerificationPage);
+    });
   }
 
 
@@ -111,3 +122,10 @@ export default function PasswordRecoverPage(props) {
     </>
   );
 }
+
+export default withRouter(ForgotPasswordPage);
+
+ForgotPasswordPage.propTypes = {
+    history: PropTypes.object.isRequired,
+
+};
