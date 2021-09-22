@@ -1,10 +1,7 @@
 import React, {useContext} from "react";
 import { useState } from 'react';
 import {
-    Grid,
     Typography,
-    Container,
-    CssBaseline,
     Card,
     CardHeader,
     CardActions,
@@ -22,12 +19,9 @@ import { RoutePath } from "../../../constants/routes";
 import { green } from "@material-ui/core/colors";
 import { EmailContext } from "../../../state-management/EmailContext";
 import ErrorHandler from "../../../components/forms/withErrorMessage";
+import FormatForm from "../../../components/forms/withPageFormatting";
 
 const useStyle = makeStyles((them) => ({
-    root: {
-        height: "100vh",
-        width: "100%",
-    },
     resetButton: {
         backgroundColor: green[700],
         color: them.palette.primary.contrastText,
@@ -120,9 +114,12 @@ function CodeVerificationForm(props) {
         </>
     );
 }
-const CodeVerificationPageWithRouter = withRouter(CodeVerificationForm);    
+const CodeVerificationFormWithRouter = withRouter(CodeVerificationForm);    
 
-export default ErrorHandler(CodeVerificationPageWithRouter);
+const FormWithErrorHandler =  ErrorHandler(CodeVerificationFormWithRouter);
+ const CodeVerificationPage = FormatForm(FormWithErrorHandler)
+
+export default CodeVerificationPage;
 
 CodeVerificationForm.propTypes = {
     history: PropTypes.object.isRequired,

@@ -17,7 +17,8 @@ import AddUser from "./pages/AddUser";
 import PageNotFound from "./pages/PageNotFound";
 import NotEnoughPermissions from "./pages/NotEnoughPermissions";
 import AccountSettingPage from "./pages/AccountSetting";
-import CodeVerificationPage from "./pages/security/CodeVerification/CodeVerificationPage";
+import CodeVerificationForm from "./pages/security/CodeVerification/CodeVerificationForm";
+// import CodeVerificationPage from "./pages/security/CodeVerification/FormPage";
 
 import { RoutePath } from "./constants/routes";
 import Dashboard from "./pages/Dashboard";
@@ -41,14 +42,14 @@ class App extends React.Component {
             </Route>
             <ContextRoute exact path={RoutePath.ForgotPasswordPage} component={ForgotPasswordPage}>
             </ContextRoute>
-            <ContextRoute exact path={RoutePath.CodeVerificationPage} component={CodeVerificationPage}>
+            <ContextRoute exact path={RoutePath.CodeVerificationPage} component={CodeVerificationForm}>
             </ContextRoute>
             <Route exact path={RoutePath.PasswordResetPage} component={PasswordResetPage}>
             </Route>
             <Route exact path={RoutePath.NotAllowed} component={NotEnoughPermissions}>
             </Route>
 
-            <Route exact path={RoutePath.CodeVerificationPage} component={CodeVerificationPage}>
+            <Route exact path={RoutePath.CodeVerificationPage} component={CodeVerificationForm}>
             </Route>
             <Route exact path={RoutePath.ConfirmEmail} > <ConfirmEmail /></Route>
 
