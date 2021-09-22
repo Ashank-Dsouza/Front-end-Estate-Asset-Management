@@ -17,7 +17,7 @@ import AddUser from "./pages/AddUser";
 import PageNotFound from "./pages/PageNotFound";
 import NotEnoughPermissions from "./pages/NotEnoughPermissions";
 import AccountSettingPage from "./pages/AccountSetting";
-import CodeVerificationPage from "./pages/security/CodeVerificationPage";
+import CodeVerificationPage from "./pages/security/CodeVerification/CodeVerificationPage";
 
 import { RoutePath } from "./constants/routes";
 import Dashboard from "./pages/Dashboard";
