@@ -114,6 +114,9 @@ class LoginPage extends React.Component {
                             <Typography>
                                 New Here?  <Link href={RoutePath.SignUpPage}> Create an account</Link>
                             </Typography>
+                            <Typography>
+                                Please make sure you have confirmed your email before trying to login. 
+                            </Typography>
                             <Box my={4} mb={2}>
                                 <TextField
                                     value={this.state.email}
