@@ -1,6 +1,5 @@
 import React from "react";
 import {
-    Grid,
     Typography,
     Link,
     Box,
@@ -9,7 +8,6 @@ import {
     FormControl,
     FormControlLabel,
     Checkbox,
-    CssBaseline
 } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
@@ -17,7 +15,6 @@ import LockIcon from "@material-ui/icons/Lock";
 import { Post } from "../../apis/api-controller";
 import { withStyles } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
-import { Container } from "@material-ui/core";
 import PropTypes from 'prop-types'
 import { GetDeviceId } from "../../utility/ApiHelperFunctions";
 
@@ -25,7 +22,6 @@ import FormatForm from "../../components/forms/withPageFormatting";
 import ErrorHandler from "../../components/forms/withErrorMessage";
 
 import { RoutePath } from "../../constants/routes";
-import { MockSetup } from "../../variables";
 
 
 const useStyle = theme => ({
@@ -54,13 +50,6 @@ const useStyle = theme => ({
         }
     },
 });
-
-function GetRandomNumberString() {
-    var deviceIdNumber = Math.floor((Math.random() * 1000) + 1);
-    const deviceId = deviceIdNumber.toString()
-    return deviceId;
-}
-
 
 class LoginForm extends React.Component {
     constructor(props) {
