@@ -32,6 +32,20 @@ export async function Post(url, body) {
         })
 }
 
+export async function Put(url, body) {
+    setBaseURL();
+    console.log("put send with body: ", body);
+    return axios.put(url, body)
+        .then(function (response) {
+            console.log(response);
+            return response;
+        })
+        .catch((error) => {
+            console.log(error);
+            throw error;
+        })
+}
+
 export async function PostWithAuth(url, body) {
     setBaseURL();
     const token = sessionStorage.getItem('userToken');
