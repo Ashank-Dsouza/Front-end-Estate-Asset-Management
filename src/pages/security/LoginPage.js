@@ -17,6 +17,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
 import PropTypes from 'prop-types'
 import { GetDeviceId } from "../../utility/ApiHelperFunctions";
+import { withRouter } from "react-router";
 
 import FormatForm from "../../components/forms/withPageFormatting";
 import ErrorHandler from "../../components/forms/withErrorMessage";
@@ -160,7 +161,9 @@ class LoginForm extends React.Component {
     }
 }
 
-const LoginFormWithStyle = withStyles(useStyle, { withTheme: true })(LoginForm);    
+
+
+const LoginFormWithStyle = withRouter( withStyles(useStyle, { withTheme: true })(LoginForm));    
 
 const FormWithErrorHandler =  ErrorHandler(LoginFormWithStyle);
 
