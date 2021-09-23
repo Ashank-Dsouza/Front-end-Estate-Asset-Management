@@ -118,8 +118,6 @@ function ForgotPasswordForm(props) {
   );
 }
 
-//export default withRouter(ForgotPasswordPage);
-
 const ForgotPasswordWithRouter = withRouter(ForgotPasswordForm);    
 
 const FormWithErrorHandler =  ErrorHandler(ForgotPasswordWithRouter);

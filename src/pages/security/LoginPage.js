@@ -21,6 +21,9 @@ import { Container } from "@material-ui/core";
 import PropTypes from 'prop-types'
 import { GetDeviceId } from "../../utility/ApiHelperFunctions";
 
+import FormatForm from "../../components/forms/withPageFormatting";
+import ErrorHandler from "../../components/forms/withErrorMessage";
+
 import { RoutePath } from "../../constants/routes";
 import { MockSetup } from "../../variables";
 
@@ -59,7 +62,7 @@ function GetRandomNumberString() {
 }
 
 
-class LoginPage extends React.Component {
+class LoginForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -86,6 +89,13 @@ class LoginPage extends React.Component {
                     this.SetUserTokenGotoHomePage(response.data.access_token);
                 }
             })
+            .catch((error) => {
+                if (error?.response?.data?.error) {
+                    const errorMessage = error.response.data.error;
+                    this.props.handleSubmitError(errorMessage);
+                }
+              })
+            
 
     };
 
@@ -99,15 +109,7 @@ class LoginPage extends React.Component {
 
         return (
             <>
-                <CssBaseline />
-                <Container>
-                    <Grid
-                        container
-                        justifyContent="center"
-                        alignContent="center"
-                        className={classes.root}
-                    >
-                        <Grid item>
+             
                             <Typography variant="h4" className={classes.MainTitle}>
                                 Log In to TruVest
                             </Typography>
@@ -163,15 +165,20 @@ class LoginPage extends React.Component {
                                 </Typography>
 
                             </Box>
-                        </Grid>
-                    </Grid>
-                </Container>
+                     
             </>
         );
     }
 }
-export default withStyles(useStyle, { withTheme: true })(LoginPage);
 
-LoginPage.propTypes = {
+const LoginFormWithStyle = withStyles(useStyle, { withTheme: true })(LoginForm);    
+
+const FormWithErrorHandler =  ErrorHandler(LoginFormWithStyle);
+
+const LoginPage = FormatForm(FormWithErrorHandler)
+
+export default LoginPage;
+
+LoginForm.propTypes = {
     history: PropTypes.object.isRequired,
 };
