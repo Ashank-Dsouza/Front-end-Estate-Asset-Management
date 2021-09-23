@@ -11,6 +11,7 @@ import {
     Button,
 } from "@material-ui/core";
 import PropTypes from 'prop-types';
+import ErrorHandler from "./withErrorMessage";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { green } from '@material-ui/core/colors';
@@ -29,7 +30,7 @@ const useStyle = makeStyles((them) => ({
     },
     InputFields: {
         marginTop: them.spacing(8),
-        marginBottom: them.spacing(8),
+        marginBottom: them.spacing(2),
         width: "100%",
     },
     InputFieldsText: {
@@ -58,7 +59,7 @@ const useStyle = makeStyles((them) => ({
     }
 }));
 
-export default function AddUserForm(props) {
+function AddUserForm(props) {
     const [password, setPasswordInput] = useState(''); // '' is the initial state value
     const [username, setUserNameInput] = useState(''); // '' is the initial state value
     const [email, setEmailInput] = useState(''); // '' is the initial state value
@@ -95,6 +96,16 @@ export default function AddUserForm(props) {
                 props.AddedUserAlert();
                 return response;
              })
+             .catch((error) => {
+                DisplayError(error);
+             })
+    }
+
+    function DisplayError(error) {
+        if (error?.response?.data?.error) {
+            const errorMessage = error.response.data.error;
+            props.handleSubmitError(errorMessage);
+        }
     }
 
     const submitOnClick = async (event) => {
@@ -117,6 +128,9 @@ export default function AddUserForm(props) {
                 .then((response) =>{
                     props.navigateToLogin();
                 })
+                .catch((error) => {
+                    DisplayError(error);
+                 })
 
     }
 
@@ -229,6 +243,8 @@ export default function AddUserForm(props) {
         </>
     );
 }
+
+export default ErrorHandler(AddUserForm);
 
 AddUserForm.propTypes = {
     ShowAgreementCheckbox: PropTypes.bool.isRequired,

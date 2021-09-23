@@ -4,7 +4,7 @@ import { Box } from "@material-ui/core";
 
 const ErrorHandler = (OriginalComponent) => {
 
-    return function NewComponent() {
+    return function NewComponent(props) {
         const [errMsg, setErrMsg] = useState(null);
 
         const handleError = (errorMessage) => {
@@ -14,7 +14,7 @@ const ErrorHandler = (OriginalComponent) => {
         return (
             <>
                 <Box>
-                <OriginalComponent handleSubmitError={handleError}/>
+                <OriginalComponent {...props} handleSubmitError={handleError}/>
                 <ErrorMessage message={errMsg}></ErrorMessage>
                 </Box>
             </>
