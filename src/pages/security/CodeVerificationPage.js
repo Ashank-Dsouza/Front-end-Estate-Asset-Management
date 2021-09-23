@@ -11,15 +11,15 @@ import {
 } from "@material-ui/core";
 import { withRouter } from "react-router";
 import PropTypes from 'prop-types';
-import { Put } from "../../../apis/api-controller";
+import { Put } from "../../apis/api-controller";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { RoutePath } from "../../../constants/routes";
+import { RoutePath } from "../../constants/routes";
 
 import { green } from "@material-ui/core/colors";
-import { EmailContext } from "../../../state-management/EmailContext";
-import ErrorHandler from "../../../components/forms/withErrorMessage";
-import FormatForm from "../../../components/forms/withPageFormatting";
+import { EmailContext } from "../../state-management/EmailContext";
+import ErrorHandler from "../../components/forms/withErrorMessage";
+import FormatForm from "../../components/forms/withPageFormatting";
 
 const useStyle = makeStyles((them) => ({
     resetButton: {
