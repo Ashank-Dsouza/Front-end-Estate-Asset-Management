@@ -13,6 +13,8 @@ import { Post } from "../../apis/api-controller";
 import { makeStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import PropTypes from 'prop-types'
+import ErrorHandler from "../../components/forms/withErrorMessage";
+import FormatForm from "../../components/forms/withPageFormatting";
 
 import { RoutePath } from "../../constants/routes";
 
@@ -49,7 +51,7 @@ const useStyle = makeStyles((them) => ({
   },
 }));
 
-function ForgotPasswordPage(props) {
+function ForgotPasswordForm(props) {
   const classes = useStyle();
 
   const [email, setEmailInput] = useState(''); // '' is the initial state value
@@ -63,21 +65,17 @@ function ForgotPasswordPage(props) {
     }).then((resp) =>{
       setUserEmail(email)
       props.history.push(RoutePath.CodeVerificationPage);
-    });
+    }) .catch((error) => {
+      if (error?.response?.data?.error) {
+          const errorMessage = error.response.data.error;
+          props.handleSubmitError(errorMessage);
+      }
+    })
   }
 
 
   return (
     <>
-      <CssBaseline />
-      <Container>
-        <Grid
-          container
-          justifyContent="center"
-          alignContent="center"
-          className={classes.root}
-        >
-          <Grid item xs={12} md={8}>
             <Card style={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
               <CardHeader
                 title={
@@ -116,16 +114,21 @@ function ForgotPasswordPage(props) {
                 </Button>
               </CardActions>
             </Card>
-          </Grid>
-        </Grid>
-      </Container>
     </>
   );
 }
 
-export default withRouter(ForgotPasswordPage);
+//export default withRouter(ForgotPasswordPage);
 
-ForgotPasswordPage.propTypes = {
+const ForgotPasswordWithRouter = withRouter(ForgotPasswordForm);    
+
+const FormWithErrorHandler =  ErrorHandler(ForgotPasswordWithRouter);
+
+const ForgotPasswordPage = FormatForm(FormWithErrorHandler)
+
+export default ForgotPasswordPage;
+
+ForgotPasswordForm.propTypes = {
     history: PropTypes.object.isRequired,
 
 };

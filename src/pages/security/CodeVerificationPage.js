@@ -117,7 +117,8 @@ function CodeVerificationForm(props) {
 const CodeVerificationFormWithRouter = withRouter(CodeVerificationForm);    
 
 const FormWithErrorHandler =  ErrorHandler(CodeVerificationFormWithRouter);
- const CodeVerificationPage = FormatForm(FormWithErrorHandler)
+
+const CodeVerificationPage = FormatForm(FormWithErrorHandler)
 
 export default CodeVerificationPage;
 
