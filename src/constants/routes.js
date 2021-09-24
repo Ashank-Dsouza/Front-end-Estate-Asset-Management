@@ -10,7 +10,8 @@ export const RoutePath = {
     SettingsPage:"/account-setting",
     Dashboard: "/dashboard",
     ConfirmEmail: "/confirm-email/:confirmationToken",
-    CodeVerificationPage: "/code-confirmation-page"
+    CodeVerificationPage: "/code-confirmation-page/:pin",
+    SomethingWentWrongPage: "/something-went-wrong"
 }
 
 

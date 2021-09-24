@@ -18,6 +18,7 @@ import PageNotFound from "./pages/PageNotFound";
 import NotEnoughPermissions from "./pages/NotEnoughPermissions";
 import AccountSettingPage from "./pages/AccountSetting";
 import CodeVerificationPage from "./pages/security/CodeVerificationPage";
+import SomethingWentWrongPage from "./pages/error-pages/SomethingWentWrongPage";
 
 import { RoutePath } from "./constants/routes";
 import Dashboard from "./pages/Dashboard";
@@ -49,6 +50,7 @@ class App extends React.Component {
             </Route>
 
             <Route exact path={RoutePath.ConfirmEmail} > <ConfirmEmail /></Route>
+            <Route exact path={RoutePath.SomethingWentWrongPage} > <SomethingWentWrongPage /></Route>
 
 
 
