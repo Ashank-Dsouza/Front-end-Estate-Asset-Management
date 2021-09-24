@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Container,
     CssBaseline
@@ -11,28 +11,41 @@ import PropTypes from 'prop-types'
 
 import AddUserForm from "../../components/forms/AddUserForm";
 import { RoutePath } from "../../constants/routes";
-
+import Message from "../../components/Message";
 
 function SingUp(props) {
 
+    const [signUpDone, setSignUpDone] = useState(false);
+
     const navigateToLogin = () => { // the callback. Use a better name
         console.log("inside SignUp. Routing to Login page");
-        props.history.push(RoutePath.LoginPage);
+        setSignUpDone(true);
+        //props.history.push(RoutePath.LoginPage);
       };
 
     return (
         <>
-            <CssBaseline />
-            <Container>
-                <Container maxWidth="md">
-                    <Typography variant="h4" style={{ color: green[700] }}>Get started with a free account</Typography>
-                    <Typography>
-                        Already have an account?{" "}
-                        <NavLink exact to={RoutePath.LoginPage} activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
-                    </Typography>
-                    <AddUserForm navigateToLogin={navigateToLogin} ShowAgreementCheckbox={true}/>
-                </Container>
-                </Container>
+        {
+            signUpDone ? (
+                <Message title={"Account Created!"} message={"A message has been sent to your email. Please confirm your email before attempting to login."} ></Message>
+            ):
+            (
+                <>
+                <CssBaseline />
+                <Container>
+                    <Container maxWidth="md">
+                        <Typography variant="h4" style={{ color: green[700] }}>Get started with a free account</Typography>
+                        <Typography>
+                            Already have an account?{" "}
+                            <NavLink exact to={RoutePath.LoginPage} activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Login</NavLink>
+                        </Typography>
+                        <AddUserForm navigateToLogin={navigateToLogin} ShowAgreementCheckbox={true}/>
+                    </Container>
+                    </Container>
+                </>
+            )
+        }
+
         </>
     );
 }
