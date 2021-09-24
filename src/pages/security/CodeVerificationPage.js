@@ -19,7 +19,7 @@ function CodeVerificationForm(props) {
         // so it "depends on" `value`.
         console.log("the value is now: ");
         console.log(pin);
-        await Put('/user/verifyPIN', {
+        Put('/user/verifyPIN', {
             PIN: pin
         }).then((response) => {
             props.history.push(RoutePath.PasswordResetPage)
@@ -42,5 +42,4 @@ export default withRouter(CodeVerificationForm);
 
 CodeVerificationForm.propTypes = {
     history: PropTypes.object.isRequired,
-    Email: PropTypes.string.isRequired,
 };
