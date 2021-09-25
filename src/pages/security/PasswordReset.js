@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import ErrorMessage from "../../components/ErrorMessage";
 import { Put } from "../../apis/api-controller";
-import ErrorHandler from "../../components/forms/withErrorMessage";
+import SubmitHandler from "../../components/forms/withErrorMessage";
 import FormatForm from "../../components/forms/withPageFormatting";
 
 import LockOpenIcon from '@material-ui/icons/LockOpen';
@@ -186,7 +186,7 @@ function PasswordResetForm(props) {
 }
 
 
-const FormWithErrorHandler =  ErrorHandler(PasswordResetForm);
+const FormWithErrorHandler =  SubmitHandler(PasswordResetForm);
 
 const PasswordResetPage = FormatForm(FormWithErrorHandler)
 

@@ -1,26 +1,55 @@
 import ErrorMessage from "../ErrorMessage";
-import { useState } from 'react';
 import { Box } from "@material-ui/core";
+import Message from '../Message';
+import React from "react";
 
-const ErrorHandler = (OriginalComponent) => {
+const SubmitHandler = (OriginalComponent) => {
 
-    return function NewComponent(props) {
-        const [errMsg, setErrMsg] = useState(null);
-
-        const handleError = (errorMessage) => {
-            setErrMsg(errorMessage)
+    return class NewComponent extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                errMsg: null,
+                IsSuccess: false,
+                SuccessMsg: null,
+                SuccessMsgTitle: null
+            }
         }
 
-        return (
-            <>
-                <Box>
-                <OriginalComponent {...props} handleSubmitError={handleError}/>
-                <ErrorMessage message={errMsg}></ErrorMessage>
-                </Box>
-            </>
-        )
+
+        handleError = (errorMessage) => {
+            this.setState({ errMsg: errorMessage })
+        }
+
+        handleSuccess = (SuccessTitle, SuccessMsg) => {
+            this.setState({IsSuccess: true});
+            this.setState({SuccessMsgTitle: SuccessTitle})
+            this.setState({SuccessMsg: SuccessMsg})
+        }
+
+        render() {
+            const { IsSuccess, SuccessMsgTitle, SuccessMsg, errMsg } = this.state;
+            return (
+                <>
+                {
+                    IsSuccess ? 
+                    (
+                        <Message title={SuccessMsgTitle} message={SuccessMsg}></Message>
+                    )
+                    :
+                    (
+                        <Box>
+                            <OriginalComponent {...this.props} handleSubmitSuccess={this.handleSuccess} handleSubmitError={this.handleError} />
+                            <ErrorMessage message={errMsg}></ErrorMessage>
+                        </Box>
+                    )
+                }
+
+                </>
+            )
+        }
 
     }
 }
 
-export default ErrorHandler;
+export default SubmitHandler;

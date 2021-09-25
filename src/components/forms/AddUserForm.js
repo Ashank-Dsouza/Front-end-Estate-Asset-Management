@@ -11,7 +11,7 @@ import {
     Button,
 } from "@material-ui/core";
 import PropTypes from 'prop-types';
-import ErrorHandler from "./withErrorMessage";
+import SubmitHandler from "./withErrorMessage";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { green } from '@material-ui/core/colors';
@@ -130,7 +130,7 @@ function AddUserForm(props) {
                 })
                 .catch((error) => {
                     DisplayError(error);
-                 })
+                })
 
     }
 
@@ -244,7 +244,7 @@ function AddUserForm(props) {
     );
 }
 
-export default ErrorHandler(AddUserForm);
+export default SubmitHandler(AddUserForm);
 
 AddUserForm.propTypes = {
     ShowAgreementCheckbox: PropTypes.bool.isRequired,

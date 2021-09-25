@@ -10,7 +10,7 @@ import { Post } from "../../apis/api-controller";
 import { makeStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import PropTypes from 'prop-types'
-import ErrorHandler from "../../components/forms/withErrorMessage";
+import SubmitHandler from "../../components/forms/withErrorMessage";
 import FormatForm from "../../components/forms/withPageFormatting";
 
 import { RoutePath } from "../../constants/routes";
@@ -61,7 +61,8 @@ function ForgotPasswordForm(props) {
       Email: email
     }).then((resp) =>{
       setUserEmail(email)
-      props.history.push(RoutePath.CodeVerificationPage);
+      props.handleSubmitSuccess("Reset Email Sent", "Please follow the instructions in\
+                                                     the email sent to you registered email.")
     }) .catch((error) => {
       if (error?.response?.data?.error) {
           const errorMessage = error.response.data.error;
@@ -117,7 +118,7 @@ function ForgotPasswordForm(props) {
 
 const ForgotPasswordWithRouter = withRouter(ForgotPasswordForm);    
 
-const FormWithErrorHandler =  ErrorHandler(ForgotPasswordWithRouter);
+const FormWithErrorHandler =  SubmitHandler(ForgotPasswordWithRouter);
 
 const ForgotPasswordPage = FormatForm(FormWithErrorHandler)
 

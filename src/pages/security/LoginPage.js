@@ -20,7 +20,7 @@ import { GetDeviceId } from "../../utility/ApiHelperFunctions";
 import { withRouter } from "react-router";
 
 import FormatForm from "../../components/forms/withPageFormatting";
-import ErrorHandler from "../../components/forms/withErrorMessage";
+import SubmitHandler from "../../components/forms/withErrorMessage";
 
 import { RoutePath } from "../../constants/routes";
 
@@ -165,7 +165,7 @@ class LoginForm extends React.Component {
 
 const LoginFormWithStyle = withRouter( withStyles(useStyle, { withTheme: true })(LoginForm));    
 
-const FormWithErrorHandler =  ErrorHandler(LoginFormWithStyle);
+const FormWithErrorHandler =  SubmitHandler(LoginFormWithStyle);
 
 const LoginPage = FormatForm(FormWithErrorHandler)
 
