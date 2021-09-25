@@ -18,7 +18,6 @@ function Message(props) {
             container
             justifyContent="center"
             alignContent="center"
-            
         >
             <Box>
                 <Typography variant="h4" style={{ color: green[700] }}>{title}</Typography>
